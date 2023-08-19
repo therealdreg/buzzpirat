@@ -1,6 +1,12 @@
 /firmware/bootloader/ds30loader.X/dist/default/
 /firmware/bootloader/ds30loader.X/nbproject/private/
 /firmware/bootloader/ds30loader.X/build/default/
+/firmware/bootloader/ds30loader.X/nbproject/Makefile-variables.mk
+/firmware/bootloader/ds30loader.X/nbproject/Makefile-local-default.mk
+/firmware/bootloader/ds30loader.X/nbproject/Makefile-impl.mk
+/firmware/bootloader/ds30loader.X/nbproject/Makefile-genesis.properties
+/firmware/bootloader/ds30loader.X/nbproject/Makefile-default.mk
+/firmware/bootloader/ds30loader.X/.generated_files/
 /firmware/Documentation/
 /firmware/busPirate.X/*.[is]
 /firmware/busPirate.X/*.map
@@ -22,3 +28,6 @@
 /firmware/busPirate.X/nbproject/Package-BusPirate_v4.bash
 /firmware/busPirate.X/nbproject/Package-default.bash
 /firmware/busPirate.X/nbproject/private/
+/firmware/busPirate.X/.generated_files/
+/firmware/busPirate.X/defmplabxtrace.log
+/firmware/busPirate.X/defmplabxtrace.log.inx

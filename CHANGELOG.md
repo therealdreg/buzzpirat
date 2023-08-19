@@ -1,3 +1,6 @@
+## buzzpirat 2023
+- http://buzzpirat.com/
+
 ## Changes from 7.0 to 7.1:
 
 ### Bus Pirate v3 specific changes:
