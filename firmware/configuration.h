@@ -278,17 +278,18 @@
 #define BP_ENABLE_1WIRE_SUPPORT
 #define BP_ENABLE_BASIC_SUPPORT
 #define BP_ENABLE_DIO_SUPPORT
-#undef BP_ENABLE_HD44780_SUPPORT
+#define BP_ENABLE_HD44780_SUPPORT
 #define BP_ENABLE_I2C_SUPPORT
 #define BP_ENABLE_JTAG_SUPPORT
 #define BP_ENABLE_PIC_SUPPORT
-#undef BP_ENABLE_PC_AT_KEYBOARD_SUPPORT
+#define BP_ENABLE_PC_AT_KEYBOARD_SUPPORT
 #define BP_ENABLE_RAW_2WIRE_SUPPORT
 #define BP_ENABLE_RAW_3WIRE_SUPPORT
 #undef BP_ENABLE_SMPS_SUPPORT
 #define BP_ENABLE_SPI_SUPPORT
 #define BP_ENABLE_SUMP_SUPPORT
 #define BP_ENABLE_UART_SUPPORT
+#define BP_I2C_USE_HW_BUS
 
 #endif /* !BP_CUSTOM_FEATURE_SET */
 
@@ -307,6 +308,7 @@
 #define BP_ENABLE_SPI_SUPPORT
 #define BP_ENABLE_SUMP_SUPPORT
 #define BP_ENABLE_UART_SUPPORT
+#define BP_I2C_USE_HW_BUS
 #endif /* BP_CUSTOM_FEATURE_SET */
 
 /* 1-Wire module configuration definitions. */
@@ -358,7 +360,7 @@
 /**
  * Size of the tokens buffer allocate to the BASIC interpreter, in bytes.
  */
-#define BP_BASIC_PROGRAM_SPACE 1024
+#define BP_BASIC_PROGRAM_SPACE 512
 
 /**
  * Maximum number of nested FOR-LOOP statements the BASIC interpreter can
@@ -464,7 +466,7 @@
  *
  * @warning This must be set to a power of two, ie. 256, 128, 64, 32, etc.
  */
-#define BP_COMMAND_BUFFER_SIZE 128
+#define BP_COMMAND_BUFFER_SIZE 256
 
 /**
  * How big the serial terminal buffer can be, in bytes.

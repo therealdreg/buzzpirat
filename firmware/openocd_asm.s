@@ -14,10 +14,8 @@
 ; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 ;
 
-.ifdef __PIC24FJ64GA002__
-	.equ __24FJ64GA002, 1
-	.include "p24FJ64GA002.inc"
-.endif ; __PIC24FJ64GA002__
+.equ __24FJ64GA002, 1
+.include "p24FJ64GA002.inc"
 
 ;
 ; Hardware configuration

@@ -8,19 +8,14 @@
       <itemPath>../base.h</itemPath>
       <itemPath>../basic.h</itemPath>
       <itemPath>../bitbang.h</itemPath>
-      <itemPath>../dp_usb/cdc.h</itemPath>
-      <itemPath>../descriptors.h</itemPath>
       <itemPath>../dio.h</itemPath>
       <itemPath>../hardwarev3.h</itemPath>
       <itemPath>../pc_at_keyboard.h</itemPath>
       <itemPath>../pic.h</itemPath>
-      <itemPath>../dp_usb/picusb.h</itemPath>
       <itemPath>../raw2wire.h</itemPath>
       <itemPath>../raw3wire.h</itemPath>
       <itemPath>../selftest.h</itemPath>
       <itemPath>../sump.h</itemPath>
-      <itemPath>../dp_usb/usb_stack.h</itemPath>
-      <itemPath>../onboard_eeprom.h</itemPath>
       <itemPath>../i2c.h</itemPath>
       <itemPath>../configuration.h</itemPath>
       <itemPath>../hd44780.h</itemPath>
@@ -30,7 +25,6 @@
       <itemPath>../smps.h</itemPath>
       <itemPath>../openocd.h</itemPath>
       <itemPath>../messages_v3.h</itemPath>
-      <itemPath>../messages_v4.h</itemPath>
       <itemPath>../messages.h</itemPath>
       <itemPath>../binary_io.h</itemPath>
       <itemPath>../proc_menu.h</itemPath>
@@ -40,7 +34,6 @@
       <itemPath>../raw_common.h</itemPath>
       <itemPath>../types.h</itemPath>
       <itemPath>../hardware.h</itemPath>
-      <itemPath>../hardwarev4.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LibraryFiles"
                    displayName="Library Files"
@@ -50,7 +43,6 @@
                    displayName="Linker Files"
                    projectFiles="true">
       <itemPath>../p24FJ64GA002.gld</itemPath>
-      <itemPath>../p24FJ256GB106.gld</itemPath>
     </logicalFolder>
     <logicalFolder name="ObjectFiles"
                    displayName="Object Files"
@@ -63,7 +55,6 @@
       <itemPath>../base.c</itemPath>
       <itemPath>../basic.c</itemPath>
       <itemPath>../bitbang.c</itemPath>
-      <itemPath>../dp_usb/cdc.c</itemPath>
       <itemPath>../dio.c</itemPath>
       <itemPath>../jtag.c</itemPath>
       <itemPath>../jtag/lenval.c</itemPath>
@@ -77,8 +68,6 @@
       <itemPath>../selftest.c</itemPath>
       <itemPath>../smps.c</itemPath>
       <itemPath>../sump.c</itemPath>
-      <itemPath>../dp_usb/usb_stack.c</itemPath>
-      <itemPath>../onboard_eeprom.c</itemPath>
       <itemPath>../i2c.c</itemPath>
       <itemPath>../hd44780.c</itemPath>
       <itemPath>../spi.c</itemPath>
@@ -86,7 +75,6 @@
       <itemPath>../openocd.c</itemPath>
       <itemPath>../openocd_asm.s</itemPath>
       <itemPath>../messages_v3.s</itemPath>
-      <itemPath>../messages_v4.s</itemPath>
       <itemPath>../messages.c</itemPath>
       <itemPath>../binary_io.c</itemPath>
       <itemPath>../proc_menu.c</itemPath>
@@ -111,7 +99,7 @@
         <targetDevice>PIC24FJ64GA002</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>noID</platformTool>
+        <platformTool>pk4hybrid</platformTool>
         <languageToolchain>XC16</languageToolchain>
         <languageToolchainVersion>1.35</languageToolchainVersion>
         <platform>3</platform>
