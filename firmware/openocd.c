@@ -32,11 +32,7 @@ extern bus_pirate_configuration_t bus_pirate_configuration;
 #define OOCD_CLK_TRIS BP_CLK_DIR
 #define OOCD_TDI_TRIS BP_MOSI_DIR
 #define OOCD_SRST_TRIS BP_AUX0_DIR
-#ifdef BUSPIRATEV3
 #define OOCD_TRST_TRIS BP_PGD_DIR
-#else
-#define OOCD_TRST_TRIS BP_AUX1_DIR
-#endif /* BUSPIRATEV3 */
 
 // io ports
 #define OOCD_TDO BP_MISO
@@ -44,11 +40,7 @@ extern bus_pirate_configuration_t bus_pirate_configuration;
 #define OOCD_CLK BP_CLK
 #define OOCD_TDI BP_MOSI
 #define OOCD_SRST BP_AUX0
-#ifdef BUSPIRATEV3
 #define OOCD_TRST BP_PGD
-#else
-#define OOCD_TRST BP_AUX1
-#endif /* BUSPIRATEV3 */
 
 // open-drain control
 #define OOCD_TDO_ODC BP_MISO
@@ -56,11 +48,8 @@ extern bus_pirate_configuration_t bus_pirate_configuration;
 #define OOCD_CLK_ODC BP_CLK
 #define OOCD_TDI_ODC BP_MOSI
 #define OOCD_SRST_ODC BP_AUX0
-#ifdef BUSPIRATEV3
 #define OOCD_TRST_ODC BP_PGD
-#else
-#define OOCD_TRST_ODC BP_AUX1
-#endif /* BUSPIRATEV3 */
+
 
 #define CMD_UNKNOWN 0x00
 #define CMD_PORT_MODE 0x01
@@ -204,11 +193,7 @@ void binOpenOCD(void) {
       inByte = user_serial_read_byte();
       inByte2 = user_serial_read_byte();
 
-#if defined(BUSPIRATEV3)
-
       IFS0bits.U1RXIF = 0; // reset the RX flag
-
-#endif /* BUSPIRATEV3 */
 
       j = (inByte << 8) | inByte2; // number of bit sequences
 
@@ -220,7 +205,6 @@ void binOpenOCD(void) {
       buf[2] = inByte2;
       bp_write_buffer(buf, 3);
 
-#if defined(BUSPIRATEV3)
       i = (j + 7) / 8; // number of bytes used
 
       // prepare the interrupt transfer
@@ -238,70 +222,6 @@ void binOpenOCD(void) {
       IEC0bits.U1RXIE = 1;
 
       binOpenOCDTapShiftFast(UART1RXBuf, UART1TXBuf, j, openocd_jtag_delay);
-
-#else
-
-      int16_t bit_sequences = (int16_t)(j & 0x7FFF);
-
-      do {
-        /* Read TDI and TMS. */
-
-        uint16_t tdi_data_out = user_serial_read_byte();
-        uint16_t tms_data_out = user_serial_read_byte();
-        tdi_data_out = tdi_data_out |
-                       ((bit_sequences > 8) ? user_serial_read_byte() : 0) << 8;
-        tms_data_out = tms_data_out |
-                       ((bit_sequences > 8) ? user_serial_read_byte() : 0) << 8;
-
-        /* Clock TDI and TMS out, while reading TDO in. */
-
-        size_t bits_to_process = 16 < bit_sequences ? 16 : bit_sequences;
-        size_t counter;
-        uint16_t tdo_data_in = 0;
-
-        for (counter = 0; counter < bits_to_process; counter++) {
-#ifdef BP_JTAG_OPENOCD_DELAY
-          __asm volatile("\t repeat %0 \n"
-                         "\t nop       \n"
-                         :
-                         : "r"(openocd_jtag_delay));
-#endif /* BP_JTAG_OPENOCD_DELAY */
-
-          /* Clear TCK. */
-          OOCD_CLK = LOW;
-
-          /* Output TMS and TDI. */
-          OOCD_TDI = (tdi_data_out & 0x0001) ? HIGH : LOW;
-          tdi_data_out >>= 1;
-          OOCD_TMS = (tms_data_out & 0x0001) ? HIGH : LOW;
-          tms_data_out >>= 1;
-
-#ifdef BP_JTAG_OPENOCD_DELAY
-          __asm volatile("\t repeat %0 \n"
-                         "\t nop       \n"
-                         :
-                         : "r"(openocd_jtag_delay));
-#endif /* BP_JTAG_OPENOCD_DELAY */
-
-          /* Set TCK. */
-          OOCD_CLK = HIGH;
-
-          /* Sample TDO. */
-          tdo_data_in = (OOCD_TDO << 15) | (tdo_data_in >> 1);
-        }
-
-        /* Report TDO. */
-
-        tdo_data_in >>= 15 - (bits_to_process - 1);
-        user_serial_transmit_character(tdo_data_in & 0xFF);
-        if (bits_to_process > 8) {
-          user_serial_transmit_character((tdo_data_in >> 8) & 0xFF);
-        }
-
-        bit_sequences -= 16;
-      } while (bit_sequences > 0);
-
-#endif /* BUSPIRATEV4 */
 
       break;
     }

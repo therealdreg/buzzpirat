@@ -14,10 +14,6 @@
 ; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 ;
 
-.ifdef __PIC24FJ256GB106__
-	.error "This is only for Bus Pirate v3"
-.endif ; __PIC24FJ256GB106__
-
 .ifdef __PIC24FJ64GA002__
 	.equ __24FJ64GA002, 1
 	.include "p24FJ64GA002.inc"

@@ -446,12 +446,7 @@ void handle_bitbang_command(const bitbang_command command) {
     REPORT_IO_SUCCESS();
     bp_disable_mode_led();
     user_serial_wait_transmission_done();
-#if defined(BUSPIRATEV4)
-    reset_state();
-    return;
-#else
     __asm volatile("RESET");
-#endif /* BUSPIRATEV4 */
     break;
 
   case BITBANG_COMMAND_SHORT_SELF_TEST:
@@ -483,13 +478,7 @@ void handle_bitbang_command(const bitbang_command command) {
     break;
 
   case BITBANG_COMMAND_JTAG_XSVF:
-#ifdef BUSPIRATEV4
-    bp_enable_voltage_regulator();
-    MSG_XSV1_MODE_IDENTIFIER;
-    jtag();
-#else
     REPORT_IO_FAILURE();
-#endif /* BUSPIRATEV4 */
     break;
 
   default:
@@ -606,54 +595,6 @@ void bp_binary_io_peripherals_set(unsigned char inByte) {
     IODIR &= (~CS); // CS output
   }
 }
-
-#if defined(BUSPIRATEV4)
-
-// checks if voltage is present on VUEXTERN
-bool bp_binary_io_pullup_control(uint8_t control_byte) {
-
-  if (mode_configuration.high_impedance == NO) {
-    return false;
-  }
-
-  /* Disable both pull-ups. */
-  bp_disable_3v3_pullup();
-  bp_delay_ms(2);
-
-  /* Turn on the ADC. */
-  bp_enable_adc();
-
-  /* Is there already an external voltage? */
-  bool has_voltage = bp_read_adc(BP_ADC_VPU) > 0x0100;
-
-  /* Turn off the ADC. */
-  bp_disable_adc();
-
-  if (has_voltage) {
-    return false;
-  }
-
-  switch (control_byte) {
-  case 0x51:
-    /* Turn on the +3.3v pull-up. */
-    bp_enable_3v3_pullup();
-    break;
-
-  case 0x52:
-    /* Turn on the +5v pull-up. */
-    bp_enable_5v0_pullup();
-    break;
-
-  default:
-    /* Turn off both pull-ups. */
-    bp_disable_3v3_pullup();
-    break;
-  }
-
-  return true;
-}
-
-#endif /* BUSPIRATEV4 */
 
 void binary_io_raw_wire_mode_handler(void) {
   mode_configuration.high_impedance = YES;
@@ -948,11 +889,7 @@ void handle_bulk_bit_transfer(const uint8_t command) {
 }
 
 void handle_set_pullup(const uint8_t command) {
-#if defined(BUSPIRATEV4)
-  user_serial_transmit_character(bp_binary_io_pullup_control(command));
-#else
   REPORT_IO_FAILURE();
-#endif /* BUSPIRATEV4 */
 }
 
 void handle_configure_peripherals(const uint8_t command) {
@@ -1221,22 +1158,6 @@ void handle_clear_pwm(void) {
    */
   T2CON = 0x0000;
 
-#if defined(BUSPIRATEV4)
-  /*
-   * OC5CON1 - OUTPUT COMPARE 5 CONTROL REGISTER 1
-   *
-   * MSB
-   * --0000--0--00000
-   *   ||||  |  |||||
-   *   ||||  |  ||+++--- OCM:      Output compare is disabled.
-   *   ||||  |  |+------ TRIGMODE: TRIGSTAT is only cleared by software.
-   *   ||||  |  +------- OCFLT0:   No PWM fault condition.
-   *   ||||  +---------- ENFLT0:   Fault 0 input disabled.
-   *   |+++------------- OCTSEL:   Output compare with Timer 2.
-   *   +---------------- OCSIDL:   Output Compare continues in CPU idle mode.
-   */
-  OC5CON = 0x0000;
-#else
   /*
    * OC5CON - OUTPUT COMPARE 5 CONTROL REGISTER
    *
@@ -1249,7 +1170,6 @@ void handle_clear_pwm(void) {
    *   +---------------- OCSIDL: Output Compare continues in CPU idle mode.
    */
   OC5CON = 0x0000;
-#endif /* BUSPIRATEV4 */
 
   /* Remove output from AUX pin. */
   BP_AUX_RPOUT = 0x00;
@@ -1321,22 +1241,6 @@ void handle_setup_pwm(void) {
    */
   T4CON = 0x0000;
 
-#if defined(BUSPIRATEV4)
-  /*
-   * OC5CON1 - OUTPUT COMPARE 5 CONTROL REGISTER 1
-   *
-   * MSB
-   * --0000--0--00000
-   *   ||||  |  |||||
-   *   ||||  |  ||+++--- OCM:      Output compare is disabled.
-   *   ||||  |  |+------ TRIGMODE: TRIGSTAT is only cleared by software.
-   *   ||||  |  +------- OCFLT0:   No PWM fault condition.
-   *   ||||  +---------- ENFLT0:   Fault 0 input disabled.
-   *   |+++------------- OCTSEL:   Output compare with Timer 2.
-   *   +---------------- OCSIDL:   Output Compare continues in CPU idle mode.
-   */
-  OC5CON = 0x0000;
-#else
   /*
    * OC5CON - OUTPUT COMPARE 5 CONTROL REGISTER
    *
@@ -1349,7 +1253,6 @@ void handle_setup_pwm(void) {
    *   +---------------- OCSIDL: Output Compare continues in CPU idle mode.
    */
   OC5CON = 0x0000;
-#endif /* BUSPIRATEV4 */
 
   BP_AUX_RPOUT = OC5_IO;
   T2CONbits.TCKPS = user_serial_read_byte() & 0b00000011;
@@ -1359,22 +1262,6 @@ void handle_setup_pwm(void) {
   OC5R = duty_cycle;
   OC5RS = duty_cycle;
 
-#if defined(BUSPIRATEV4)
-  /*
-   * OC5CON1 - OUTPUT COMPARE 5 CONTROL REGISTER 1
-   *
-   * MSB
-   * --0000--0--00110
-   *   ||||  |  |||||
-   *   ||||  |  ||+++--- OCM:      PWM ON, Fault pin, OCF5 disabled.
-   *   ||||  |  |+------ TRIGMODE: TRIGSTAT is only cleared by software.
-   *   ||||  |  +------- OCFLT0:   No PWM fault condition.
-   *   ||||  +---------- ENFLT0:   Fault 0 input disabled.
-   *   |+++------------- OCTSEL:   Output compare with Timer 2.
-   *   +---------------- OCSIDL:   Output Compare continues in CPU idle mode.
-   */
-  OC5CON = 0x0006;
-#else
   /*
    * OC5CON - OUTPUT COMPARE 5 CONTROL REGISTER
    *
@@ -1387,7 +1274,6 @@ void handle_setup_pwm(void) {
    *   +---------------- OCSIDL: Output Compare continues in CPU idle mode.
    */
   OC5CON = 0x0006;
-#endif /* BUSPIRATEV4 */
 
   uint16_t period = user_serial_read_byte();
   period = (period << 8) | user_serial_read_byte();

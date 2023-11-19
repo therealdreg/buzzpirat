@@ -20,14 +20,7 @@
 
 /* Hardware identification. */
 
-#if defined(__PIC24FJ256GB106__)
-
-/**
- * The firmware is built for a Bus Pirate v4.
- */
-#define BUSPIRATEV4
-
-#elif defined(__PIC24FJ64GA002__)
+#if defined(__PIC24FJ64GA002__)
 
 /**
  * The firmware is built for a Bus Pirate v3.
@@ -296,23 +289,6 @@
 
 #ifndef BP_CUSTOM_FEATURE_SET
 
-#ifdef BUSPIRATEV4
-#define BP_ENABLE_1WIRE_SUPPORT
-#define BP_ENABLE_BASIC_SUPPORT
-#define BP_ENABLE_DIO_SUPPORT
-#undef BP_ENABLE_HD44780_SUPPORT
-#define BP_ENABLE_I2C_SUPPORT
-#define BP_ENABLE_JTAG_SUPPORT
-#define BP_ENABLE_PIC_SUPPORT
-#define BP_ENABLE_PC_AT_KEYBOARD_SUPPORT
-#define BP_ENABLE_RAW_2WIRE_SUPPORT
-#define BP_ENABLE_RAW_3WIRE_SUPPORT
-#undef BP_ENABLE_SMPS_SUPPORT
-#define BP_ENABLE_SPI_SUPPORT
-#define BP_ENABLE_SUMP_SUPPORT
-#define BP_ENABLE_UART_SUPPORT
-#endif /* BUSPIRATEV4 */
-
 #ifdef BUSPIRATEV3
 #define BP_ENABLE_1WIRE_SUPPORT
 #define BP_ENABLE_BASIC_SUPPORT
@@ -379,17 +355,6 @@
 
 #ifdef BP_ENABLE_I2C_SUPPORT
 
-#ifdef BUSPIRATEV4
-
-/**
- * Enable usage of the on-board hardware I2C bus.
- *
- * This is mandatory on Bus Pirate v4 hardware, optional on v3.
- */
-#define BP_I2C_USE_HW_BUS
-
-#endif /* BUSPIRATEV4 */
-
 #endif /* BP_ENABLE_I2C_SUPPORT */
 
 /* BASIC interpreter module configuration definitions. */
@@ -405,19 +370,6 @@
  */
 
 #undef BP_BASIC_DEBUG_COMMAND
-
-#ifdef BUSPIRATEV4
-
-/**
- * Enable storing and retrieving saved BASIC scripts on the on-board 8 kilobytes
- * EEPROM that is available on Bus Pirate v4 boards.
- *
- * Disabled by default as the code involved has not been tested yet.
- */
-
-#undef BP_BASIC_I2C_FILESYSTEM
-
-#endif /* BUSPIRATEV4 */
 
 /**
  * Size of the tokens buffer allocate to the BASIC interpreter, in bytes.
@@ -490,37 +442,13 @@
  */
 #define BP_JTAG_OPENOCD_SUPPORT
 
-#ifdef BUSPIRATEV4
-
-#ifdef BP_JTAG_OPENOCD_SUPPORT
-
-/**
- * Add an extra delay before and after OpenOCD I/O bursts.
- */
-#define BP_JTAG_OPENOCD_DELAY
-
-#endif /* BP_JTAG_OPENOCD_SUPPORT */
-
-/**
- * Enable support for XSVF JTAG commands.
- *
- * This is not enabled on v3 boards due to taking up too much memory.
- *
- * More information at https://en.wikipedia.org/wiki/Serial_Vector_Format
- */
-#define BP_JTAG_XSVF_SUPPORT
-
-#endif /* BUSPIRATEV4 */
-
 #endif /* BP_ENABLE_JTAG_SUPPORT */
 
 /* SMPS module configuration definitions. */
 
 #ifdef BP_ENABLE_SMPS_SUPPORT
 
-#ifndef BUSPIRATEV4
 #error "SMPS support is not available on Bus Pirate v3"
-#endif /* !BUSPIRATEV4 */
 
 #endif /* BP_ENABLE_SMPS_SUPPORT */
 

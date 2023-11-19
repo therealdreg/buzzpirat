@@ -165,22 +165,7 @@ void bp_update_pwm(const uint16_t frequency, const uint16_t duty_cycle) {
   state.pwm_duty_cycle = duty_cycle;
 
   stop_timers();
-#if defined(BUSPIRATEV4)
-  /*
-   * OC5CON1
-   *
-   * MSB
-   * --0000--0--00000
-   *   ||||  |  |||||
-   *   ||||  |  ||+++-- OCM:      Output compare is disabled.
-   *   ||||  |  |+----- TRIGMODE: TRIGSTAT is only cleared by software.
-   *   ||||  |  +------ OCFLT0:   No PWM fault condition.
-   *   ||||  +--------- ENFLT0:   Fault 0 input disabled.
-   *   |+++------------ OCTSEL:   Output compare with Timer 2.
-   *   +--------------- OCSIDL:   Output Compare continues in CPU idle mode.
-   */
-  OC5CON = 0x0000;
-#else
+  
   /*
    * OC5CON
    *
@@ -193,7 +178,6 @@ void bp_update_pwm(const uint16_t frequency, const uint16_t duty_cycle) {
    *   +--------------- OCSIDL: Output Compare continues in CPU idle mode.
    */
   OC5CON = 0x0000;
-#endif /* BUSPIRATEV4 */
 
   /* Detach the AUX pin from the PWM generator if no PWM signal is needed. */
   if (frequency == 0) {
@@ -213,25 +197,6 @@ void bp_update_pwm(const uint16_t frequency, const uint16_t duty_cycle) {
   /* Setup the PWM generator. */
   OC5R = cycle;
   OC5RS = cycle;
-#if defined(BUSPIRATEV4)
-  /*
-   * OC5CON1
-   *
-   * MSB
-   * --0000--0--00110
-   *   ||||  |  |||||
-   *   ||||  |  ||+++-- OCM:      Edge-aligned PWM mode.
-   *   ||||  |  |+----- TRIGMODE: TRIGSTAT is only cleared by software.
-   *   ||||  |  +------ OCFLT0:   No PWM fault condition.
-   *   ||||  +--------- ENFLT0:   Fault 0 input disabled.
-   *   |+++------------ OCTSEL:   Output compare with Timer 2.
-   *   +--------------- OCSIDL:   Output Compare continues in CPU idle mode.
-   */
-  OC5CON =
-      (0b110 << _OC5CON1_OCM_POSITION) | (OFF << _OC5CON1_TRIGMODE_POSITION) |
-      (OFF << _OC5CON1_OCFLT0_POSITION) | (OFF << _OC5CON1_ENFLT0_POSITION) |
-      (OFF << _OC5CON1_OCTSEL_POSITION) | (OFF << _OC5CON1_OCSIDL_POSITION);
-#else
   /*
    * OC5CON
    *
@@ -245,7 +210,7 @@ void bp_update_pwm(const uint16_t frequency, const uint16_t duty_cycle) {
    */
   OC5CON = (0b110 << _OC5CON_OCM_POSITION) | (OFF << _OC5CON_OCTSEL_POSITION) |
            (OFF << _OC5CON_OCFLT_POSITION) | (OFF << _OC5CON_OCSIDL_POSITION);
-#endif /* BUSPIRATEV4 */
+
   T2CONbits.TON = ON;
   state.mode = AUX_MODE_PWM;
 }
@@ -259,22 +224,6 @@ void bp_pwm_setup(void) {
   bool valid_arguments;
 
   stop_timers();
-#if defined(BUSPIRATEV4)
-  /*
-   * OC5CON1
-   *
-   * MSB
-   * --0000--0--00000
-   *   ||||  |  |||||
-   *   ||||  |  ||+++-- OCM:      Output compare is disabled.
-   *   ||||  |  |+----- TRIGMODE: TRIGSTAT is only cleared by software.
-   *   ||||  |  +------ OCFLT0:   No PWM fault condition.
-   *   ||||  +--------- ENFLT0:   Fault 0 input disabled.
-   *   |+++------------ OCTSEL:   Output compare with Timer 2.
-   *   +--------------- OCSIDL:   Output Compare continues in CPU idle mode.
-   */
-  OC5CON = 0x0000;
-#else
   /*
    * OC5CON
    *
@@ -287,7 +236,6 @@ void bp_pwm_setup(void) {
    *   +--------------- OCSIDL: Output Compare continues in CPU idle mode.
    */
   OC5CON = 0x0000;
-#endif /* BUSPIRATEV4 */
 
   /* Stop PWM mode if it is engaged. */
   if (state.mode == AUX_MODE_PWM) {
@@ -336,25 +284,6 @@ void bp_pwm_setup(void) {
   OC5R = pwm_duty_cycle;
   OC5RS = pwm_duty_cycle;
 
-#if defined(BUSPIRATEV4)
-  /*
-   * OC5CON1
-   *
-   * MSB
-   * --0000--0--00110
-   *   ||||  |  |||||
-   *   ||||  |  ||+++-- OCM:      Edge-aligned PWM mode.
-   *   ||||  |  |+----- TRIGMODE: TRIGSTAT is only cleared by software.
-   *   ||||  |  +------ OCFLT0:   No PWM fault condition.
-   *   ||||  +--------- ENFLT0:   Fault 0 input disabled.
-   *   |+++------------ OCTSEL:   Output compare with Timer 2.
-   *   +--------------- OCSIDL:   Output Compare continues in CPU idle mode.
-   */
-  OC5CON =
-      (0b110 << _OC5CON1_OCM_POSITION) | (OFF << _OC5CON1_TRIGMODE_POSITION) |
-      (OFF << _OC5CON1_OCFLT0_POSITION) | (OFF << _OC5CON1_ENFLT0_POSITION) |
-      (OFF << _OC5CON1_OCTSEL_POSITION) | (OFF << _OC5CON1_OCSIDL_POSITION);
-#else
   /*
    * OC5CON
    *
@@ -368,7 +297,6 @@ void bp_pwm_setup(void) {
    */
   OC5CON = (0b110 << _OC5CON_OCM_POSITION) | (OFF << _OC5CON_OCTSEL_POSITION) |
            (OFF << _OC5CON_OCFLT_POSITION) | (OFF << _OC5CON_OCSIDL_POSITION);
-#endif /* BUSPIRATEV4 */
 
   PR2 = pwm_period;
   T2CONbits.TON = ON;
@@ -604,13 +532,8 @@ uint32_t poll_frequency_counter_value(void) {
   return (counter_high << 16) + counter_low;
 }
 
-#if defined(BUSPIRATEV4)
-#define IC1ICBNE IC1CON1bits.ICBNE
-#define IC2ICBNE IC2CON1bits.ICBNE
-#else
 #define IC1ICBNE IC1CONbits.ICBNE
 #define IC2ICBNE IC2CONbits.ICBNE
-#endif /* BUSPIRATEV4 */
 
 uint32_t average_sample_frequency(const uint16_t count) {
   uint32_t current_low, counter_low, current_high, counter_high, total_samples;
@@ -623,93 +546,6 @@ uint32_t average_sample_frequency(const uint16_t count) {
   /* Assign input capture pin. */
   RPINR7bits.IC2R = AUXPIN_RPIN;
   RPINR7bits.IC1R = AUXPIN_RPIN;
-
-#if defined(BUSPIRATEV4)
-
-  /* Setup timer 4 for interval measurement. */
-  TMR5HLD = 0x0000;
-  TMR4 = 0x0000;
-
-  /* Start timer 4. */
-
-  /*
-   * T4CON
-   *
-   * MSB
-   * 1-0------001-0-
-   * | |      ||| |
-   * | |      ||| +--- TCS:   External clock from pin.
-   * | |      ||+----- T32:   TIMER4 is bound with TIMER5 for 32 bit mode.
-   * | |      ++------ TCKPS: 1:1 Prescaler.
-   * | +-------------- TSIDL: Continue module operation in idle mode.
-   * +---------------- TON:   Timer ON.
-   */
-  T4CON = (ON << _T4CON_TON_POSITION) | (ON << _T4CON_T32_POSITION);
-
-  /* Setup input capture 2. */
-
-  /*
-   * IC2CON1
-   *
-   * MSB
-   * --0011---00--011
-   *   ||||   ||  |||
-   *   ||||   ||  +++-- ICM:    Simple capture mode, on every rising edge.
-   *   ||||   ++------- ICI:    Interrupt on every capture event.
-   *   |+++------------ ICTSEL: Use input capture timer 5.
-   *   +--------------- ICSIDL: Input capture continues on CPU idle mode.
-   */
-  IC2CON1 = (0b011 << _IC2CON1_ICM_POSITION) | (0b00 << _IC2CON1_ICI_POSITION) |
-            (0b011 << _IC2CON1_ICTSEL_POSITION) |
-            (OFF << _IC2CON1_ICSIDL_POSITION);
-
-  /*
-   * IC2CON2
-   *
-   * MSB
-   * -------000-10100
-   *        ||| |||||
-   *        ||| +++++-- SYNCSEL:  Use Input Capture 2 as trigger.
-   *        ||+-------- TRIGSTAT: Timer source has not been triggered.
-   *        |+--------- ICTRIG:   Synchronize input capture with SYNCSEL source.
-   *        +---------- IC32:     Do not cascade input capture units.
-   */
-  IC2CON2 = (0b10100 << _IC2CON2_SYNCSEL_POSITION) |
-            (OFF << _IC2CON2_TRIGSTAT_POSITION) |
-            (OFF << _IC2CON2_ICTRIG_POSITION) | (OFF << _IC2CON2_IC32_POSITION);
-
-  /* Setup input capture 1. */
-
-  /*
-   * IC1CON1
-   *
-   * --0010---00--011
-   *   ||||   ||  |||
-   *   ||||   ||  +++-- ICM:    Simple capture mode, on every rising edge.
-   *   ||||   ++------- ICI:    Interrupt on every capture event.
-   *   |+++------------ ICTSEL: Use input capture timer 4.
-   *   +--------------- ICSIDL: Input capture continues on CPU idle mode.
-   */
-  IC1CON1 = (0b011 << _IC1CON1_ICM_POSITION) | (0b00 << _IC1CON1_ICI_POSITION) |
-            (0b010 << _IC1CON1_ICTSEL_POSITION) |
-            (OFF << _IC1CON1_ICSIDL_POSITION);
-
-  /*
-   * IC1CON2
-   *
-   * MSB
-   * -------000-10100
-   *        ||| |||||
-   *        ||| +++++-- SYNCSEL:  Use Input Capture 2 as trigger.
-   *        ||+-------- TRIGSTAT: Timer source has not been triggered.
-   *        |+--------- ICTRIG:   Synchronize input capture with SYNCSEL source.
-   *        +---------- IC32:     Do not cascade input capture units.
-   */
-  IC1CON2 = (0b10100 << _IC1CON2_SYNCSEL_POSITION) |
-            (OFF << _IC1CON2_TRIGSTAT_POSITION) |
-            (OFF << _IC1CON2_ICTRIG_POSITION) | (OFF << _IC1CON2_IC32_POSITION);
-
-#else
 
   /* Setup timer 2 for interval measurement. */
   TMR3HLD = 0x0000;
@@ -763,8 +599,6 @@ uint32_t average_sample_frequency(const uint16_t count) {
   IC1CON = (0b011 << _IC2CON_ICM_POSITION) | (0b00 << _IC2CON_ICI_POSITION) |
            (ON << _IC2CON_ICTMR_POSITION) | (OFF << _IC2CON_ICSIDL_POSITION);
 
-#endif /* BUSPIRATEV4 */
-
   /* Flush IC1. */
   while (IC1ICBNE == ON) {
     current_low = IC1BUF;
@@ -794,39 +628,6 @@ uint32_t average_sample_frequency(const uint16_t count) {
     counter_high = current_high;
     counter_low = current_low;
   }
-
-#if defined(BUSPIRATEV4)
-
-  /* Stop input capture units. */
-
-  /*
-   * IC1CON1
-   *
-   * --0000---00--000
-   *   ||||   ||  |||
-   *   ||||   ||  +++-- ICM:    Input capture module turned off.
-   *   ||||   ++------- ICI:    Interrupt on every capture event.
-   *   |+++------------ ICTSEL: Use input capture timer 3.
-   *   +--------------- ICSIDL: Input capture continues on CPU idle mode.
-   */
-  IC1CON1 = 0x0000;
-
-  /*
-   * IC2CON1
-   *
-   * --0000---00--000
-   *   ||||   ||  |||
-   *   ||||   ||  +++-- ICM:    Input capture module turned off.
-   *   ||||   ++------- ICI:    Interrupt on every capture event.
-   *   |+++------------ ICTSEL: Use input capture timer 3.
-   *   +--------------- ICSIDL: Input capture continues on CPU idle mode.
-   */
-  IC2CON1 = 0x0000;
-
-  /* Stop timer 4. */
-  T4CONbits.TON = OFF;
-
-#else
 
   /* Stop Input Capture 1. */
 
@@ -861,46 +662,20 @@ uint32_t average_sample_frequency(const uint16_t count) {
   /* Stop timer 2. */
   T2CONbits.TON = OFF;
 
-#endif /* BUSPIRATEV4 */
-
   return total_samples / count;
 }
 
 void bp_aux_pin_set_high_impedance(void) {
-#ifdef BUSPIRATEV3
   if (mode_configuration.alternate_aux == 0) {
     BP_AUX0_DIR = INPUT;
   } else {
     BP_CS_DIR = INPUT;
   }
-#else
-  switch (mode_configuration.alternate_aux) {
-  case 0:
-    BP_AUX0_DIR = INPUT;
-    break;
-
-  case 1:
-    BP_CS_DIR = INPUT;
-    break;
-
-  case 2:
-    BP_AUX1_DIR = INPUT;
-    break;
-
-  case 3:
-    BP_AUX2_DIR = INPUT;
-    break;
-
-  default:
-    break;
-  }
-#endif /* BUSPIRATEV3 */
 
   BPMSG1039;
 }
 
 void bp_aux_pin_set_high(void) {
-#ifdef BUSPIRATEV3
   if (mode_configuration.alternate_aux == 0) {
     BP_AUX0_DIR = OUTPUT;
     BP_AUX0 = HIGH;
@@ -908,38 +683,11 @@ void bp_aux_pin_set_high(void) {
     BP_CS_DIR = OUTPUT;
     BP_CS = HIGH;
   }
-#else
-  switch (mode_configuration.alternate_aux) {
-  case 0:
-    BP_AUX0_DIR = OUTPUT;
-    BP_AUX0 = HIGH;
-    break;
-
-  case 1:
-    BP_CS_DIR = OUTPUT;
-    BP_CS = HIGH;
-    break;
-
-  case 2:
-    BP_AUX1_DIR = OUTPUT;
-    BP_AUX1 = HIGH;
-    break;
-
-  case 3:
-    BP_AUX2_DIR = OUTPUT;
-    BP_AUX2 = HIGH;
-    break;
-
-  default:
-    break;
-  }
-#endif /* BUSPIRATEV3 */
 
   BPMSG1040;
 }
 
 void bp_aux_pin_set_low(void) {
-#ifdef BUSPIRATEV3
   if (mode_configuration.alternate_aux == 0) {
     BP_AUX0_DIR = OUTPUT;
     BP_AUX0 = LOW;
@@ -947,38 +695,11 @@ void bp_aux_pin_set_low(void) {
     BP_CS_DIR = OUTPUT;
     BP_CS = LOW;
   }
-#else
-  switch (mode_configuration.alternate_aux) {
-  case 0:
-    BP_AUX0_DIR = OUTPUT;
-    BP_AUX0 = LOW;
-    break;
-
-  case 1:
-    BP_CS_DIR = OUTPUT;
-    BP_CS = LOW;
-    break;
-
-  case 2:
-    BP_AUX1_DIR = OUTPUT;
-    BP_AUX1 = LOW;
-    break;
-
-  case 3:
-    BP_AUX2_DIR = OUTPUT;
-    BP_AUX2 = LOW;
-    break;
-
-  default:
-    break;
-  }
-#endif /* BUSPIRATEV3 */
 
   BPMSG1041;
 }
 
 bool bp_aux_pin_read(void) {
-#ifdef BUSPIRATEV3
   if (mode_configuration.alternate_aux == 0) {
     BP_AUX0_DIR = INPUT;
     Nop();
@@ -990,37 +711,6 @@ bool bp_aux_pin_read(void) {
   Nop();
   Nop();
   return BP_CS;
-#else
-  switch (MASKBOTTOM8(mode_configuration.alternate_aux, 2)) {
-  case 0:
-    BP_AUX0_DIR = INPUT;
-    Nop();
-    Nop();
-    return BP_AUX0;
-
-  case 1:
-    BP_CS_DIR = INPUT;
-    Nop();
-    Nop();
-    return BP_CS;
-
-  case 2:
-    BP_AUX1_DIR = INPUT;
-    Nop();
-    Nop();
-    return BP_AUX1;
-
-  case 3:
-    BP_AUX2_DIR = INPUT;
-    Nop();
-    Nop();
-    return BP_AUX2;
-
-  default:
-    /* Should not happen. */
-    return LOW;
-  }
-#endif /* BUSPIRATEV3 */
 }
 
 void bp_servo_setup(void) {
@@ -1033,22 +723,6 @@ void bp_servo_setup(void) {
 
   /* Reset output comparator. */
 
-#if defined(BUSPIRATEV4)
-  /*
-   * OC5CON1
-   *
-   * MSB
-   * --0000--0--00000
-   *   ||||  |  |||||
-   *   ||||  |  ||+++-- OCM:      Output compare is disabled.
-   *   ||||  |  |+----- TRIGMODE: TRIGSTAT is only cleared by software.
-   *   ||||  |  +------ OCFLT0:   No PWM fault condition.
-   *   ||||  +--------- ENFLT0:   Fault 0 input disabled.
-   *   |+++------------ OCTSEL:   Output compare with Timer 2.
-   *   +--------------- OCSIDL:   Output Compare continues in CPU idle mode.
-   */
-  OC5CON = 0x0000;
-#else
   /*
    * OC5CON
    *
@@ -1061,7 +735,6 @@ void bp_servo_setup(void) {
    *   +--------------- OCSIDL: Output Compare continues in CPU idle mode.
    */
   OC5CON = 0x0000;
-#endif /* BUSPIRATEV4 */
 
   if ((state.mode == AUX_MODE_PWM) &&
       (cmdbuf[((cmdstart + 1) & CMDLENMSK)] == 0x00)) {
@@ -1093,25 +766,6 @@ void bp_servo_setup(void) {
     OC5R = duty_cycle;
     OC5RS = duty_cycle;
 
-#if defined(BUSPIRATEV4)
-    /*
-     * OC5CON1
-     *
-     * MSB
-     * --0000--0--00110
-     *   ||||  |  |||||
-     *   ||||  |  ||+++-- OCM:      Edge-aligned PWM mode.
-     *   ||||  |  |+----- TRIGMODE: TRIGSTAT is only cleared by software.
-     *   ||||  |  +------ OCFLT0:   No PWM fault condition.
-     *   ||||  +--------- ENFLT0:   Fault 0 input disabled.
-     *   |+++------------ OCTSEL:   Output compare with Timer 2.
-     *   +--------------- OCSIDL:   Output Compare continues in CPU idle mode.
-     */
-    OC5CON =
-        (0b110 << _OC5CON1_OCM_POSITION) | (OFF << _OC5CON1_TRIGMODE_POSITION) |
-        (OFF << _OC5CON1_OCFLT0_POSITION) | (OFF << _OC5CON1_ENFLT0_POSITION) |
-        (OFF << _OC5CON1_OCTSEL_POSITION) | (OFF << _OC5CON1_OCSIDL_POSITION);
-#else
     /*
      * OC5CON
      *
@@ -1126,7 +780,6 @@ void bp_servo_setup(void) {
     OC5CON = (0b110 << _OC5CON_OCM_POSITION) |
              (OFF << _OC5CON_OCTSEL_POSITION) |
              (OFF << _OC5CON_OCFLT_POSITION) | (OFF << _OC5CON_OCSIDL_POSITION);
-#endif /* BUSPIRATEV4 */
 
     PR2 = period;
 

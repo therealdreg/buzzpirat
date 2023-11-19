@@ -23,13 +23,7 @@
 
 #include "configuration.h"
 
-#ifdef BUSPIRATEV3
 #include "messages_v3.h"
-#elif defined(BUSPIRATEV4)
-#include "messages_v4.h"
-#else
-#error "No messages file selected!"
-#endif /* BUSPIRATEV3 || BUSPIRATEV4 */
 
 /**
  * Prints the help screen information to the serial port.

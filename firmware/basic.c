@@ -28,7 +28,7 @@
 
 #ifdef BP_ENABLE_BASIC_SUPPORT
 
-#if defined(BUSPIRATEV3) && defined(BP_BASIC_I2C_FILESYSTEM)
+#if defined(BP_BASIC_I2C_FILESYSTEM)
 #warning "BP_BASIC_I2C_FILESYSTEM is not supported on v3 boards!"
 #undef BP_BASIC_I2C_FILESYSTEM
 #endif /* BP_BASIC_I2C_FILESYSTEM */

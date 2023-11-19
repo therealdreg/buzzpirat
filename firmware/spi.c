@@ -899,14 +899,6 @@ void spi_enter_binary_io(void) {
       REPORT_IO_SUCCESS();
       break;
 
-#ifdef BUSPIRATEV4
-
-    case SPI_COMMAND_SET_PULLUPS:
-      user_serial_transmit_character(bp_binary_io_pullup_control(input_byte));
-      break;
-
-#endif /* BUSPIRATEV4 */
-
     case SPI_COMMAND_SET_SPEED: {
       uint8_t speed = input_byte & 0x0F;
       if (speed > sizeof(spi_bus_speed)) {

@@ -135,31 +135,6 @@ uint8_t perform_selftest(bool show_progress, bool jumper_test) {
   BPMSG1169;
   check_result(BP_VREGEN, HIGH);
 
-#ifdef BUSPIRATEV4
-
-  /* Test the internal EEPROM. */
-
-  BPMSG1265;
-
-  /* Check the I2C flash clock line. */
-  BPMSG1266;
-  check_result(BP_EE_SCL, HIGH);
-
-  /* Check the I2C flash data line. */
-  BPMSG1267;
-  check_result(BP_EE_SDA, HIGH);
-
-  /* Check the I2C flash WRITE PROTECT line. */
-  BPMSG1268;
-  check_result(BP_EE_WP, HIGH);
-
-  /* Performs a more complete EEPROM test. */
-
-  BPMSG1269;
-  check_result(eeprom_test(), true);
-
-#endif /* BUSPIRATEV4 */
-
   /* ADC check. */
 
   BPMSG1170;
@@ -167,64 +142,11 @@ uint8_t perform_selftest(bool show_progress, bool jumper_test) {
   /* Turn ADC on. */
   bp_enable_adc();
 
-#ifdef BUSPIRATEV4
-
-  /* Check whether the voltage coming in from the USB port is within range. */
-
-  BPMSG1270;
-  perform_adc_test(BP_ADC_USB, V5L, V5H);
-
-#endif /* BUSPIRATEV4 */
-
   /* Check whether the +5v rail output is within range. */
 
   BPMSG1171;
   perform_adc_test(BP_ADC_5V0, V5L, V5H);
-
-#ifdef BUSPIRATEV4
-
-  /* Test the +5v pull-up line. */
-
-  bp_enable_5v0_pullup();
-  BPMSG1171;
-  bpSP;
-  BPMSG1172;
-  bp_delay_ms(PWR_STATE_TEST_DELAY);
-  perform_adc_test(BP_ADC_VPU, V5L, V5H);
-  bp_disable_5v0_pullup();
-
-  if (jumper_test) {
-
-    /*
-     * Check whether the +3.3v rail output is within range when measured from
-     * outside the board circuitry, once a jumper wire is manually placed
-     * between the +3.3v rail pin and the ADC input pin.
-     */
-
-    BPMSG1174;
-    perform_adc_test(BP_ADC_PROBE, V33L, V33H);
-  }
-
-  /*
-   * Check whether the +3.3v rail output is within range when measured from
-   * inside the board circuitry.
-   */
-
-  BPMSG1173;
-  perform_adc_test(BP_ADC_3V3, V33L, V33H);
-
-  /* Test the +3.3v pull-up line. */
-
-  bp_enable_3v3_pullup();
-  BPMSG1173;
-  bpSP;
-  BPMSG1172;
-  bp_delay_ms(PWR_STATE_TEST_DELAY);
-  perform_adc_test(BP_ADC_VPU, V33L, V33H);
-  bp_disable_3v3_pullup();
-
-#elif defined(BUSPIRATEV3)
-
+  
   if (jumper_test) {
 
     /*
@@ -253,9 +175,6 @@ uint8_t perform_selftest(bool show_progress, bool jumper_test) {
     BPMSG1174;
     perform_adc_test(BP_ADC_PROBE, V33L, V33H);
   }
-
-#endif /* BUSPIRATEV4 || BUSPIRATEV3 */
-
   /* Turn ADC off. */
   bp_disable_adc();
 

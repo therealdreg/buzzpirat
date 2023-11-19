@@ -22,29 +22,6 @@
 
 #ifdef BP_ENABLE_SMPS_SUPPORT
 
-#ifdef BUSPIRATEV4
-
-/**
- * Enables operation of a connected switched mode power supply board connected
- * to the Bus Pirate v4.
- *
- * @param[in] requested_voltage The voltage that should be output by the
- * external board.
- */
-void smps_start(unsigned int requested_voltage);
-
-/**
- * Stops operation of the connected switched mode power supply board.
- */
-void smps_stop(void);
-
-/**
- * Outputs the last output voltage reading to the serial port as a big-endian
- * 16-bits integer.
- */
-void smps_adc(void);
-
-#endif /* BUSPIRATEV4 */
 
 #endif /* BP_ENABLE_SMPS_SUPPORT */
 

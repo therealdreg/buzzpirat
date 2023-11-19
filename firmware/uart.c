@@ -40,9 +40,6 @@ typedef struct {
   uint8_t stop_bits : 1;
   uint8_t receive_polarity : 1;
   uint8_t echo_uart : 1;
-#ifdef BUSPIRATEV4
-  uint8_t autobaud : 1;
-#endif /* BUSPIRATEV4 */
 } UARTSettings;
 
 static UARTSettings uart_settings = {0};
@@ -143,10 +140,6 @@ void uart_setup_prepare(void) {
   // autobaud detection; multi uses
   unsigned long abd = 0;
 
-#ifdef BUSPIRATEV4
-  uart_settings.autobaud = OFF;
-#endif /* BUSPIRATEV4 */
-
   consumewhitechars();
   speed = getint();
   if (speed == 10) // weird this is totaly ignored later as the Speed == 0 check
@@ -199,29 +192,6 @@ void uart_setup_prepare(void) {
 
     MSG_UART_SET_PORT_SPEED;
 
-#if defined(BUSPIRATEV4)
-    // BPv4 Mode; has custom BAUD entry and auto-baud detection
-
-    mode_configuration.speed = getnumber(1, 1, 11, 0) - 1; // get user reply
-
-    if (mode_configuration.speed == 10) {
-      mode_configuration.speed = 8; // Set to 115200 for now
-      abd = 1;                      // trigger to run baud detection
-      uart_settings.autobaud = ON;
-      MSG_BAUD_DETECTION_SELECTED;
-    }
-
-    if (mode_configuration.speed == 9) {
-      MSG_UART_CUSTOM_BAUD_RATE_PROMPT;
-      abd = getlong(115200, 1, 999999, 0); // get the baud rate from user
-      abd = (((32000000 / abd) / 8) - 1);  // calculate BRG
-      brg = abd;                           // set BRG
-      abd = 0; // set abd to 0; so 'Auto Baud Detection' routine isnt ran below
-      // hack hack hakc
-      U2BRG = brg; // passing the brg variable to U2BRG so the UARTsetup_exc can
-                   // use it to start UART2setup..
-    }
-#else
     // Normal mode; input BRG and no autobaud detection
     mode_configuration.speed = getnumber(1, 1, 10, 0) - 1; // get user reply
 
@@ -232,7 +202,6 @@ void uart_setup_prepare(void) {
       U2BRG = brg; // passing the brg variable to U2BRG so the UARTsetup_exc can
                    // use it to start UART2setup..
     }
-#endif /* BUSPIRATEV4 */
 
     MSG_UART_BITS_PARITY_PROMPT;
     uart_settings.databits_parity = getnumber(1, 1, 4, 0) - 1;
@@ -272,34 +241,9 @@ void uart_setup_execute(void) {
 
   uart2_enable();
 
-#ifdef BUSPIRATEV4
-  unsigned long abd;
-  int brg;
-  if (uart_settings.autobaud == ON) {
-    uart2_disable();
-    bpBR;
-    abd = uart_get_closest_common_rate(uart_get_baud_rate(false));
-    bpBR;
-
-    if (abd == 0) {
-      uart2_setup(UART_BRG_SPEED[8], mode_configuration.high_impedance,
-                  uart_settings.receive_polarity, uart_settings.databits_parity,
-                  uart_settings.stop_bits);
-    } else {
-      mode_configuration.speed = 9;
-      abd = (((32000000 / abd) / 8) - 1);
-      brg = abd;
-      uart2_setup(brg, mode_configuration.high_impedance,
-                  uart_settings.receive_polarity, uart_settings.databits_parity,
-                  uart_settings.stop_bits);
-    }
-    uart2_enable();
-  }
-#else
   if (U2BRG < U1BRG) {
     MSG_UART_POSSIBLE_OVERFLOW;
   }
-#endif /* BUSPIRATEV4 */
 }
 
 inline void uart_cleanup(void) { uart2_disable(); }
@@ -311,7 +255,6 @@ void uart_run_macro(const uint16_t macro) {
     break;
 
   case UART_MACRO_BRIDGE_WITH_FLOW_CONTROL:
-#ifdef BUSPIRATEV3
     /* FTDI CTS and RTS setup. */
     FTDI_CTS_DIR = OUTPUT;
     FTDI_RTS_DIR = INPUT;
@@ -319,9 +262,7 @@ void uart_run_macro(const uint16_t macro) {
     /* External CTS and RTS setup. */
     BP_CS_DIR = INPUT;
     BP_CLK_DIR = OUTPUT;
-#else
-/* Do nothing for v4? */
-#endif /* BUSPIRATEV3 */
+
 
   /* Intentional fall-through. */
 
@@ -339,44 +280,24 @@ void uart_run_macro(const uint16_t macro) {
     U2STAbits.OERR = OFF;
 
     for (;;) {
-#ifdef BUSPIRATEV4
-      if (BP_BUTTON_ISDOWN()) {
-        break;
-      }
-
-      if (U2STAbits.URXDA == ON) {
-        user_serial_transmit_character(U2RXREG);
-      }
-#else
       if ((U2STAbits.URXDA == ON) && (U1STAbits.UTXBF == OFF)) {
         U1TXREG = U2RXREG;
       }
-#endif /* BUSPIRATEV4 */
-
       if (user_serial_ready_to_read() && (U2STAbits.UTXBF == OFF)) {
         U2TXREG = user_serial_read_byte();
       }
 
-#ifdef BUSPIRATEV3
       if (U2STAbits.OERR || U1STAbits.OERR) {
         U2STAbits.OERR = OFF;
         U1STAbits.OERR = OFF;
         BP_LEDMODE = LOW;
       }
-#else
-      if (U2STAbits.OERR) {
-        U2STAbits.OERR = OFF;
-        BP_LEDMODE = LOW;
-      }
-#endif /* BUSPIRATEV3 */
 
-#ifdef BUSPIRATEV3
       if (macro == UART_MACRO_BRIDGE_WITH_FLOW_CONTROL) {
         /* Relay flow control bits. */
         BP_CLK = FTDI_RTS;
         FTDI_CTS = BP_CS;
       }
-#endif /* BUSPIRATEV3 */
     }
     break;
 
@@ -386,20 +307,9 @@ void uart_run_macro(const uint16_t macro) {
 
     U2STAbits.OERR = OFF;
     for (;;) {
-#ifdef BUSPIRATEV4
-      if (BP_BUTTON_ISDOWN()) {
-        break;
-      }
-
-      if (uart2_rx_ready()) {
-        user_serial_transmit_character(uart2_rx());
-      }
-#else
       if ((U2STAbits.URXDA == ON) && (U1STAbits.UTXBF == OFF)) {
         U1TXREG = U2RXREG;
       }
-#endif /* BUSPIRATEV4 */
-
       if (user_serial_ready_to_read()) {
         volatile uint16_t dummy;
 
@@ -413,11 +323,9 @@ void uart_run_macro(const uint16_t macro) {
     uart2_disable();
     uart_get_baud_rate(false);
     uart2_enable();
-#ifdef BUSPIRATEV3
     if (U2BRG < U1BRG) {
       MSG_UART_POSSIBLE_OVERFLOW;
     }
-#endif /* BUSPIRATEV3 */
     break;
 
   default:
@@ -774,17 +682,10 @@ void binUART(void) {
         REPORT_IO_SUCCESS();
         U2STAbits.OERR = OFF;
         for (;;) {
-
-#ifdef BUSPIRATEV4
-          if (U2STAbits.URXDA == ON) {
-            user_serial_transmit_character(U2RXREG);
-          }
-#else
           if ((U2STAbits.URXDA == 1) && (U1STAbits.UTXBF == 0)) {
             U1TXREG = U2RXREG;
           }
-#endif /* BUSPIRATEV4 */
-          
+ 
           if (user_serial_ready_to_read() && (U2STAbits.UTXBF == 0)) {
             U2TXREG = user_serial_read_byte();
           }
@@ -816,12 +717,6 @@ void binUART(void) {
       REPORT_IO_SUCCESS();
       break;
 
-#ifdef BUSPIRATEV4
-    case 0b01010000:
-      user_serial_transmit_character(bp_binary_io_pullup_control(input_byte));
-      break;
-#endif /* BUSPIRATEV4 */
-      
     case 0b01100000:
       input_byte &= 0b00001111;
       if (input_byte > 0b1010) {

@@ -1290,12 +1290,6 @@ void binary_io_enter_1wire_mode(void) {
       REPORT_IO_SUCCESS();
       break;
 
-#ifdef BUSPIRATEV4
-    case BINARY_IO_ONEWIRE_COMMAND_READ_PERIPHERALS:
-      user_serial_transmit_character(bp_binary_io_pullup_control(input_byte));
-      break;
-#endif /* BUSPIRATEV4 */
-
     default:
       REPORT_IO_FAILURE();
       break;

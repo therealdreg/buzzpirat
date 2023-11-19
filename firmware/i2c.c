@@ -26,10 +26,6 @@
 #include "core.h"
 #include "proc_menu.h"
 
-#if defined(BUSPIRATEV4) && !defined(BP_I2C_USE_HW_BUS)
-#error "Bus Pirate v4 must be able to use the hardware I2C interface!"
-#endif /* BUSPIRATEV4 && !BP_I2C_USE_HW_BUS */
-
 /**
  * Use a software I2C communication implementation
  */
@@ -71,15 +67,6 @@ typedef struct {
    * Flag indicating whether there is either an ACK/NACK to be received.
    */
   uint8_t acknowledgment_pending : 1;
-
-#ifdef BUSPIRATEV4
-
-  /**
-   * Flag indicating whether it is sending commands to the I2C EEPROM or not.
-   */
-  uint8_t to_eeprom : 1;
-
-#endif /* BUSPIRATEV4 */
 
 } i2c_state_t;
 
@@ -340,20 +327,20 @@ void i2c_setup_prepare(void) {
       MSG_SOFTWARE_MODE_SPEED_PROMPT;
       mode_configuration.speed = (getnumber(1, 1, 4, 0) - 1);
     } else {
-#if defined(BUSPIRATEV3) && !defined(BPV3_IS_REV_B4_OR_LATER)
+#if !defined(BPV3_IS_REV_B4_OR_LATER)
       if (bus_pirate_configuration.device_revision <= PIC_REV_A3) {
         BPMSG1066;
       }
-#endif /* BUSPIRATEV3 && !BPV3_IS_REV_B4_OR_LATER */
+#endif /* !BPV3_IS_REV_B4_OR_LATER */
       BPMSG1067;
       mode_configuration.speed = (getnumber(1, 1, 3, 0) - 1);
     }
   } else {
-#if defined(BUSPIRATEV3) && !defined(BPV3_IS_REV_B4_OR_LATER)
+#if !defined(BPV3_IS_REV_B4_OR_LATER)
     if (bus_pirate_configuration.device_revision <= PIC_REV_A3) {
       BPMSG1066;
     }
-#endif /* BUSPIRATEV3 && !BPV3_IS_REV_B4_OR_LATER */
+#endif /* !BPV3_IS_REV_B4_OR_LATER */
     i2c_print_settings();
 
     i2c_state.acknowledgment_pending = false;
@@ -382,21 +369,8 @@ void i2c_cleanup(void) {
 
 #ifdef BP_I2C_USE_HW_BUS
   if (i2c_state.mode == I2C_TYPE_HARDWARE) {
-
-#ifdef BUSPIRATEV4
-
-    /* Disable external I2C module. */
-    I2C3CONbits.I2CEN = OFF;
-
-    /* Disable EEPROM I2C module. */
-    I2C1CONbits.I2CEN = OFF;
-
-#else
-
     /* Disable external I2C module. */
     I2C1CONbits.I2CEN = OFF;
-
-#endif /* BUSPIRATEV4 */
   }
 #endif /* BP_I2C_USE_HW_BUS */
 }
@@ -414,12 +388,7 @@ void i2c_macro(unsigned int c) {
     // setup both lines high first
     bitbang_set_pins_high(MOSI | CLK, 0);
     BPMSG1070;
-#ifdef BUSPIRATEV4
-    if ((!i2c_state.to_eeprom && ((BP_CLK == LOW) || (BP_MOSI == LOW))) ||
-        (i2c_state.to_eeprom && ((BP_EE_SDA == LOW) && (BP_EE_SCL == LOW)))) {
-#else
     if ((BP_CLK == LOW) || (BP_MOSI == LOW)) {
-#endif /* BUSPIRATEV4 */
       MSG_WARNING_HEADER;
       MSG_WARNING_SHORT_OR_NO_PULLUP;
       bpBR;
@@ -488,54 +457,6 @@ void i2c_macro(unsigned int c) {
 
     break;
 
-#if defined(BUSPIRATEV4)
-
-  case 3: {
-    MSG_USING_ONBOARD_I2C_EEPROM;
-
-    i2c_state.to_eeprom = true;
-
-    /*
-     * I2C1CON: I2C1 CONTROL REGISTER
-     *
-     * MSB
-     * x-x0x0x0xxxxxxxx
-     *    | | |
-     *    | | +------------ SMEN:  Disable SMBus support.
-     *    | +-------------- A10M:  Use 7-bit slave addresses.
-     *    +---------------- SCREL: Enable clock stretching.
-     *
-     */
-    I2C1CON &=
-        ~(_I2C1CON_A10M_MASK | _I2C1CON_SCLREL_MASK | _I2C1CON_SMEN_MASK);
-
-    /* General call address. */
-    I2C1ADD = 0;
-
-    /* Do not mask address bits. */
-    I2C1MSK = 0;
-
-    /* Set the I2C baud rate generator speed. */
-    I2C1BRG = HARDWARE_I2C_BRG_SPEEDS[mode_configuration.speed];
-
-    /* Enable the internal I2C module. */
-    I2C1CONbits.I2CEN = ON;
-
-    /* Disable the external I2C module. */
-    I2C3CONbits.I2CEN = OFF;
-    break;
-  }
-
-  case 4:
-    if (i2c_state.to_eeprom) {
-      MSG_ONBOARD_I2C_EEPROM_WRITE_PROTECT_DISABLED;
-      BP_EE_WP = LOW;
-    }
-
-    break;
-
-#endif /* BUSPIRATEV4 */
-
   default:
     MSG_UNKNOWN_MACRO_ERROR;
     break;
@@ -547,16 +468,6 @@ void i2c_pins_state(void) { MSG_I2C_PINS_STATE; }
 #if defined(BP_I2C_USE_HW_BUS)
 
 void hardware_i2c_start(void) {
-#if defined(BUSPIRATEV4)
-  if (!i2c_state.to_eeprom) {
-    /* Start condition on the external v4 I2C bus. */
-    I2C3CONbits.SEN = ON;
-    while (I2C3CONbits.SEN == ON) {
-    }
-
-    return;
-  }
-#endif /* BUSPIRATEV4 */
 
   /* Start condition on the EEPROM v4 I2C bus or on the external v3 I2C bus. */
   I2C1CONbits.SEN = ON;
@@ -567,17 +478,6 @@ void hardware_i2c_start(void) {
 
 void hardware_i2c_stop(void) {
 
-#if defined(BUSPIRATEV4)
-  if (!i2c_state.to_eeprom) {
-    /* Stop condition on the external v4 I2C bus. */
-    I2C3CONbits.PEN = ON;
-    while (I2C3CONbits.PEN == ON) {
-    }
-
-    return;
-  }
-#endif /* BUSPIRATEV4 */
-
   /* Stop condition on the EEPROM v4 I2C bus or on the external v3 I2C bus. */
   I2C1CONbits.PEN = ON;
 
@@ -586,19 +486,12 @@ void hardware_i2c_stop(void) {
 }
 
 bool hardware_i2c_get_ack(void) {
-#if defined(BUSPIRATEV4)
-  if (!i2c_state.to_eeprom) {
-    /* Return the acknowledge status bit for the external v4 I2C bus. */
-    return I2C3STATbits.ACKSTAT;
-  }
-#endif /* BUSPIRATEV4 */
-
 /*
  * Return the acknowledge status bit for the EEPROM v4 I2C bus or for the
  * external v3 I2C bus.
  */
 
-#if defined(BUSPIRATEV3) && !defined(BPV3_IS_REV_B4_OR_LATER)
+#if !defined(BPV3_IS_REV_B4_OR_LATER)
 
   /*
    * This is probably just being paranoid as ACKSTAT is on the upper byte of
@@ -625,21 +518,10 @@ bool hardware_i2c_get_ack(void) {
   return (I2C1STAT & (1 << 15)) == (1 << 15);
 #else
   return I2C1STATbits.ACKSTAT;
-#endif /* BUSPIRATEV3 && !BPV3_IS_REV_B4_OR_LATER */
+#endif /* !BPV3_IS_REV_B4_OR_LATER */
 }
 
 void hardware_i2c_send_ack(bool ack) {
-#if defined(BUSPIRATEV4)
-  if (!i2c_state.to_eeprom) {
-    I2C3CONbits.ACKDT = ack;
-    I2C3CONbits.ACKEN = ON;
-    while (I2C3CONbits.ACKEN == ON) {
-    }
-
-    return;
-  }
-#endif /* BUSPIRATEV4 */
-
   I2C1CONbits.ACKDT = ack;
   I2C1CONbits.ACKEN = ON;
 
@@ -648,19 +530,9 @@ void hardware_i2c_send_ack(bool ack) {
 }
 
 void hardware_i2c_write(const uint8_t value) {
-#if defined(BUSPIRATEV4)
-  if (!i2c_state.to_eeprom) {
-    I2C3TRN = value;
-    while (I2C3STATbits.TRSTAT == ON) {
-    }
-
-    return;
-  }
-#endif /* BUSPIRATEV4 */
-
   I2C1TRN = value;
 
-#if defined(BUSPIRATEV3) && !defined(BPV3_IS_REV_B4_OR_LATER)
+#if !defined(BPV3_IS_REV_B4_OR_LATER)
 
   /*
    * This is probably just being paranoid as TRSTAT is on the upper byte of
@@ -692,20 +564,10 @@ void hardware_i2c_write(const uint8_t value) {
   while (I2C1STATbits.TRSTAT == ON) {
   }
 
-#endif /* BUSPIRATEV3 && !BPV3_IS_REV_B4_OR_LATER */
+#endif /* !BPV3_IS_REV_B4_OR_LATER */
 }
 
 uint8_t hardware_i2c_read(void) {
-#if defined(BUSPIRATEV4)
-  if (!i2c_state.to_eeprom) {
-    I2C3CONbits.RCEN = ON;
-    while (I2C3CONbits.RCEN == ON) {
-    }
-
-    return I2C3RCV;
-  }
-#endif /* BUSPIRATEV4 */
-
   I2C1CONbits.RCEN = ON;
 
   while (I2C1CONbits.RCEN == ON) {
@@ -715,35 +577,6 @@ uint8_t hardware_i2c_read(void) {
 }
 
 void hardware_i2c_setup(void) {
-#if defined(BUSPIRATEV4)
-
-  /*
-   * I2C3CON: I2C3 CONTROL REGISTER
-   *
-   * MSB
-   * x-x0x0x0xxxxxxxx
-   *    | | |
-   *    | | +------------ SMEN:  Disable SMBus support.
-   *    | +-------------- A10M:  Use 7-bit slave addresses.
-   *    +---------------- SCREL: Enable clock stretching.
-   *
-   */
-  I2C3CON &= ~(_I2C3CON_A10M_MASK | _I2C3CON_SCLREL_MASK | _I2C3CON_SMEN_MASK);
-
-  /* General call address. */
-  I2C3ADD = 0;
-
-  /* Do not mask address bits. */
-  I2C3MSK = 0;
-
-  /* Set the I2C baud rate generator speed. */
-  I2C3BRG = HARDWARE_I2C_BRG_SPEEDS[mode_configuration.speed];
-
-  /* Enable the I2C module. */
-  I2C3CONbits.I2CEN = ON;
-
-#else
-
   /* General call address. */
   I2C1ADD = 0;
 
@@ -804,8 +637,6 @@ void hardware_i2c_setup(void) {
 
   /* Enable the I2C module. */
   I2C1CONbits.I2CEN = ON;
-
-#endif /* BUSPIRATEV4 */
 }
 
 #endif /* BP_I2C_USE_HW_BUS */
@@ -1090,12 +921,6 @@ void binary_io_enter_i2c_mode(void) {
       bp_binary_io_peripherals_set(inByte);
       REPORT_IO_SUCCESS();
       break;
-
-#ifdef BUSPIRATEV4
-    case 0b0101:
-      user_serial_transmit_character(bp_binary_io_pullup_control(inByte));
-      break;
-#endif /* BUSPIRATEV4 */
 
     default:
       REPORT_IO_FAILURE();

@@ -22,15 +22,9 @@
 #include "hardwarev3.h"
 #endif /* BUSPIRATEV3 */
 
-#ifdef BUSPIRATEV4
-#include "dp_usb/usb_stack_globals.h"
-#include "hardwarev4.h"
-#include "onboard_eeprom.h"
-#endif /* BUSPIRATEV4 */
-
-#if !defined(BUSPIRATEV3) && !defined(BUSPIRATEV4)
+#if !defined(BUSPIRATEV3)
 #error "Board type not defined!"
-#endif /* !BUSPIRATEV3 && !BUSPIRATEV4 */
+#endif /* !BUSPIRATEV3 */
 
 #include "types.h"
 

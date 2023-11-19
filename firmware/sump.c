@@ -293,13 +293,7 @@ static const uint8_t SUMP_METADATA[] = {
     /* Device name. */
 
     SUMP_METADATA_DEVICE_NAME,
-#ifdef BUSPIRATEV4
-    'B', 'P', 'v', '4', '\0',
-#elif defined(BUSPIRATEV3)
     'B', 'P', 'v', '3', '\0',
-#else
-#error "Invalid or unknown Bus Pirate version!"
-#endif /* BUSPIRATEV4 || BUSPIRATEV3 */
 
     /* Sample memory (4096 bytes). */
 

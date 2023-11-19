@@ -42,8 +42,5 @@ int cmdhistory(void);
 #endif /* BP_ENABLE_COMMAND_HISTORY */
 
 int getnumber(int def, int min, int max, int x);
-#ifdef BUSPIRATEV4
-long getlong(long def, int min, long max, int x);
-#endif /* BUSPIRATEV4 */
 
 #endif /* !BP_PROC_MENU_H */

@@ -99,15 +99,7 @@ extern mode_configuration_t mode_configuration;
 extern command_t last_command;
 extern bus_pirate_protocol_t enabled_protocols[ENABLED_PROTOCOLS_COUNT];
 
-#ifdef BUSPIRATEV4
-static bool __attribute__((address(0x47FA), persistent)) skip_pgc_pgd_check;
-#else
 static bool __attribute__((address(0x27FA), persistent)) skip_pgc_pgd_check;
-#endif /* BUSPIRATEV4 */
-
-#ifdef BUSPIRATEV4
-extern volatile BYTE cdc_Out_len;
-#endif /* BUSPIRATEV4 */
 
 static const uint8_t READ_DISPLAY_BASE[] = {'x', 'd', 'b', 'w'};
 
@@ -237,10 +229,6 @@ static void switch_psu_on(void);
  * Turns off the power supplies.
  */
 static void switch_psu_off(void);
-
-#ifdef BUSPIRATEV4
-void set_pullup_voltage(void);
-#endif /* BUSPIRATEV4 */
 
 char cmdbuf[BP_COMMAND_BUFFER_SIZE] = {0};
 unsigned int cmdend;
@@ -401,11 +389,6 @@ void serviceuser(void) {
         menu_state.binary_mode_counter++;
         if (menu_state.binary_mode_counter == 20) {
           enter_binary_bitbang_mode();
-#ifdef BUSPIRATEV4
-          menu_state.binary_mode_counter = 0;
-          /* Simulate reset. */
-          goto bpv4reset;
-#endif /* BUSPIRATEV4 */
         }
         break;
 
@@ -499,18 +482,6 @@ void serviceuser(void) {
         BPMSG1087;
         break;
 
-#ifdef BUSPIRATEV4
-      case 'k':
-        mode_configuration.alternate_aux = 2;
-        BPMSG1263;
-        break;
-
-      case 'K':
-        mode_configuration.alternate_aux = 3;
-        BPMSG1264;
-        break;
-#endif /* BUSPIRATEV4 */
-
       case 'L':
         mode_configuration.little_endian = YES;
         BPMSG1124;
@@ -557,12 +528,6 @@ void serviceuser(void) {
         }
         break;
 
-#ifdef BUSPIRATEV4
-      case 'e':
-        set_pullup_voltage();
-        break;
-#endif /* BUSPIRATEV4 */
-
       case '=':
         convert_value(NO);
         break;
@@ -580,15 +545,9 @@ void serviceuser(void) {
         break;
 
       case '#':
-#ifdef BUSPIRATEV4
-        MSG_RESET_MESSAGE;
-      bpv4reset:
-        print_version_info();
-#else
         BPMSG1093;
         user_serial_wait_transmission_done();
         __asm volatile("RESET");
-#endif /* BUSPIRATEV4 */
         break;
 
       case '$':
@@ -1289,120 +1248,10 @@ again: // need to do it proper with whiles and ifs..
   return temp; // we dont get here, but keep compiler happy
 }
 
-#ifdef BUSPIRATEV4
-// gets number from input
-// -1 = abort (x)
-// -2 = input to much
-// 0-max return
-// x=1 exit is enabled (we don't want that in the mode changes ;)
-
-long getlong(long def, int min, long max,
-             int x) // default, minimum, maximum, show exit option
-{
-  char c;
-  char buf[12]; // max long = 2147483647 so 10
-  int i, j, stop, neg;
-  long temp;
-
-again: // need to do it proper with whiles and ifs..
-
-  i = 0;
-  stop = 0;
-  temp = 0;
-  neg = 0;
-
-  bp_write_string("\r\n(");
-  if (def < 0) {
-    bp_write_string("x");
-  } else {
-    bp_write_dec_dword(def);
-  }
-  bp_write_string(")>");
-
-  while (!stop) {
-    c = user_serial_read_byte();
-    switch (c) {
-    case 0x08:
-      if (i) {
-        i--;
-        MSG_DESTRUCTIVE_BACKSPACE;
-      } else {
-        if (neg) {
-          neg = 0;
-          MSG_DESTRUCTIVE_BACKSPACE;
-        } else {
-          user_serial_transmit_character(BELL);
-        }
-      }
-      break;
-    case 0x0A:
-    case 0x0D:
-      stop = 1;
-      break;
-    case '-':
-      if (!i) // enable negative numbers
-      {
-        user_serial_transmit_character('-');
-        neg = 1;
-      } else {
-        user_serial_transmit_character(BELL);
-      }
-      break;
-    case 'x':
-      if (x)
-        return -1; // user wants to quit :( only if we enable it :D
-    default:
-      if ((c >= 0x30) && (c <= 0x39)) // we got a digit
-      {
-        if (i > 9) // 0-9999 should be enough??
-        {
-          user_serial_transmit_character(BELL);
-          i = 10;
-        } else {
-          user_serial_transmit_character(c);
-          buf[i] = c; // store user input
-          i++;
-        }
-      } else // ignore input :)
-      {
-        user_serial_transmit_character(BELL);
-      }
-    }
-  }
-  bpBR;
-
-  if (i == 0) {
-    return def; // no user input so return default option
-  } else {
-    temp = 0;
-    i--;
-    j = i;
-
-    for (; i >= 0; i--) {
-      temp *= 10;
-      temp += (buf[j - i] - 0x30);
-    }
-
-    if ((temp >= min) && (temp <= max)) {
-      if (neg) {
-        return -temp;
-      } else {
-        return temp;
-      }
-    } else { // bpWline("\r\nInvalid choice, try again\r\n");
-      BPMSG1211;
-      goto again;
-    }
-  }
-  return temp; // we dont get here, but keep compiler happy
-}
-
-#endif /* BUSPIRATEV4 */
 
 // print version info (used in menu and at startup in main.c)
 
 void print_version_info(void) {
-#ifdef BUSPIRATEV3
   bp_write_string(BP_VERSION_STRING);
   user_serial_transmit_character('.');
   user_serial_transmit_character(bus_pirate_configuration.hardware_version);
@@ -1411,9 +1260,6 @@ void print_version_info(void) {
     MSG_CHIP_IDENTIFIER_CLONE;
   }
   bpBR;
-#else
-  bp_write_line(BP_VERSION_STRING);
-#endif /* BUSPIRATEV3 */
 
   bp_write_string(BP_FIRMWARE_STRING);
 
@@ -1426,13 +1272,11 @@ void print_version_info(void) {
   }
   user_serial_transmit_character(']');
 
-#ifdef BUSPIRATEV3
   BPMSG1126;
   uint16_t bootloader_version = bp_read_from_flash(0x0000, BL_ADDR_VER);
   bp_write_dec_byte(bootloader_version >> 8);
   user_serial_transmit_character('.');
   bp_write_dec_byte(bootloader_version & 0xFF);
-#endif /* BUSPIRATEV3 */
   bpBR;
 
   BPMSG1117;
@@ -1440,23 +1284,7 @@ void print_version_info(void) {
 
   BPMSG1210;
   bp_write_hex_word(bus_pirate_configuration.device_revision);
-#ifdef BUSPIRATEV4
-  MSG_CHIP_REVISION_ID_BEGIN;
-  switch (bus_pirate_configuration.device_revision) {
 
-  case PIC_REV_A3:
-    MSG_CHIP_REVISION_A3;
-    break;
-
-  case PIC_REV_A5:
-    MSG_CHIP_REVISION_A5;
-    break;
-
-  default:
-    MSG_CHIP_REVISION_UNKNOWN;
-    break;
-  }
-#else
   MSG_CHIP_REVISION_ID_BEGIN;
   if (bus_pirate_configuration.device_type == 0x044F) {
     /* Sandbox Electronics clone with 44pin PIC24FJ64GA004. */
@@ -1487,19 +1315,12 @@ void print_version_info(void) {
     MSG_CHIP_REVISION_UNKNOWN;
     break;
   }
-#endif /* BUSPIRATEV4 */
-
+  
   bp_write_line(")");
   BPMSG1118;
 }
 
 void print_status_info(void) {
-#ifdef BUSPIRATEV4
-  MSG_CFG0_FIELD;
-  bp_write_hex_word(bp_read_from_flash(CFG_ADDR_UPPER, CFG_ADDR_0));
-  bpSP;
-#endif /* BUSPIRATEV4 */
-
   BPMSG1136;
   bp_write_hex_word(bp_read_from_flash(CFG_ADDR_UPPER, CFG_ADDR_1));
   BPMSG1137;
@@ -1528,16 +1349,6 @@ void print_status_info(void) {
   user_serial_transmit_character(',');
   bpSP;
 
-#ifdef BUSPIRATEV4
-  if (BP_PUVSEL50_DIR == OUTPUT) {
-    MSG_VPU_5V_MARKER;
-  }
-
-  if (BP_PUVSEL33_DIR == OUTPUT) {
-    MSG_VPU_3V3_MARKER;
-  }
-#endif /* BUSPIRATEV4 */
-
   // open collector outputs?
   if (mode_configuration.high_impedance == YES) {
     BPMSG1120;
@@ -1562,30 +1373,11 @@ void print_status_info(void) {
   bpBR;
 
 // AUX pin setting
-#ifdef BUSPIRATEV3
   if (mode_configuration.alternate_aux == 1) {
     BPMSG1087;
   } else {
     BPMSG1086;
   }
-#endif /* BUSPIRATEV3 */
-
-#ifdef BUSPIRATEV4
-  switch (mode_configuration.alternate_aux) {
-  case 0:
-    BPMSG1087;
-    break;
-  case 1:
-    BPMSG1086;
-    break;
-  case 2:
-    BPMSG1263;
-    break;
-  case 3:
-    BPMSG1264;
-    break;
-  }
-#endif /* BUSPIRATEV4 */
 
   enabled_protocols[bus_pirate_configuration.bus_mode].print_settings();
   BPMSG1119;
@@ -1593,92 +1385,52 @@ void print_status_info(void) {
 
 void print_pins_information(void) {
   BPMSG1226;
-#ifdef BUSPIRATEV4
-  BPMSG1256; // bpWstring("12.(RD)\t11.(BR)\t10.(BLK)\t9.(WT)\t8.(GR)\t7.(PU)\t6.(BL)\t5.(GN)\t4.(YW)\t3.(OR)\t2.(RD)\1.(BR)");
-  BPMSG1257; // bpWstring("GND\t5.0V\t3.3V\tVPU\tADC\tAUX2\tAUX1\tAUX\t");
-#else
   BPMSG1233; // bpWstring("1.(BR)\t2.(RD)\t3.(OR)\t4.(YW)\t5.(GN)\t6.(BL)\t7.(PU)\t8.(GR)\t9.(WT)\t0.(BLK)");
   BPMSG1227; // bpWstring("GND\t3.3V\t5.0V\tADC\tVPU\tAUX\t");
-#endif /* BUSPIRATEV4 */
 
   enabled_protocols[bus_pirate_configuration.bus_mode].print_pins_state();
   BPMSG1228;
-#ifdef BUSPIRATEV4
-  print_pin_direction(AUX2);
-  print_pin_direction(AUX1);
-  print_pin_direction(AUX);
-  print_pin_direction(CS);
-  print_pin_direction(MISO);
-  print_pin_direction(CLK);
-  print_pin_direction(MOSI);
-#else
   print_pin_direction(AUX);
   print_pin_direction(CLK);
   print_pin_direction(MOSI);
   print_pin_direction(CS);
   print_pin_direction(MISO);
-#endif /* BUSPIRATEV4 */
   bpBR;
   BPMSG1234;
   bp_enable_adc();
 
-#ifdef BUSPIRATEV4
-  bp_write_voltage(bp_read_adc(BP_ADC_5V0));
-#else
 #if defined(BP_VERSION2_SUPPORT) && (BP_VERSION2_SUPPORT == 1)
   bp_write_voltage(bp_read_adc(BP_ADC_PROBE));
 #else
   bp_write_voltage(bp_read_adc(BP_ADC_3V3));
 #endif /* BP_VERSION2_SUPPORT && (BP_VERSION2_SUPPORT == 1) */
-#endif /* BUSPIRATEV4 */
   MSG_VOLTAGE_UNIT;
   user_serial_transmit_character('\t');
 
-#ifdef BUSPIRATEV4
-  bp_write_voltage(bp_read_adc(BP_ADC_3V3));
-#else
   bp_write_voltage(bp_read_adc(BP_ADC_5V0));
-#endif /* BUSPIRATEV4 */
   MSG_VOLTAGE_UNIT;
   user_serial_transmit_character('\t');
 
-#ifdef BUSPIRATEV4
-  bp_write_voltage(bp_read_adc(BP_ADC_VPU));
-#else
 #if defined(BP_VERSION2_SUPPORT) && (BP_VERSION2_SUPPORT == 1)
   bp_write_voltage(bp_read_adc(BP_ADC_3V3));
 #else
   bp_write_voltage(bp_read_adc(BP_ADC_PROBE));
 #endif /* BP_VERSION2_SUPPORT && (BP_VERSION2_SUPPORT == 1) */
-#endif /* BUSPIRATEV4 */
   MSG_VOLTAGE_UNIT;
   user_serial_transmit_character('\t');
 
-#ifdef BUSPIRATEV4
-  bp_write_voltage(bp_read_adc(BP_ADC_PROBE));
-#else
   bp_write_voltage(bp_read_adc(BP_ADC_VPU));
-#endif /* BUSPIRATEV4 */
   MSG_VOLTAGE_UNIT;
   user_serial_transmit_character('\t');
 
   bp_disable_adc();
 
-#ifdef BUSPIRATEV4
-  print_pin_state(AUX2);
-  print_pin_state(AUX1);
-  print_pin_state(AUX);
-  print_pin_state(CS);
-  print_pin_state(MISO);
-  print_pin_state(CLK);
-  print_pin_state(MOSI);
-#else
   print_pin_state(AUX);
   print_pin_state(CLK);
   print_pin_state(MOSI);
   print_pin_state(CS);
   print_pin_state(MISO);
-#endif /* BUSPIRATEV4 */
+
   bpBR;
 }
 
@@ -1751,72 +1503,6 @@ void set_baud_rate(void) {
 void echo_state(const uint16_t value) {
   user_serial_transmit_character(value ? '1' : '0');
 }
-
-#ifdef BUSPIRATEV4
-
-void set_pullup_voltage(void) {
-  if (bus_pirate_configuration.bus_mode == BP_HIZ) {
-    BPMSG1088;
-    mode_configuration.command_error = YES;
-    return;
-  }
-
-  if (mode_configuration.high_impedance == NO) {
-    BPMSG1209;
-    mode_configuration.command_error = YES;
-    return;
-  }
-
-  bp_disable_3v3_pullup();
-  bp_delay_ms(2);
-  bp_enable_adc();
-  bool has_voltage = (bp_read_adc(BP_ADC_VPU) > 0x100);
-  bp_disable_adc();
-  if (has_voltage) {
-    MSG_VOLTAGE_VPULLUP_ALREADY_PRESENT;
-    mode_configuration.command_error = YES;
-    return;
-  }
-
-  cmdstart = (cmdstart + 1) & CMDLENMSK;
-  consumewhitechars();
-  int temp = getint();
-  if (mode_configuration.command_error == YES) {
-    mode_configuration.command_error = NO;
-    BPMSG1271;
-    temp = getnumber(1, 1, 3, 0);
-  }
-
-  switch (temp) {
-  case 1:
-    bp_disable_3v3_pullup();
-    BPMSG1272;
-    BPMSG1274;
-    break;
-
-  case 2:
-    bp_enable_3v3_pullup();
-    BPMSG1173;
-    BPMSG1272;
-    BPMSG1273;
-    break;
-
-  case 3:
-    bp_enable_5v0_pullup();
-    BPMSG1171;
-    BPMSG1272;
-    BPMSG1273;
-    break;
-
-  default:
-    bp_disable_3v3_pullup();
-    BPMSG1272;
-    BPMSG1274;
-    break;
-  }
-}
-
-#endif /* BUSPIRATEV4 */
 
 void convert_value(const bool reversed) {
   cmdstart = (cmdstart + 1) & CMDLENMSK;
