@@ -232,6 +232,12 @@ _BPMSG1094_str:
 _BPMSG1095_str:
 	.pasciz "AUX INPUT/HI-Z, READ: "
 
+	; BPMSG1095BUZZ
+	.section .text.BPMSG1095BUZZ, code
+	.global _BPMSG1095BUZZ_str
+_BPMSG1095BUZZ_str:
+	.pasciz "TP0 INPUT, READ: "
+	
 	; BPMSG1098
 	.section .text.BPMSG1098, code
 	.global _BPMSG1098_str
@@ -556,6 +562,12 @@ _BPMSG1183_str:
 _BPMSG1184_str:
 	.pasciz "CS"
 
+	; BPMSG1184BUZZ
+	.section .text.BPMSG1184BUZZ, code
+	.global _BPMSG1184BUZZ_str
+_BPMSG1184BUZZ_str:
+	.pasciz "TP0"
+	
 	; BPMSG1185
 	.section .text.BPMSG1185, code
 	.global _BPMSG1185_str
@@ -668,7 +680,7 @@ _BPMSG1228_str:
 	.section .text.BPMSG1228BUZZ, code
 	.global _BPMSG1228BUZZ_str
 _BPMSG1228BUZZ_str:
-	.pasciz "P\tP\tI"
+	.pasciz "P\tP\t"
 
 	; BPMSG1233
 	.section .text.BPMSG1233, code
@@ -856,6 +868,13 @@ _HLP1021_str:
 _HLP1022_str:
 	.pasciz " w/W\tPSU (off/ON)\t\t<x>/<x= >/<0>\tUsermacro x/assign x/list all"
 
+	; HLP1022BUZZ
+	.section .text.HLP1022BUZZ, code
+	.global _HLP1022BUZZ_str
+_HLP1022BUZZ_str:
+	.pasciz " e/E\tTP0 (input-low+READ/output-low) (TP0 is connected to VPU)"
+
+	
 	; MSG_1WIRE_ADDRESS_MACRO_HEADER
 	.section .text.MSG_1WIRE_ADDRESS_MACRO_HEADER, code
 	.global _MSG_1WIRE_ADDRESS_MACRO_HEADER_str

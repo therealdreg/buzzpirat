@@ -82,6 +82,7 @@ void print_help(void) {
   HLP1020;
   HLP1021;
   HLP1022;
+  HLP1022BUZZ;
 }
 
 bool agree(void) {

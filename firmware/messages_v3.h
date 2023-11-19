@@ -79,6 +79,8 @@ void BPMSG1094_str(void);
 #define BPMSG1094 bp_message_write_line(__builtin_tbladdress(BPMSG1094_str))
 void BPMSG1095_str(void);
 #define BPMSG1095 bp_message_write_buffer(__builtin_tbladdress(BPMSG1095_str))
+void BPMSG1095BUZZ_str(void);
+#define BPMSG1095BUZZ bp_message_write_buffer(__builtin_tbladdress(BPMSG1095BUZZ_str))
 void BPMSG1098_str(void);
 #define BPMSG1098 bp_message_write_buffer(__builtin_tbladdress(BPMSG1098_str))
 void BPMSG1099_str(void);
@@ -187,6 +189,8 @@ void BPMSG1183_str(void);
 #define BPMSG1183 bp_message_write_buffer(__builtin_tbladdress(BPMSG1183_str))
 void BPMSG1184_str(void);
 #define BPMSG1184 bp_message_write_buffer(__builtin_tbladdress(BPMSG1184_str))
+void BPMSG1184BUZZ_str(void);
+#define BPMSG1184BUZZ bp_message_write_buffer(__builtin_tbladdress(BPMSG1184BUZZ_str))
 void BPMSG1185_str(void);
 #define BPMSG1185 bp_message_write_line(__builtin_tbladdress(BPMSG1185_str))
 void BPMSG1186_str(void);
@@ -287,6 +291,8 @@ void HLP1021_str(void);
 #define HLP1021 bp_message_write_line(__builtin_tbladdress(HLP1021_str))
 void HLP1022_str(void);
 #define HLP1022 bp_message_write_line(__builtin_tbladdress(HLP1022_str))
+void HLP1022BUZZ_str(void);
+#define HLP1022BUZZ bp_message_write_line(__builtin_tbladdress(HLP1022BUZZ_str))
 void MSG_1WIRE_ADDRESS_MACRO_HEADER_str(void);
 #define MSG_1WIRE_ADDRESS_MACRO_HEADER bp_message_write_buffer(__builtin_tbladdress(MSG_1WIRE_ADDRESS_MACRO_HEADER_str))
 void MSG_1WIRE_ALARM_MACRO_NAME_str(void);

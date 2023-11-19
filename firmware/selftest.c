@@ -192,6 +192,8 @@ uint8_t perform_selftest(bool show_progress, bool jumper_test) {
   BPMSG1175;
   IODIR &= ~ALLIO;
   IOLAT |= ALLIO;
+  BP_TP0_DIR = OUTPUT;
+  BP_TP0 = HIGH;
   bp_delay_ms(PIN_STATE_TEST_DELAY);
   perform_pins_state_test(HIGH);
 
@@ -206,6 +208,8 @@ uint8_t perform_selftest(bool show_progress, bool jumper_test) {
     bp_enable_3v3_pullup();
     bp_enable_pullup();
   }
+  BP_TP0_DIR = OUTPUT;
+  BP_TP0 = LOW;
   bp_delay_ms(PIN_STATE_TEST_DELAY);
   perform_pins_state_test(LOW);
 
@@ -219,6 +223,8 @@ uint8_t perform_selftest(bool show_progress, bool jumper_test) {
 
     BPMSG1177;
     IODIR |= ALLIO;
+    BP_TP0_DIR = INPUT;
+    BP_TP0 = LOW;
     bp_delay_ms(PIN_STATE_TEST_DELAY);
     perform_pins_state_test(HIGH);
     bp_disable_3v3_pullup();
@@ -283,6 +289,10 @@ void perform_pins_state_test(bool state) {
   /* Check CS pin state. */
   BPMSG1184;
   check_result(BP_CS, state);
+  
+  /* Check TP0 pin state. */
+  BPMSG1184BUZZ;
+  check_result(BP_TP0, state);
 }
 
 void check_result(bool obtained, bool expected) {

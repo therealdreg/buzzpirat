@@ -110,6 +110,7 @@ void bp_reset_board_state(void) {
   BP_MISO_DIR = INPUT;
   BP_CS_DIR = INPUT;
   BP_AUX0_DIR = INPUT;
+  BP_TP0_DIR = INPUT;
   bp_disable_mode_led();
   bp_enable_usb_led();
 

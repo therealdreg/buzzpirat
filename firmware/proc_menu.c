@@ -561,6 +561,23 @@ void serviceuser(void) {
         }
         break;
 
+      case 'e':
+        BP_TP0_DIR = INPUT;
+        BP_TP0 = LOW;
+        repeat = getrepeat() + 1;
+        while (--repeat) {
+          BPMSG1095BUZZ;
+          echo_state(BP_TP0);
+          bpBR;
+        }
+        break;
+
+      case 'E':
+        BP_TP0_DIR = OUTPUT;
+        BP_TP0 = LOW;
+        break;
+        
+        
       case 'a':
         bp_aux_pin_set_low();
         break;
@@ -1436,6 +1453,7 @@ void print_pins_information(void) {
   BPMSG1227BUZZ; 
   bpBR;
   BPMSG1228BUZZ;
+  bp_write_string(TRISA & TP0 ? "I\t" : "O\t");
   bpBR;
   bp_write_voltage(bp_read_adc(BP_ADC_2V5));
   MSG_VOLTAGE_UNIT;
@@ -1443,8 +1461,7 @@ void print_pins_information(void) {
   bp_write_voltage(bp_read_adc(BP_ADC_1V8));
   MSG_VOLTAGE_UNIT;
   user_serial_transmit_character('\t');
-  
-  user_serial_transmit_character('?');
+  bp_write_string(PORTA & TP0 ? "H\t" : "L\t");
   bpBR;
   
   bp_disable_adc();
