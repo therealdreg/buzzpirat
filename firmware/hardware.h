@@ -18,13 +18,7 @@
 #ifndef BP_HARDWARE_H
 #define BP_HARDWARE_H
 
-#ifdef BUSPIRATEV3
 #include "hardwarev3.h"
-#endif /* BUSPIRATEV3 */
-
-#if !defined(BUSPIRATEV3)
-#error "Board type not defined!"
-#endif /* !BUSPIRATEV3 */
 
 #include "types.h"
 

@@ -318,16 +318,12 @@ void bp_initialise_delay_timer(void);
 
 #endif /* BP_JTAG_OPENOCD_SUPPORT */
 
-#if defined(BUSPIRATEV3)
-
 extern uint8_t *UART1RXBuf;
 extern uint16_t UART1RXToRecv;
 extern uint16_t UART1RXRecvd;
 extern uint8_t *UART1TXBuf;
 extern uint16_t UART1TXSent;
 extern uint16_t UART1TXAvailable;
-
-#endif /* BUSPIRATEV3 */
 
 /**
  * @defgroup user_serial User-facing serial port functions.

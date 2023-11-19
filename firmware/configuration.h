@@ -18,18 +18,6 @@
 #ifndef BP_CONFIGURATION_H
 #define BP_CONFIGURATION_H
 
-/* Hardware identification. */
-
-#if defined(__PIC24FJ64GA002__)
-
-/**
- * The firmware is built for a Bus Pirate v3.
- */
-#define BUSPIRATEV3
-
-#endif /* __PIC24FJ256GB106__ || __PIC24FJ64GA002__ */
-
-#ifdef BUSPIRATEV3
 
 /**
  * If this firmware is guaranteed to not run on MCUs revision A3 or A4 and this
@@ -38,8 +26,6 @@
  * overall.
  */
 #undef BPV3_IS_REV_B4_OR_LATER
-
-#endif /* BUSPIRATEV3 */
 
 /* Feature inclusion/exclusion definitions. */
 
@@ -289,7 +275,6 @@
 
 #ifndef BP_CUSTOM_FEATURE_SET
 
-#ifdef BUSPIRATEV3
 #define BP_ENABLE_1WIRE_SUPPORT
 #define BP_ENABLE_BASIC_SUPPORT
 #define BP_ENABLE_DIO_SUPPORT
@@ -304,7 +289,6 @@
 #define BP_ENABLE_SPI_SUPPORT
 #define BP_ENABLE_SUMP_SUPPORT
 #define BP_ENABLE_UART_SUPPORT
-#endif /* BUSPIRATEV3 */
 
 #endif /* !BP_CUSTOM_FEATURE_SET */
 
@@ -420,11 +404,7 @@
 
 #ifdef BP_ENABLE_SMPS_SUPPORT
 
-#ifdef BUSPIRATEV3
-
 #error "SMPS support is not available on Bus Pirate v3 boards."
-
-#endif /* BUSPIRATEV3 */
 
 #endif /* BP_ENABLE_SMPS_SUPPORT */
 
@@ -464,42 +444,27 @@
 /**
  * How many past entries the command history should keep track of.
  */
-#ifdef BUSPIRATEV3
 #define BP_COMMAND_HISTORY_LENGTH 7
-#else
-#define BP_COMMAND_HISTORY_LENGTH 15
-#endif /* BUSPIRATEV3 */
 
 #endif /* BP_ENABLE_COMMAND_HISTORY */
 
 /**
  * How many user-defined macros can be set.
  */
-#ifdef BUSPIRATEV3
+
 #define BP_USER_MACROS_COUNT 3
-#else
-#define BP_USER_MACROS_COUNT 5
-#endif /* BUSPIRATEV3 */
 
 /**
  * Maximum length, in bytes of a user-defined macro.
  */
-#ifdef BUSPIRATEV3
 #define BP_USER_MACRO_MAX_LENGTH 24
-#else
-#define BP_USER_MACRO_MAX_LENGTH 32
-#endif /* BUSPIRATEV3 */
 
 /**
  * How big the serial command buffer can be, in bytes.
  *
  * @warning This must be set to a power of two, ie. 256, 128, 64, 32, etc.
  */
-#ifdef BUSPIRATEV3
 #define BP_COMMAND_BUFFER_SIZE 128
-#else
-#define BP_COMMAND_BUFFER_SIZE 256
-#endif /* BUSPIRATEV3 */
 
 /**
  * How big the serial terminal buffer can be, in bytes.
