@@ -17,13 +17,13 @@ REM MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 ECHO Running on Windows...
 
-SET UPLOADER="pirate-loader.exe"
+SET UPLOADER="buzzloader.exe"
 
 IF [%1]==[] SET PORT="COM3"
 IF NOT [%1]==[] SET PORT=%1
 
 IF EXIST %UPLOADER% (
-	pirate-loader.exe --dev=%PORT% --hello
+	buzzloader.exe --dev=%PORT% --hello
 ) ELSE (
 	ECHO ERROR
 	ECHO Cannot find bootloader update program!

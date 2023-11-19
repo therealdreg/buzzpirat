@@ -18,7 +18,7 @@
 # TODO: Spin up Ubuntu on Windows and see what is the output of uname(1)
 
 OS=`uname`
-UPLOADER="./pirate-loader"
+UPLOADER="./buzzloader"
 
 echo "Running on ${OS}..."
 

@@ -103,7 +103,7 @@ For windows:
 
 ```
 cd bin
-pirate-loader.exe --dev=COM29 --hex=BZ-firmware-v7.1.3.alpha.hex
+buzzloader.exe --dev=COM29 --hex=BZ-firmware-v7.1.3.alpha.hex
 ```
 
 ## How to compile bootloader & firmware

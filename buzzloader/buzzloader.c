@@ -1,11 +1,18 @@
 /*
+ https://buzzpirat.com/ by Dreg
+ @therealdreg 
+ dreg@rootkit.es
+ 
+ buzzloader for Buzzpirat, just a mod from:
  
  Pirate-Loader for Bootloader v4
  
- Version  : 1.0.2
+ Version  : 3.0
  
  Changelog:
- +2010-06-28 - Made HEX parser case-insensative
+  + 2023-11-19 - UPPERCASE HEX
+ 
+  + 2010-06-28 - Made HEX parser case-insensative
  
   + 2010-02-04 - Changed polling interval to 10ms on Windows select wrapper, suggested by Michal (robots)
   
@@ -17,22 +24,24 @@
 			   - Added programming simulate switch ( --simulate ) for data verification 
  
   + 2010-01-18 - Initial release
+  
+ 
  
  
  Building:
  
   UNIX family systems:
 	
-	gcc pirate-loader.c -o pirate-loader
+	gcc buzzloader.c -o buzzloader
  
   WINDOWS:
     
-	cl pirate-loader.c /DWIN32=1
+	cl buzzloader.c /DWIN32=1
  
  
  Usage:
 	
-	Run ./pirate-loader --help for more information on usage and possible switches
+	Run ./buzzloader --help for more information on usage and possible switches
  
  */
 
@@ -42,7 +51,7 @@
 #include <fcntl.h>
 #include <errno.h>
 
-#define PIRATE_LOADER_VERSION "1.0.2"
+#define PIRATE_LOADER_VERSION "3.0"
 
 #define STR_EXPAND(tok) #tok
 #define OS_NAME(tok) STR_EXPAND(tok)
@@ -303,6 +312,36 @@ int readHEX(const char* file, uint8* bout, unsigned long max_length, uint8* page
 	
 	while( !feof(fp) && fgets(line, sizeof(line) - 1, fp) )
 	{
+		for (i = 0; i < strlen(line); i++)
+		{
+			switch (line[i])
+			{
+				case 'a':
+					line[i] = 'A';
+				break;
+				
+				case 'b':
+					line[i] = 'B';
+				break;
+				
+				case 'c':
+					line[i] = 'C';
+				break;
+				
+				case 'd':
+					line[i] = 'D';
+				break;
+				
+				case 'e':
+					line[i] = 'E';
+				break;
+				
+				case 'f':
+					line[i] = 'F';
+				break;
+			}
+		}
+		
 		line_no++;
 		
 		if( line[0] != ':' ) {
@@ -598,7 +637,7 @@ int parseCommandLine(int argc, const char** argv)
 			argc = 1; //that's not pretty, but it works :)
 			break;
 		} else {
-			fprintf(stderr, "Unknown parameter %s, please use pirate-loader --help for usage\n", argv[i]);
+			fprintf(stderr, "Unknown parameter %s, please use buzzloader --help for usage\n", argv[i]);
 			return -1;
 		}
 	}
@@ -606,10 +645,10 @@ int parseCommandLine(int argc, const char** argv)
 	if( argc == 1 )
 	{
 		//print usage
-		puts("pirate-loader usage:\n");
-		puts(" ./pirate-loader --dev=/path/to/device --hello");
-		puts(" ./pirate-loader --dev=/path/to/device --hex=/path/to/hexfile.hex [ --verbose ]");
-		puts(" ./pirate-loader --simulate --hex=/path/to/hexfile.hex [ --verbose ]");
+		puts("buzzloader usage:\n");
+		puts(" ./buzzloader --dev=/path/to/device --hello");
+		puts(" ./buzzloader --dev=/path/to/device --hex=/path/to/hexfile.hex [ --verbose ]");
+		puts(" ./buzzloader --simulate --hex=/path/to/hexfile.hex [ --verbose ]");
 		puts("");
 		
 		return 0;
@@ -629,7 +668,7 @@ int main (int argc, const char** argv)
 	
 	
 	puts("+++++++++++++++++++++++++++++++++++++++++++");
-	puts("  Pirate-Loader for BP with Bootloader v4+  ");
+	puts("  buzzloader  ");
 	puts("  Loader version: " PIRATE_LOADER_VERSION "  OS: " OS_NAME(OS));
 	puts("+++++++++++++++++++++++++++++++++++++++++++\n");
 	
