@@ -78,6 +78,11 @@ If you **value** what I am building and would like to see it thrive, please cons
 
 ## Recommended firmwares & bootloaders:
 
+Official for buzzpirat:
+- bin\BZ-firmware-v7.1.3.alpha.hex
+
+### Bus Pirate firmwares
+
 Modern:
 - bin\BPv3-bootloader-upgrade-v4xtov4.5_Aug-2023_USBEprom.hex
 - bin\BPv3-firmware-v7.1-JTAG_SAFE_1_Aug-2023_USBEprom.hex
@@ -91,12 +96,14 @@ Old & stable:
 For windows:
 
 - open the device manager on your computer
+- put a jumper/dupont_wire connecting the PGD pin to the PGC pin
 - connect the buzzpirat to your computer via a usb cable
 - check for the new COM port assignment in the device manager (e.g., COM29)
 
+
 ```
 cd bin
-pirate-loader.exe --dev=COM29 --hex=BPv3-firmware-v6.3-r2151.hex
+pirate-loader.exe --dev=COM29 --hex=BZ-firmware-v7.1.3.alpha.hex
 ```
 
 ## How to compile bootloader & firmware
