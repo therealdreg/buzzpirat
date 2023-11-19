@@ -465,6 +465,18 @@ _BPMSG1170_str:
 	.global _BPMSG1171_str
 _BPMSG1171_str:
 	.pasciz "5V"
+	
+	; BPMSG1171BUZZ
+	.section .text.BPMSG1171BUZZ, code
+	.global _BPMSG1171BUZZ_str
+_BPMSG1171BUZZ_str:
+	.pasciz "2V5"
+	
+	; BPMSG1171BUZZ1V8
+	.section .text.BPMSG1171BUZZ1V8, code
+	.global _BPMSG1171BUZZ1V8_str
+_BPMSG1171BUZZ1V8_str:
+	.pasciz "1V8"
 
 	; BPMSG1172
 	.section .text.BPMSG1172, code
@@ -640,17 +652,35 @@ _BPMSG1226_str:
 _BPMSG1227_str:
 	.pasciz "GND\t3.3V\t5.0V\tADC\tVPU\tAUX\t"
 
+	; BPMSG1227BUZZ
+	.section .text.BPMSG1227BUZZ, code
+	.global _BPMSG1227BUZZ_str
+_BPMSG1227BUZZ_str:
+	.pasciz "2.5V\t1.8V\tTP0\t"
+
 	; BPMSG1228
 	.section .text.BPMSG1228, code
 	.global _BPMSG1228_str
 _BPMSG1228_str:
 	.pasciz "P\tP\tP\tI\tI\t"
+	
+	; BPMSG1228BUZZ
+	.section .text.BPMSG1228BUZZ, code
+	.global _BPMSG1228BUZZ_str
+_BPMSG1228BUZZ_str:
+	.pasciz "P\tP\tI"
 
 	; BPMSG1233
 	.section .text.BPMSG1233, code
 	.global _BPMSG1233_str
 _BPMSG1233_str:
 	.pasciz "1.(BR)\t2.(RD)\t3.(OR)\t4.(YW)\t5.(GN)\t6.(BL)\t7.(PU)\t8.(GR)\t9.(WT)\t0.(Blk)"
+
+	; BPMSG1233BUZZ
+	.section .text.BPMSG1233BUZZ, code
+	.global _BPMSG1233BUZZ_str
+_BPMSG1233BUZZ_str:
+	.pasciz "1.(BR)\t2.(RD)\t3.(OR)"
 
 	; BPMSG1234
 	.section .text.BPMSG1234, code

@@ -147,6 +147,12 @@ uint8_t perform_selftest(bool show_progress, bool jumper_test) {
   BPMSG1171;
   perform_adc_test(BP_ADC_5V0, V5L, V5H);
   
+  BPMSG1171BUZZ;
+  perform_adc_test(BP_ADC_2V5, V25L, V25H);
+  
+  BPMSG1171BUZZ1V8;
+  perform_adc_test(BP_ADC_1V8, V18L, V18H);
+  
   if (jumper_test) {
 
     /*

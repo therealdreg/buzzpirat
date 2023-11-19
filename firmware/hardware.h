@@ -32,6 +32,14 @@
 #define V33H V33BASE + 0x50
 #define V33L V33BASE - 0x50
 
+#define V25BASE 0x183 // (((2.5/2)/3.3)*1024)
+#define V25H V25BASE + 0x20
+#define V25L V25BASE - 0x20
+
+#define V18BASE 0x117 // (((1.8/2)/3.3)*1024)
+#define V18H V18BASE + 0x18
+#define V18L V18BASE - 0x18
+
 // Standard Output (PPS) Definitions
 #define NULL_IO 0
 #define C1OUT_IO 1

@@ -157,6 +157,10 @@ void BPMSG1170_str(void);
 #define BPMSG1170 bp_message_write_line(__builtin_tbladdress(BPMSG1170_str))
 void BPMSG1171_str(void);
 #define BPMSG1171 bp_message_write_buffer(__builtin_tbladdress(BPMSG1171_str))
+void BPMSG1171BUZZ_str(void);
+#define BPMSG1171BUZZ bp_message_write_buffer(__builtin_tbladdress(BPMSG1171BUZZ_str))
+void BPMSG1171BUZZ1V8_str(void);
+#define BPMSG1171BUZZ1V8 bp_message_write_buffer(__builtin_tbladdress(BPMSG1171BUZZ1V8_str))
 void BPMSG1172_str(void);
 #define BPMSG1172 bp_message_write_buffer(__builtin_tbladdress(BPMSG1172_str))
 void BPMSG1173_str(void);
@@ -215,10 +219,16 @@ void BPMSG1226_str(void);
 #define BPMSG1226 bp_message_write_line(__builtin_tbladdress(BPMSG1226_str))
 void BPMSG1227_str(void);
 #define BPMSG1227 bp_message_write_buffer(__builtin_tbladdress(BPMSG1227_str))
+void BPMSG1227BUZZ_str(void);
+#define BPMSG1227BUZZ bp_message_write_buffer(__builtin_tbladdress(BPMSG1227BUZZ_str))
 void BPMSG1228_str(void);
 #define BPMSG1228 bp_message_write_buffer(__builtin_tbladdress(BPMSG1228_str))
+void BPMSG1228BUZZ_str(void);
+#define BPMSG1228BUZZ bp_message_write_buffer(__builtin_tbladdress(BPMSG1228BUZZ_str))
 void BPMSG1233_str(void);
 #define BPMSG1233 bp_message_write_line(__builtin_tbladdress(BPMSG1233_str))
+void BPMSG1233BUZZ_str(void);
+#define BPMSG1233BUZZ bp_message_write_line(__builtin_tbladdress(BPMSG1233BUZZ_str))
 void BPMSG1234_str(void);
 #define BPMSG1234 bp_message_write_buffer(__builtin_tbladdress(BPMSG1234_str))
 void BPMSG1245_str(void);

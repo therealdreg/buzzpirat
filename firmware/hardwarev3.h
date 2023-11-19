@@ -88,12 +88,17 @@
 #define BP_ADC_3V3 10
 #define BP_ADC_5V0 9
 #define BP_ADC_VPU 11
+#define BP_ADC_2V5 5
+#define BP_ADC_1V8 4
 
 // ADC pin configuration
 #define BP_ADC_PROBE_CFG AD1PCFGbits.PCFG12 // B12/AN12/ADC1/EXT
 #define BP_ADC_3V3_CFG AD1PCFGbits.PCFG10   // B14/AN10/ADC3/33V
 #define BP_ADC_5V0_CFG AD1PCFGbits.PCFG9    // B15/AN9/ADC4/50V
 #define BP_ADC_VPU_CFG AD1PCFGbits.PCFG11   // B13/AN11/ADC2/Vextpullup
+#define BP_ADC_2V5_CFG AD1PCFGbits.PCFG5    // 7. RB3/AN5/RP3/CN7/C1IN+/SCL2
+#define BP_ADC_1V8_CFG AD1PCFGbits.PCFG4    // 6. RB2/AN4/RP2/CN6/C1IN-/SDA2
+
 
 #define BL_ADDR_VER 0xABFA
 
@@ -154,6 +159,8 @@ static inline void bp_adc_pin_setup(void) {
   BP_ADC_3V3_CFG = LOW;
   BP_ADC_5V0_CFG = LOW;
   BP_ADC_VPU_CFG = LOW;
+  BP_ADC_2V5_CFG = LOW;
+  BP_ADC_1V8_CFG = LOW;
 }
 
 #endif /* !BP_HARDWAREV3_H */

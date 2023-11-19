@@ -1383,7 +1383,7 @@ void print_status_info(void) {
   BPMSG1119;
 }
 
-void print_pins_information(void) {
+void print_pins_information(void) {  
   BPMSG1226;
   BPMSG1233; // bpWstring("1.(BR)\t2.(RD)\t3.(OR)\t4.(YW)\t5.(GN)\t6.(BL)\t7.(PU)\t8.(GR)\t9.(WT)\t0.(BLK)");
   BPMSG1227; // bpWstring("GND\t3.3V\t5.0V\tADC\tVPU\tAUX\t");
@@ -1423,8 +1423,6 @@ void print_pins_information(void) {
   MSG_VOLTAGE_UNIT;
   user_serial_transmit_character('\t');
 
-  bp_disable_adc();
-
   print_pin_state(AUX);
   print_pin_state(CLK);
   print_pin_state(MOSI);
@@ -1432,6 +1430,25 @@ void print_pins_information(void) {
   print_pin_state(MISO);
 
   bpBR;
+  bpBR;
+  
+  BPMSG1233BUZZ; 
+  BPMSG1227BUZZ; 
+  bpBR;
+  BPMSG1228BUZZ;
+  bpBR;
+  bp_write_voltage(bp_read_adc(BP_ADC_2V5));
+  MSG_VOLTAGE_UNIT;
+  user_serial_transmit_character('\t');
+  bp_write_voltage(bp_read_adc(BP_ADC_1V8));
+  MSG_VOLTAGE_UNIT;
+  user_serial_transmit_character('\t');
+  
+  user_serial_transmit_character('?');
+  bpBR;
+  
+  bp_disable_adc();
+
 }
 
 void print_pin_direction(const uint16_t pin) {
@@ -1861,7 +1878,8 @@ void switch_psu_on(void) {
   /* Wait for VREG to come up.*/
   bp_delay_ms(2);
 
-  if ((bp_read_adc(BP_ADC_3V3) > V33L) && (bp_read_adc(BP_ADC_5V0) > V5L)) {
+  if ((bp_read_adc(BP_ADC_3V3) > V33L) && (bp_read_adc(BP_ADC_5V0) > V5L)
+      && (bp_read_adc(BP_ADC_2V5) > V25L) && (bp_read_adc(BP_ADC_1V8) > V18L)) {
     /* Correct voltages read. */
     MSG_POWER_SUPPLIES_ON;
     bpBR;
