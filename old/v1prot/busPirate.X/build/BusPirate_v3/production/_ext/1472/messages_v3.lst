@@ -1,0 +1,3789 @@
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 1
+
+
+   1              		; BPMSG1022
+   2              		.section .text.BPMSG1022, code
+   3              		.global _BPMSG1022_str
+   4              	_BPMSG1022_str:
+   5 000000  44 53 31 		.pasciz "DS18S20 High Prec Dig Therm"
+   5         38 53 32 
+   5         30 20 48 
+   5         69 67 68 
+   5         20 50 72 
+   5         65 63 20 
+   5         44 69 67 
+   5         20 54 68 
+   5         65 72 6D 
+   6              	
+   7            00 00 		; BPMSG1023
+   8              		.section .text.BPMSG1023, code
+   9              		.global _BPMSG1023_str
+  10              	_BPMSG1023_str:
+  11 000000  44 53 31 		.pasciz "DS18B20 Prog Res Dig Therm"
+  11         38 42 32 
+  11         30 20 50 
+  11         72 6F 67 
+  11         20 52 65 
+  11         73 20 44 
+  11         69 67 20 
+  11         54 68 65 
+  11         72 6D 00 
+  12              	
+  13              		; BPMSG1024
+  14              		.section .text.BPMSG1024, code
+  15              		.global _BPMSG1024_str
+  16              	_BPMSG1024_str:
+  17 000000  44 53 31 		.pasciz "DS1822 Econo Dig Therm"
+  17         38 32 32 
+  17         20 45 63 
+  17         6F 6E 6F 
+  17         20 44 69 
+  17         67 20 54 
+  17         68 65 72 
+  17         6D 00 
+  18              	
+  19               00 		; BPMSG1025
+  20              		.section .text.BPMSG1025, code
+  21              		.global _BPMSG1025_str
+  22              	_BPMSG1025_str:
+  23 000000  44 53 32 		.pasciz "DS2404 EconoRAM time Chip"
+  23         34 30 34 
+  23         20 45 63 
+  23         6F 6E 6F 
+  23         52 41 4D 
+  23         20 74 69 
+  23         6D 65 20 
+  23         43 68 69 
+  23         70 00 
+  24              	
+  25               00 		; BPMSG1026
+  26              		.section .text.BPMSG1026, code
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 2
+
+
+  27              		.global _BPMSG1026_str
+  28              	_BPMSG1026_str:
+  29 000000  44 53 32 		.pasciz "DS2431 1K EEPROM"
+  29         34 33 31 
+  29         20 31 4B 
+  29         20 45 45 
+  29         50 52 4F 
+  29         4D 00 
+  30              	
+  31               00 		; BPMSG1027
+  32              		.section .text.BPMSG1027, code
+  33              		.global _BPMSG1027_str
+  34              	_BPMSG1027_str:
+  35 000000  55 6E 6B 		.pasciz "Unknown device"
+  35         6E 6F 77 
+  35         6E 20 64 
+  35         65 76 69 
+  35         63 65 00 
+  36              	
+  37              		; BPMSG1028
+  38              		.section .text.BPMSG1028, code
+  39              		.global _BPMSG1028_str
+  40              	_BPMSG1028_str:
+  41 000000  50 57 4D 		.pasciz "PWM disabled"
+  41         20 64 69 
+  41         73 61 62 
+  41         6C 65 64 
+  41         00 
+  42              	
+  43            00 00 		; BPMSG1029
+  44              		.section .text.BPMSG1029, code
+  45              		.global _BPMSG1029_str
+  46              	_BPMSG1029_str:
+  47 000000  31 4B 48 		.pasciz "1KHz-4,000KHz PWM"
+  47         7A 2D 34 
+  47         2C 30 30 
+  47         30 4B 48 
+  47         7A 20 50 
+  47         57 4D 00 
+  48              	
+  49              		; BPMSG1030
+  50              		.section .text.BPMSG1030, code
+  51              		.global _BPMSG1030_str
+  52              	_BPMSG1030_str:
+  53 000000  46 72 65 		.pasciz "Frequency in KHz "
+  53         71 75 65 
+  53         6E 63 79 
+  53         20 69 6E 
+  53         20 4B 48 
+  53         7A 20 00 
+  54              	
+  55              		; BPMSG1033
+  56              		.section .text.BPMSG1033, code
+  57              		.global _BPMSG1033_str
+  58              	_BPMSG1033_str:
+  59 000000  44 75 74 		.pasciz "Duty cycle in % "
+  59         79 20 63 
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 3
+
+
+  59         79 63 6C 
+  59         65 20 69 
+  59         6E 20 25 
+  59         20 00 
+  60              	
+  61               00 		; BPMSG1034
+  62              		.section .text.BPMSG1034, code
+  63              		.global _BPMSG1034_str
+  64              	_BPMSG1034_str:
+  65 000000  50 57 4D 		.pasciz "PWM active"
+  65         20 61 63 
+  65         74 69 76 
+  65         65 00 
+  66              	
+  67               00 		; BPMSG1037
+  68              		.section .text.BPMSG1037, code
+  69              		.global _BPMSG1037_str
+  70              	_BPMSG1037_str:
+  71 000000  45 52 52 		.pasciz "ERROR: PWM active, g to disable"
+  71         4F 52 3A 
+  71         20 50 57 
+  71         4D 20 61 
+  71         63 74 69 
+  71         76 65 2C 
+  71         20 67 20 
+  71         74 6F 20 
+  71         64 69 73 
+  72              	
+  73               00 		; BPMSG1038
+  74              		.section .text.BPMSG1038, code
+  75              		.global _BPMSG1038_str
+  76              	_BPMSG1038_str:
+  77 000000  41 55 58 		.pasciz "AUX Frequency: "
+  77         20 46 72 
+  77         65 71 75 
+  77         65 6E 63 
+  77         79 3A 20 
+  77         00 
+  78              	
+  79            00 00 		; BPMSG1039
+  80              		.section .text.BPMSG1039, code
+  81              		.global _BPMSG1039_str
+  82              	_BPMSG1039_str:
+  83 000000  41 55 58 		.pasciz "AUX INPUT/HI-Z"
+  83         20 49 4E 
+  83         50 55 54 
+  83         2F 48 49 
+  83         2D 5A 00 
+  84              	
+  85              		; BPMSG1040
+  86              		.section .text.BPMSG1040, code
+  87              		.global _BPMSG1040_str
+  88              	_BPMSG1040_str:
+  89 000000  41 55 58 		.pasciz "AUX HIGH"
+  89         20 48 49 
+  89         47 48 00 
+  90              	
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 4
+
+
+  91              		; BPMSG1041
+  92              		.section .text.BPMSG1041, code
+  93              		.global _BPMSG1041_str
+  94              	_BPMSG1041_str:
+  95 000000  41 55 58 		.pasciz "AUX LOW"
+  95         20 4C 4F 
+  95         57 00 
+  96              	
+  97               00 		; BPMSG1047
+  98              		.section .text.BPMSG1047, code
+  99              		.global _BPMSG1047_str
+ 100              	_BPMSG1047_str:
+ 101 000000  45 72 72 		.pasciz "Error("
+ 101         6F 72 28 
+ 101         00 
+ 102              	
+ 103            00 00 		; BPMSG1048
+ 104              		.section .text.BPMSG1048, code
+ 105              		.global _BPMSG1048_str
+ 106              	_BPMSG1048_str:
+ 107 000000  29 20 40 		.pasciz ") @line:"
+ 107         6C 69 6E 
+ 107         65 3A 00 
+ 108              	
+ 109              		; BPMSG1049
+ 110              		.section .text.BPMSG1049, code
+ 111              		.global _BPMSG1049_str
+ 112              	_BPMSG1049_str:
+ 113 000000  20 40 70 		.pasciz " @pgmspace:"
+ 113         67 6D 73 
+ 113         70 61 63 
+ 113         65 3A 00 
+ 114              	
+ 115              		; BPMSG1050
+ 116              		.section .text.BPMSG1050, code
+ 117              		.global _BPMSG1050_str
+ 118              	_BPMSG1050_str:
+ 119 000000  20 62 79 		.pasciz " bytes."
+ 119         74 65 73 
+ 119         2E 00 
+ 120              	
+ 121               00 		; BPMSG1051
+ 122              		.section .text.BPMSG1051, code
+ 123              		.global _BPMSG1051_str
+ 124              	_BPMSG1051_str:
+ 125 000000  54 6F 6F 		.pasciz "Too long!"
+ 125         20 6C 6F 
+ 125         6E 67 21 
+ 125         00 
+ 126              	
+ 127            00 00 		; BPMSG1052
+ 128              		.section .text.BPMSG1052, code
+ 129              		.global _BPMSG1052_str
+ 130              	_BPMSG1052_str:
+ 131 000000  53 79 6E 		.pasciz "Syntax error"
+ 131         74 61 78 
+ 131         20 65 72 
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 5
+
+
+ 131         72 6F 72 
+ 131         00 
+ 132              	
+ 133            00 00 		; BPMSG1064
+ 134              		.section .text.BPMSG1064, code
+ 135              		.global _BPMSG1064_str
+ 136              	_BPMSG1064_str:
+ 137 000000  49 32 43 		.pasciz "I2C mode:\r\n 1. Software\r\n 2. Hardware"
+ 137         20 6D 6F 
+ 137         64 65 3A 
+ 137         0D 0A 20 
+ 137         31 2E 20 
+ 137         53 6F 66 
+ 137         74 77 61 
+ 137         72 65 0D 
+ 137         0A 20 32 
+ 138              	
+ 139               00 		; BPMSG1066
+ 140              		.section .text.BPMSG1066, code
+ 141              		.global _BPMSG1066_str
+ 142              	_BPMSG1066_str:
+ 143 000000  57 41 52 		.pasciz "WARNING: HARDWARE I2C is broken on this PIC! (REV A3)"
+ 143         4E 49 4E 
+ 143         47 3A 20 
+ 143         48 41 52 
+ 143         44 57 41 
+ 143         52 45 20 
+ 143         49 32 43 
+ 143         20 69 73 
+ 143         20 62 72 
+ 144              	
+ 145              		; BPMSG1067
+ 146              		.section .text.BPMSG1067, code
+ 147              		.global _BPMSG1067_str
+ 148              	_BPMSG1067_str:
+ 149 000000  53 65 74 		.pasciz "Set speed:\r\n 1. 100KHz\r\n 2. 400KHz\r\n 3. 1MHz"
+ 149         20 73 70 
+ 149         65 65 64 
+ 149         3A 0D 0A 
+ 149         20 31 2E 
+ 149         20 31 30 
+ 149         30 4B 48 
+ 149         7A 0D 0A 
+ 149         20 32 2E 
+ 150              	
+ 151              		; BPMSG1068
+ 152              		.section .text.BPMSG1068, code
+ 153              		.global _BPMSG1068_str
+ 154              	_BPMSG1068_str:
+ 155 000000  49 32 43 		.pasciz "I2C (mod spd)=( "
+ 155         20 28 6D 
+ 155         6F 64 20 
+ 155         73 70 64 
+ 155         29 3D 28 
+ 155         20 00 
+ 156              	
+ 157               00 		; BPMSG1069
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 6
+
+
+ 158              		.section .text.BPMSG1069, code
+ 159              		.global _BPMSG1069_str
+ 160              	_BPMSG1069_str:
+ 161 000000  20 30 2E 		.pasciz " 0.Macro menu\r\n 1.7bit address search\r\n 2.I2C sniffer"
+ 161         4D 61 63 
+ 161         72 6F 20 
+ 161         6D 65 6E 
+ 161         75 0D 0A 
+ 161         20 31 2E 
+ 161         37 62 69 
+ 161         74 20 61 
+ 161         64 64 72 
+ 162              	
+ 163              		; BPMSG1070
+ 164              		.section .text.BPMSG1070, code
+ 165              		.global _BPMSG1070_str
+ 166              	_BPMSG1070_str:
+ 167 000000  53 65 61 		.pasciz "Searching I2C address space. Found devices at:"
+ 167         72 63 68 
+ 167         69 6E 67 
+ 167         20 49 32 
+ 167         43 20 61 
+ 167         64 64 72 
+ 167         65 73 73 
+ 167         20 73 70 
+ 167         61 63 65 
+ 168              	
+ 169               00 		; BPMSG1084
+ 170              		.section .text.BPMSG1084, code
+ 171              		.global _BPMSG1084_str
+ 172              	_BPMSG1084_str:
+ 173 000000  28 42 41 		.pasciz "(BASIC)"
+ 173         53 49 43 
+ 173         29 00 
+ 174              	
+ 175               00 		; BPMSG1085
+ 176              		.section .text.BPMSG1085, code
+ 177              		.global _BPMSG1085_str
+ 178              	_BPMSG1085_str:
+ 179 000000  52 65 61 		.pasciz "Ready"
+ 179         64 79 00 
+ 180              	
+ 181              		; BPMSG1086
+ 182              		.section .text.BPMSG1086, code
+ 183              		.global _BPMSG1086_str
+ 184              	_BPMSG1086_str:
+ 185 000000  61 2F 41 		.pasciz "a/A/@ controls AUX pin"
+ 185         2F 40 20 
+ 185         63 6F 6E 
+ 185         74 72 6F 
+ 185         6C 73 20 
+ 185         41 55 58 
+ 185         20 70 69 
+ 185         6E 00 
+ 186              	
+ 187               00 		; BPMSG1087
+ 188              		.section .text.BPMSG1087, code
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 7
+
+
+ 189              		.global _BPMSG1087_str
+ 190              	_BPMSG1087_str:
+ 191 000000  61 2F 41 		.pasciz "a/A/@ controls CS pin"
+ 191         2F 40 20 
+ 191         63 6F 6E 
+ 191         74 72 6F 
+ 191         6C 73 20 
+ 191         43 53 20 
+ 191         70 69 6E 
+ 191         00 
+ 192              	
+ 193            00 00 		; BPMSG1088
+ 194              		.section .text.BPMSG1088, code
+ 195              		.global _BPMSG1088_str
+ 196              	_BPMSG1088_str:
+ 197 000000  43 6F 6D 		.pasciz "Command not used in this mode"
+ 197         6D 61 6E 
+ 197         64 20 6E 
+ 197         6F 74 20 
+ 197         75 73 65 
+ 197         64 20 69 
+ 197         6E 20 74 
+ 197         68 69 73 
+ 197         20 6D 6F 
+ 198              	
+ 199              		; BPMSG1089
+ 200              		.section .text.BPMSG1089, code
+ 201              		.global _BPMSG1089_str
+ 202              	_BPMSG1089_str:
+ 203 000000  50 75 6C 		.pasciz "Pull-up resistors OFF"
+ 203         6C 2D 75 
+ 203         70 20 72 
+ 203         65 73 69 
+ 203         73 74 6F 
+ 203         72 73 20 
+ 203         4F 46 46 
+ 203         00 
+ 204              	
+ 205            00 00 		; BPMSG1091
+ 206              		.section .text.BPMSG1091, code
+ 207              		.global _BPMSG1091_str
+ 208              	_BPMSG1091_str:
+ 209 000000  50 75 6C 		.pasciz "Pull-up resistors ON"
+ 209         6C 2D 75 
+ 209         70 20 72 
+ 209         65 73 69 
+ 209         73 74 6F 
+ 209         72 73 20 
+ 209         4F 4E 00 
+ 210              	
+ 211              		; BPMSG1092
+ 212              		.section .text.BPMSG1092, code
+ 213              		.global _BPMSG1092_str
+ 214              	_BPMSG1092_str:
+ 215 000000  53 65 6C 		.pasciz "Self-test in HiZ mode only"
+ 215         66 2D 74 
+ 215         65 73 74 
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 8
+
+
+ 215         20 69 6E 
+ 215         20 48 69 
+ 215         5A 20 6D 
+ 215         6F 64 65 
+ 215         20 6F 6E 
+ 215         6C 79 00 
+ 216              	
+ 217              		; BPMSG1093
+ 218              		.section .text.BPMSG1093, code
+ 219              		.global _BPMSG1093_str
+ 220              	_BPMSG1093_str:
+ 221 000000  52 45 53 		.pasciz "RESET"
+ 221         45 54 00 
+ 222              	
+ 223              		; BPMSG1094
+ 224              		.section .text.BPMSG1094, code
+ 225              		.global _BPMSG1094_str
+ 226              	_BPMSG1094_str:
+ 227 000000  42 4F 4F 		.pasciz "BOOTLOADER"
+ 227         54 4C 4F 
+ 227         41 44 45 
+ 227         52 00 
+ 228              	
+ 229               00 		; BPMSG1095
+ 230              		.section .text.BPMSG1095, code
+ 231              		.global _BPMSG1095_str
+ 232              	_BPMSG1095_str:
+ 233 000000  41 55 58 		.pasciz "AUX INPUT/HI-Z, READ: "
+ 233         20 49 4E 
+ 233         50 55 54 
+ 233         2F 48 49 
+ 233         2D 5A 2C 
+ 233         20 52 45 
+ 233         41 44 3A 
+ 233         20 00 
+ 234              	
+ 235               00 		; BPMSG1098
+ 236              		.section .text.BPMSG1098, code
+ 237              		.global _BPMSG1098_str
+ 238              	_BPMSG1098_str:
+ 239 000000  44 41 54 		.pasciz "DATA STATE: "
+ 239         41 20 53 
+ 239         54 41 54 
+ 239         45 3A 20 
+ 239         00 
+ 240              	
+ 241            00 00 		; BPMSG1099
+ 242              		.section .text.BPMSG1099, code
+ 243              		.global _BPMSG1099_str
+ 244              	_BPMSG1099_str:
+ 245 000000  44 45 4C 		.pasciz "DELAY "
+ 245         41 59 20 
+ 245         00 
+ 246              	
+ 247            00 00 		; BPMSG1100
+ 248              		.section .text.BPMSG1100, code
+ 249              		.global _BPMSG1100_str
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 9
+
+
+ 250              	_BPMSG1100_str:
+ 251 000000  75 73 00 		.pasciz "us"
+ 252              	
+ 253              		; BPMSG1101
+ 254              		.section .text.BPMSG1101, code
+ 255              		.global _BPMSG1101_str
+ 256              	_BPMSG1101_str:
+ 257 000000  57 52 49 		.pasciz "WRITE: "
+ 257         54 45 3A 
+ 257         20 00 
+ 258              	
+ 259               00 		; BPMSG1103
+ 260              		.section .text.BPMSG1103, code
+ 261              		.global _BPMSG1103_str
+ 262              	_BPMSG1103_str:
+ 263 000000  43 4C 4F 		.pasciz "CLOCK, 1"
+ 263         43 4B 2C 
+ 263         20 31 00 
+ 264              	
+ 265              		; BPMSG1104
+ 266              		.section .text.BPMSG1104, code
+ 267              		.global _BPMSG1104_str
+ 268              	_BPMSG1104_str:
+ 269 000000  43 4C 4F 		.pasciz "CLOCK, 0"
+ 269         43 4B 2C 
+ 269         20 30 00 
+ 270              	
+ 271              		; BPMSG1105
+ 272              		.section .text.BPMSG1105, code
+ 273              		.global _BPMSG1105_str
+ 274              	_BPMSG1105_str:
+ 275 000000  44 41 54 		.pasciz "DATA OUTPUT, 1"
+ 275         41 20 4F 
+ 275         55 54 50 
+ 275         55 54 2C 
+ 275         20 31 00 
+ 276              	
+ 277              		; BPMSG1106
+ 278              		.section .text.BPMSG1106, code
+ 279              		.global _BPMSG1106_str
+ 280              	_BPMSG1106_str:
+ 281 000000  44 41 54 		.pasciz "DATA OUTPUT, 0"
+ 281         41 20 4F 
+ 281         55 54 50 
+ 281         55 54 2C 
+ 281         20 30 00 
+ 282              	
+ 283              		; BPMSG1107
+ 284              		.section .text.BPMSG1107, code
+ 285              		.global _BPMSG1107_str
+ 286              	_BPMSG1107_str:
+ 287 000000  20 2A 70 		.pasciz " *pin is now HiZ"
+ 287         69 6E 20 
+ 287         69 73 20 
+ 287         6E 6F 77 
+ 287         20 48 69 
+ 287         5A 00 
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 10
+
+
+ 288              	
+ 289               00 		; BPMSG1108
+ 290              		.section .text.BPMSG1108, code
+ 291              		.global _BPMSG1108_str
+ 292              	_BPMSG1108_str:
+ 293 000000  43 4C 4F 		.pasciz "CLOCK TICKS: "
+ 293         43 4B 20 
+ 293         54 49 43 
+ 293         4B 53 3A 
+ 293         20 00 
+ 294              	
+ 295               00 		; BPMSG1109
+ 296              		.section .text.BPMSG1109, code
+ 297              		.global _BPMSG1109_str
+ 298              	_BPMSG1109_str:
+ 299 000000  52 45 41 		.pasciz "READ BIT: "
+ 299         44 20 42 
+ 299         49 54 3A 
+ 299         20 00 
+ 300              	
+ 301               00 		; BPMSG1110
+ 302              		.section .text.BPMSG1110, code
+ 303              		.global _BPMSG1110_str
+ 304              	_BPMSG1110_str:
+ 305 000000  53 79 6E 		.pasciz "Syntax error at char "
+ 305         74 61 78 
+ 305         20 65 72 
+ 305         72 6F 72 
+ 305         20 61 74 
+ 305         20 63 68 
+ 305         61 72 20 
+ 305         00 
+ 306              	
+ 307            00 00 		; BPMSG1111
+ 308              		.section .text.BPMSG1111, code
+ 309              		.global _BPMSG1111_str
+ 310              	_BPMSG1111_str:
+ 311 000000  78 2E 20 		.pasciz "x. exit(without change)"
+ 311         65 78 69 
+ 311         74 28 77 
+ 311         69 74 68 
+ 311         6F 75 74 
+ 311         20 63 68 
+ 311         61 6E 67 
+ 311         65 29 00 
+ 312              	
+ 313              		; BPMSG1112
+ 314              		.section .text.BPMSG1112, code
+ 315              		.global _BPMSG1112_str
+ 316              	_BPMSG1112_str:
+ 317 000000  6E 6F 20 		.pasciz "no mode change"
+ 317         6D 6F 64 
+ 317         65 20 63 
+ 317         68 61 6E 
+ 317         67 65 00 
+ 318              	
+ 319              		; BPMSG1114
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 11
+
+
+ 320              		.section .text.BPMSG1114, code
+ 321              		.global _BPMSG1114_str
+ 322              	_BPMSG1114_str:
+ 323 000000  4E 6F 6E 		.pasciz "Nonexistent protocol!"
+ 323         65 78 69 
+ 323         73 74 65 
+ 323         6E 74 20 
+ 323         70 72 6F 
+ 323         74 6F 63 
+ 323         6F 6C 21 
+ 323         00 
+ 324              	
+ 325            00 00 		; BPMSG1115
+ 326              		.section .text.BPMSG1115, code
+ 327              		.global _BPMSG1115_str
+ 328              	_BPMSG1115_str:
+ 329 000000  78 2E 20 		.pasciz "x. exit"
+ 329         65 78 69 
+ 329         74 00 
+ 330              	
+ 331               00 		; BPMSG1117
+ 332              		.section .text.BPMSG1117, code
+ 333              		.global _BPMSG1117_str
+ 334              	_BPMSG1117_str:
+ 335 000000  44 45 56 		.pasciz "DEVID:"
+ 335         49 44 3A 
+ 335         00 
+ 336              	
+ 337            00 00 		; BPMSG1118
+ 338              		.section .text.BPMSG1118, code
+ 339              		.global _BPMSG1118_str
+ 340              	_BPMSG1118_str:
+ 341 000000  68 74 74 		.pasciz "http://dangerousprototypes.com"
+ 341         70 3A 2F 
+ 341         2F 64 61 
+ 341         6E 67 65 
+ 341         72 6F 75 
+ 341         73 70 72 
+ 341         6F 74 6F 
+ 341         74 79 70 
+ 341         65 73 2E 
+ 342              	
+ 343            00 00 		; BPMSG1119
+ 344              		.section .text.BPMSG1119, code
+ 345              		.global _BPMSG1119_str
+ 346              	_BPMSG1119_str:
+ 347 000000  2A 2D 2D 		.pasciz "*----------*"
+ 347         2D 2D 2D 
+ 347         2D 2D 2D 
+ 347         2D 2D 2A 
+ 347         00 
+ 348              	
+ 349            00 00 		; BPMSG1120
+ 350              		.section .text.BPMSG1120, code
+ 351              		.global _BPMSG1120_str
+ 352              	_BPMSG1120_str:
+ 353 000000  4F 70 65 		.pasciz "Open drain outputs (H=Hi-Z, L=GND)"
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 12
+
+
+ 353         6E 20 64 
+ 353         72 61 69 
+ 353         6E 20 6F 
+ 353         75 74 70 
+ 353         75 74 73 
+ 353         20 28 48 
+ 353         3D 48 69 
+ 353         2D 5A 2C 
+ 354              	
+ 355               00 		; BPMSG1121
+ 356              		.section .text.BPMSG1121, code
+ 357              		.global _BPMSG1121_str
+ 358              	_BPMSG1121_str:
+ 359 000000  4E 6F 72 		.pasciz "Normal outputs (H=3.3v, L=GND)"
+ 359         6D 61 6C 
+ 359         20 6F 75 
+ 359         74 70 75 
+ 359         74 73 20 
+ 359         28 48 3D 
+ 359         33 2E 33 
+ 359         76 2C 20 
+ 359         4C 3D 47 
+ 360              	
+ 361            00 00 		; BPMSG1123
+ 362              		.section .text.BPMSG1123, code
+ 363              		.global _BPMSG1123_str
+ 364              	_BPMSG1123_str:
+ 365 000000  4D 53 42 		.pasciz "MSB set: MOST sig bit first"
+ 365         20 73 65 
+ 365         74 3A 20 
+ 365         4D 4F 53 
+ 365         54 20 73 
+ 365         69 67 20 
+ 365         62 69 74 
+ 365         20 66 69 
+ 365         72 73 74 
+ 366              	
+ 367            00 00 		; BPMSG1124
+ 368              		.section .text.BPMSG1124, code
+ 369              		.global _BPMSG1124_str
+ 370              	_BPMSG1124_str:
+ 371 000000  4C 53 42 		.pasciz "LSB set: LEAST sig bit first"
+ 371         20 73 65 
+ 371         74 3A 20 
+ 371         4C 45 41 
+ 371         53 54 20 
+ 371         73 69 67 
+ 371         20 62 69 
+ 371         74 20 66 
+ 371         69 72 73 
+ 372              	
+ 373               00 		; BPMSG1126
+ 374              		.section .text.BPMSG1126, code
+ 375              		.global _BPMSG1126_str
+ 376              	_BPMSG1126_str:
+ 377 000000  20 42 6F 		.pasciz " Bootloader v"
+ 377         6F 74 6C 
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 13
+
+
+ 377         6F 61 64 
+ 377         65 72 20 
+ 377         76 00 
+ 378              	
+ 379               00 		; BPMSG1127
+ 380              		.section .text.BPMSG1127, code
+ 381              		.global _BPMSG1127_str
+ 382              	_BPMSG1127_str:
+ 383 000000  20 31 2E 		.pasciz " 1. HEX\r\n 2. DEC\r\n 3. BIN\r\n 4. RAW"
+ 383         20 48 45 
+ 383         58 0D 0A 
+ 383         20 32 2E 
+ 383         20 44 45 
+ 383         43 0D 0A 
+ 383         20 33 2E 
+ 383         20 42 49 
+ 383         4E 0D 0A 
+ 384              	
+ 385               00 		; BPMSG1128
+ 386              		.section .text.BPMSG1128, code
+ 387              		.global _BPMSG1128_str
+ 388              	_BPMSG1128_str:
+ 389 000000  44 69 73 		.pasciz "Display format set"
+ 389         70 6C 61 
+ 389         79 20 66 
+ 389         6F 72 6D 
+ 389         61 74 20 
+ 389         73 65 74 
+ 389         00 
+ 390              	
+ 391            00 00 		; BPMSG1134
+ 392              		.section .text.BPMSG1134, code
+ 393              		.global _BPMSG1134_str
+ 394              	_BPMSG1134_str:
+ 395 000000  41 64 6A 		.pasciz "Adjust your terminal"
+ 395         75 73 74 
+ 395         20 79 6F 
+ 395         75 72 20 
+ 395         74 65 72 
+ 395         6D 69 6E 
+ 395         61 6C 00 
+ 396              	
+ 397              		; BPMSG1135
+ 398              		.section .text.BPMSG1135, code
+ 399              		.global _BPMSG1135_str
+ 400              	_BPMSG1135_str:
+ 401 000000  41 72 65 		.pasciz "Are you sure? "
+ 401         20 79 6F 
+ 401         75 20 73 
+ 401         75 72 65 
+ 401         3F 20 00 
+ 402              	
+ 403              		; BPMSG1136
+ 404              		.section .text.BPMSG1136, code
+ 405              		.global _BPMSG1136_str
+ 406              	_BPMSG1136_str:
+ 407 000000  43 46 47 		.pasciz "CFG1:"
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 14
+
+
+ 407         31 3A 00 
+ 408              	
+ 409              		; BPMSG1137
+ 410              		.section .text.BPMSG1137, code
+ 411              		.global _BPMSG1137_str
+ 412              	_BPMSG1137_str:
+ 413 000000  20 43 46 		.pasciz " CFG2:"
+ 413         47 32 3A 
+ 413         00 
+ 414              	
+ 415            00 00 		; BPMSG1163
+ 416              		.section .text.BPMSG1163, code
+ 417              		.global _BPMSG1163_str
+ 418              	_BPMSG1163_str:
+ 419 000000  44 69 73 		.pasciz "Disconnect any devices\r\nConnect (Vpu to +5V) and (ADC to +3.3V)"
+ 419         63 6F 6E 
+ 419         6E 65 63 
+ 419         74 20 61 
+ 419         6E 79 20 
+ 419         64 65 76 
+ 419         69 63 65 
+ 419         73 0D 0A 
+ 419         43 6F 6E 
+ 420              	
+ 421            00 00 		; BPMSG1164
+ 422              		.section .text.BPMSG1164, code
+ 423              		.global _BPMSG1164_str
+ 424              	_BPMSG1164_str:
+ 425 000000  43 74 72 		.pasciz "Ctrl"
+ 425         6C 00 
+ 426              	
+ 427               00 		; BPMSG1165
+ 428              		.section .text.BPMSG1165, code
+ 429              		.global _BPMSG1165_str
+ 430              	_BPMSG1165_str:
+ 431 000000  41 55 58 		.pasciz "AUX"
+ 431         00 
+ 432              	
+ 433            00 00 		; BPMSG1166
+ 434              		.section .text.BPMSG1166, code
+ 435              		.global _BPMSG1166_str
+ 436              	_BPMSG1166_str:
+ 437 000000  4D 4F 44 		.pasciz "MODE LED"
+ 437         45 20 4C 
+ 437         45 44 00 
+ 438              	
+ 439              		; BPMSG1167
+ 440              		.section .text.BPMSG1167, code
+ 441              		.global _BPMSG1167_str
+ 442              	_BPMSG1167_str:
+ 443 000000  50 55 4C 		.pasciz "PULLUP H"
+ 443         4C 55 50 
+ 443         20 48 00 
+ 444              	
+ 445              		; BPMSG1168
+ 446              		.section .text.BPMSG1168, code
+ 447              		.global _BPMSG1168_str
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 15
+
+
+ 448              	_BPMSG1168_str:
+ 449 000000  50 55 4C 		.pasciz "PULLUP L"
+ 449         4C 55 50 
+ 449         20 4C 00 
+ 450              	
+ 451              		; BPMSG1169
+ 452              		.section .text.BPMSG1169, code
+ 453              		.global _BPMSG1169_str
+ 454              	_BPMSG1169_str:
+ 455 000000  56 52 45 		.pasciz "VREG"
+ 455         47 00 
+ 456              	
+ 457               00 		; BPMSG1170
+ 458              		.section .text.BPMSG1170, code
+ 459              		.global _BPMSG1170_str
+ 460              	_BPMSG1170_str:
+ 461 000000  41 44 43 		.pasciz "ADC and supply"
+ 461         20 61 6E 
+ 461         64 20 73 
+ 461         75 70 70 
+ 461         6C 79 00 
+ 462              	
+ 463              		; BPMSG1171
+ 464              		.section .text.BPMSG1171, code
+ 465              		.global _BPMSG1171_str
+ 466              	_BPMSG1171_str:
+ 467 000000  35 56 00 		.pasciz "5V"
+ 468              	
+ 469              		; BPMSG1172
+ 470              		.section .text.BPMSG1172, code
+ 471              		.global _BPMSG1172_str
+ 472              	_BPMSG1172_str:
+ 473 000000  56 50 55 		.pasciz "VPU"
+ 473         00 
+ 474              	
+ 475            00 00 		; BPMSG1173
+ 476              		.section .text.BPMSG1173, code
+ 477              		.global _BPMSG1173_str
+ 478              	_BPMSG1173_str:
+ 479 000000  33 2E 33 		.pasciz "3.3V"
+ 479         56 00 
+ 480              	
+ 481               00 		; BPMSG1174
+ 482              		.section .text.BPMSG1174, code
+ 483              		.global _BPMSG1174_str
+ 484              	_BPMSG1174_str:
+ 485 000000  41 44 43 		.pasciz "ADC"
+ 485         00 
+ 486              	
+ 487            00 00 		; BPMSG1175
+ 488              		.section .text.BPMSG1175, code
+ 489              		.global _BPMSG1175_str
+ 490              	_BPMSG1175_str:
+ 491 000000  42 75 73 		.pasciz "Bus high"
+ 491         20 68 69 
+ 491         67 68 00 
+ 492              	
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 16
+
+
+ 493              		; BPMSG1176
+ 494              		.section .text.BPMSG1176, code
+ 495              		.global _BPMSG1176_str
+ 496              	_BPMSG1176_str:
+ 497 000000  42 75 73 		.pasciz "Bus Hi-Z 0"
+ 497         20 48 69 
+ 497         2D 5A 20 
+ 497         30 00 
+ 498              	
+ 499               00 		; BPMSG1177
+ 500              		.section .text.BPMSG1177, code
+ 501              		.global _BPMSG1177_str
+ 502              	_BPMSG1177_str:
+ 503 000000  42 75 73 		.pasciz "Bus Hi-Z 1"
+ 503         20 48 69 
+ 503         2D 5A 20 
+ 503         31 00 
+ 504              	
+ 505               00 		; BPMSG1178
+ 506              		.section .text.BPMSG1178, code
+ 507              		.global _BPMSG1178_str
+ 508              	_BPMSG1178_str:
+ 509 000000  4D 4F 44 		.pasciz "MODE and VREG LEDs should be on!"
+ 509         45 20 61 
+ 509         6E 64 20 
+ 509         56 52 45 
+ 509         47 20 4C 
+ 509         45 44 73 
+ 509         20 73 68 
+ 509         6F 75 6C 
+ 509         64 20 62 
+ 510              	
+ 511              		; BPMSG1179
+ 512              		.section .text.BPMSG1179, code
+ 513              		.global _BPMSG1179_str
+ 514              	_BPMSG1179_str:
+ 515 000000  46 6F 75 		.pasciz "Found "
+ 515         6E 64 20 
+ 515         00 
+ 516              	
+ 517            00 00 		; BPMSG1180
+ 518              		.section .text.BPMSG1180, code
+ 519              		.global _BPMSG1180_str
+ 520              	_BPMSG1180_str:
+ 521 000000  20 65 72 		.pasciz " errors."
+ 521         72 6F 72 
+ 521         73 2E 00 
+ 522              	
+ 523              		; BPMSG1181
+ 524              		.section .text.BPMSG1181, code
+ 525              		.global _BPMSG1181_str
+ 526              	_BPMSG1181_str:
+ 527 000000  4D 4F 53 		.pasciz "MOSI"
+ 527         49 00 
+ 528              	
+ 529               00 		; BPMSG1182
+ 530              		.section .text.BPMSG1182, code
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 17
+
+
+ 531              		.global _BPMSG1182_str
+ 532              	_BPMSG1182_str:
+ 533 000000  43 4C 4B 		.pasciz "CLK"
+ 533         00 
+ 534              	
+ 535            00 00 		; BPMSG1183
+ 536              		.section .text.BPMSG1183, code
+ 537              		.global _BPMSG1183_str
+ 538              	_BPMSG1183_str:
+ 539 000000  4D 49 53 		.pasciz "MISO"
+ 539         4F 00 
+ 540              	
+ 541               00 		; BPMSG1184
+ 542              		.section .text.BPMSG1184, code
+ 543              		.global _BPMSG1184_str
+ 544              	_BPMSG1184_str:
+ 545 000000  43 53 00 		.pasciz "CS"
+ 546              	
+ 547              		; BPMSG1185
+ 548              		.section .text.BPMSG1185, code
+ 549              		.global _BPMSG1185_str
+ 550              	_BPMSG1185_str:
+ 551 000000  20 4F 4B 		.pasciz " OK"
+ 551         00 
+ 552              	
+ 553            00 00 		; BPMSG1186
+ 554              		.section .text.BPMSG1186, code
+ 555              		.global _BPMSG1186_str
+ 556              	_BPMSG1186_str:
+ 557 000000  20 46 41 		.pasciz " FAIL"
+ 557         49 4C 00 
+ 558              	
+ 559              		; BPMSG1209
+ 560              		.section .text.BPMSG1209, code
+ 561              		.global _BPMSG1209_str
+ 562              	_BPMSG1209_str:
+ 563 000000  57 41 52 		.pasciz "WARNING: pins not open drain (HiZ)"
+ 563         4E 49 4E 
+ 563         47 3A 20 
+ 563         70 69 6E 
+ 563         73 20 6E 
+ 563         6F 74 20 
+ 563         6F 70 65 
+ 563         6E 20 64 
+ 563         72 61 69 
+ 564              	
+ 565               00 		; BPMSG1210
+ 566              		.section .text.BPMSG1210, code
+ 567              		.global _BPMSG1210_str
+ 568              	_BPMSG1210_str:
+ 569 000000  20 52 45 		.pasciz " REVID:"
+ 569         56 49 44 
+ 569         3A 00 
+ 570              	
+ 571               00 		; BPMSG1211
+ 572              		.section .text.BPMSG1211, code
+ 573              		.global _BPMSG1211_str
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 18
+
+
+ 574              	_BPMSG1211_str:
+ 575 000000  0D 0A 49 		.pasciz "\r\nInvalid choice, try again"
+ 575         6E 76 61 
+ 575         6C 69 64 
+ 575         20 63 68 
+ 575         6F 69 63 
+ 575         65 2C 20 
+ 575         74 72 79 
+ 575         20 61 67 
+ 575         61 69 6E 
+ 576              	
+ 577            00 00 		; BPMSG1212
+ 578              		.section .text.BPMSG1212, code
+ 579              		.global _BPMSG1212_str
+ 580              	_BPMSG1212_str:
+ 581 000000  6D 73 00 		.pasciz "ms"
+ 582              	
+ 583              		; BPMSG1213
+ 584              		.section .text.BPMSG1213, code
+ 585              		.global _BPMSG1213_str
+ 586              	_BPMSG1213_str:
+ 587 000000  52 53 20 		.pasciz "RS LOW, COMMAND MODE"
+ 587         4C 4F 57 
+ 587         2C 20 43 
+ 587         4F 4D 4D 
+ 587         41 4E 44 
+ 587         20 4D 4F 
+ 587         44 45 00 
+ 588              	
+ 589              		; BPMSG1214
+ 590              		.section .text.BPMSG1214, code
+ 591              		.global _BPMSG1214_str
+ 592              	_BPMSG1214_str:
+ 593 000000  52 53 20 		.pasciz "RS HIGH, DATA MODE"
+ 593         48 49 47 
+ 593         48 2C 20 
+ 593         44 41 54 
+ 593         41 20 4D 
+ 593         4F 44 45 
+ 593         00 
+ 594              	
+ 595            00 00 		; BPMSG1216
+ 596              		.section .text.BPMSG1216, code
+ 597              		.global _BPMSG1216_str
+ 598              	_BPMSG1216_str:
+ 599 000000  54 68 69 		.pasciz "This mode requires an adapter"
+ 599         73 20 6D 
+ 599         6F 64 65 
+ 599         20 72 65 
+ 599         71 75 69 
+ 599         72 65 73 
+ 599         20 61 6E 
+ 599         20 61 64 
+ 599         61 70 74 
+ 600              	
+ 601              		; BPMSG1219
+ 602              		.section .text.BPMSG1219, code
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 19
+
+
+ 603              		.global _BPMSG1219_str
+ 604              	_BPMSG1219_str:
+ 605 000000  20 30 2E 		.pasciz " 0.Macro menu\r\n 1.LCD Reset\r\n 2.Init LCD\r\n 3.Clear LCD\r\n 4.Cursor position ex:(4)
+ 605         4D 61 63 
+ 605         72 6F 20 
+ 605         6D 65 6E 
+ 605         75 0D 0A 
+ 605         20 31 2E 
+ 605         4C 43 44 
+ 605         20 52 65 
+ 605         73 65 74 
+ 606              	
+ 607              		; BPMSG1220
+ 608              		.section .text.BPMSG1220, code
+ 609              		.global _BPMSG1220_str
+ 610              	_BPMSG1220_str:
+ 611 000000  44 69 73 		.pasciz "Display lines:\r\n 1. 1 \r\n 2. Multiple"
+ 611         70 6C 61 
+ 611         79 20 6C 
+ 611         69 6E 65 
+ 611         73 3A 0D 
+ 611         0A 20 31 
+ 611         2E 20 31 
+ 611         20 0D 0A 
+ 611         20 32 2E 
+ 612              	
+ 613            00 00 		; BPMSG1221
+ 614              		.section .text.BPMSG1221, code
+ 615              		.global _BPMSG1221_str
+ 616              	_BPMSG1221_str:
+ 617 000000  49 4E 49 		.pasciz "INIT"
+ 617         54 00 
+ 618              	
+ 619               00 		; BPMSG1222
+ 620              		.section .text.BPMSG1222, code
+ 621              		.global _BPMSG1222_str
+ 622              	_BPMSG1222_str:
+ 623 000000  43 4C 45 		.pasciz "CLEAR"
+ 623         41 52 00 
+ 624              	
+ 625              		; BPMSG1223
+ 626              		.section .text.BPMSG1223, code
+ 627              		.global _BPMSG1223_str
+ 628              	_BPMSG1223_str:
+ 629 000000  43 55 52 		.pasciz "CURSOR SET"
+ 629         53 4F 52 
+ 629         20 53 45 
+ 629         54 00 
+ 630              	
+ 631               00 		; BPMSG1226
+ 632              		.section .text.BPMSG1226, code
+ 633              		.global _BPMSG1226_str
+ 634              	_BPMSG1226_str:
+ 635 000000  50 69 6E 		.pasciz "Pinstates:"
+ 635         73 74 61 
+ 635         74 65 73 
+ 635         3A 00 
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 20
+
+
+ 636              	
+ 637               00 		; BPMSG1227
+ 638              		.section .text.BPMSG1227, code
+ 639              		.global _BPMSG1227_str
+ 640              	_BPMSG1227_str:
+ 641 000000  47 4E 44 		.pasciz "GND\t3.3V\t5.0V\tADC\tVPU\tAUX\t"
+ 641         09 33 2E 
+ 641         33 56 09 
+ 641         35 2E 30 
+ 641         56 09 41 
+ 641         44 43 09 
+ 641         56 50 55 
+ 641         09 41 55 
+ 641         58 09 00 
+ 642              	
+ 643              		; BPMSG1228
+ 644              		.section .text.BPMSG1228, code
+ 645              		.global _BPMSG1228_str
+ 646              	_BPMSG1228_str:
+ 647 000000  50 09 50 		.pasciz "P\tP\tP\tI\tI\t"
+ 647         09 50 09 
+ 647         49 09 49 
+ 647         09 00 
+ 648              	
+ 649               00 		; BPMSG1233
+ 650              		.section .text.BPMSG1233, code
+ 651              		.global _BPMSG1233_str
+ 652              	_BPMSG1233_str:
+ 653 000000  31 2E 28 		.pasciz "1.(BR)\t2.(RD)\t3.(OR)\t4.(YW)\t5.(GN)\t6.(BL)\t7.(PU)\t8.(GR)\t9.(WT)\t0.(Blk)"
+ 653         42 52 29 
+ 653         09 32 2E 
+ 653         28 52 44 
+ 653         29 09 33 
+ 653         2E 28 4F 
+ 653         52 29 09 
+ 653         34 2E 28 
+ 653         59 57 29 
+ 654              	
+ 655               00 		; BPMSG1234
+ 656              		.section .text.BPMSG1234, code
+ 657              		.global _BPMSG1234_str
+ 658              	_BPMSG1234_str:
+ 659 000000  47 4E 44 		.pasciz "GND\t"
+ 659         09 00 
+ 660              	
+ 661               00 		; BPMSG1245
+ 662              		.section .text.BPMSG1245, code
+ 663              		.global _BPMSG1245_str
+ 664              	_BPMSG1245_str:
+ 665 000000  20 61 75 		.pasciz " autorange "
+ 665         74 6F 72 
+ 665         61 6E 67 
+ 665         65 20 00 
+ 666              	
+ 667              		; BPMSG1251
+ 668              		.section .text.BPMSG1251, code
+ 669              		.global _BPMSG1251_str
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 21
+
+
+ 670              	_BPMSG1251_str:
+ 671 000000  53 70 61 		.pasciz "Space to continue"
+ 671         63 65 20 
+ 671         74 6F 20 
+ 671         63 6F 6E 
+ 671         74 69 6E 
+ 671         75 65 00 
+ 672              	
+ 673              		; BPMSG1252
+ 674              		.section .text.BPMSG1252, code
+ 675              		.global _BPMSG1252_str
+ 676              	_BPMSG1252_str:
+ 677 000000  4E 75 6D 		.pasciz "Number of bits read/write: "
+ 677         62 65 72 
+ 677         20 6F 66 
+ 677         20 62 69 
+ 677         74 73 20 
+ 677         72 65 61 
+ 677         64 2F 77 
+ 677         72 69 74 
+ 677         65 3A 20 
+ 678              	
+ 679            00 00 		; BPMSG1254
+ 680              		.section .text.BPMSG1254, code
+ 681              		.global _BPMSG1254_str
+ 682              	_BPMSG1254_str:
+ 683 000000  50 6F 73 		.pasciz "Position in degrees"
+ 683         69 74 69 
+ 683         6F 6E 20 
+ 683         69 6E 20 
+ 683         64 65 67 
+ 683         72 65 65 
+ 683         73 00 
+ 684              	
+ 685               00 		; BPMSG1255
+ 686              		.section .text.BPMSG1255, code
+ 687              		.global _BPMSG1255_str
+ 688              	_BPMSG1255_str:
+ 689 000000  53 65 72 		.pasciz "Servo active"
+ 689         76 6F 20 
+ 689         61 63 74 
+ 689         69 76 65 
+ 689         00 
+ 690              	
+ 691            00 00 		; HLP1000
+ 692              		.section .text.HLP1000, code
+ 693              		.global _HLP1000_str
+ 694              	_HLP1000_str:
+ 695 000000  20 47 65 		.pasciz " General\t\t\t\t\tProtocol interaction"
+ 695         6E 65 72 
+ 695         61 6C 09 
+ 695         09 09 09 
+ 695         09 50 72 
+ 695         6F 74 6F 
+ 695         63 6F 6C 
+ 695         20 69 6E 
+ 695         74 65 72 
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 22
+
+
+ 696              	
+ 697            00 00 		; HLP1001
+ 698              		.section .text.HLP1001, code
+ 699              		.global _HLP1001_str
+ 700              	_HLP1001_str:
+ 701 000000  20 2D 2D 		.pasciz " ---------------------------------------------------------------------------"
+ 701         2D 2D 2D 
+ 701         2D 2D 2D 
+ 701         2D 2D 2D 
+ 701         2D 2D 2D 
+ 701         2D 2D 2D 
+ 701         2D 2D 2D 
+ 701         2D 2D 2D 
+ 701         2D 2D 2D 
+ 702              	
+ 703               00 		; HLP1002
+ 704              		.section .text.HLP1002, code
+ 705              		.global _HLP1002_str
+ 706              	_HLP1002_str:
+ 707 000000  20 3F 09 		.pasciz " ?\tThis help\t\t\t(0)\tList current macros"
+ 707         54 68 69 
+ 707         73 20 68 
+ 707         65 6C 70 
+ 707         09 09 09 
+ 707         28 30 29 
+ 707         09 4C 69 
+ 707         73 74 20 
+ 707         63 75 72 
+ 708              	
+ 709              		; HLP1003
+ 710              		.section .text.HLP1003, code
+ 711              		.global _HLP1003_str
+ 712              	_HLP1003_str:
+ 713 000000  20 3D 58 		.pasciz " =X/|X\tConverts X/reverse X\t\t(x)\tMacro x"
+ 713         2F 7C 58 
+ 713         09 43 6F 
+ 713         6E 76 65 
+ 713         72 74 73 
+ 713         20 58 2F 
+ 713         72 65 76 
+ 713         65 72 73 
+ 713         65 20 58 
+ 714              	
+ 715               00 		; HLP1004
+ 716              		.section .text.HLP1004, code
+ 717              		.global _HLP1004_str
+ 718              	_HLP1004_str:
+ 719 000000  20 7E 09 		.pasciz " ~\tSelftest\t\t\t[\tStart"
+ 719         53 65 6C 
+ 719         66 74 65 
+ 719         73 74 09 
+ 719         09 09 5B 
+ 719         09 53 74 
+ 719         61 72 74 
+ 719         00 
+ 720              	
+ 721            00 00 		; HLP1005
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 23
+
+
+ 722              		.section .text.HLP1005, code
+ 723              		.global _HLP1005_str
+ 724              	_HLP1005_str:
+ 725 000000  20 23 09 		.pasciz " #\tReset the BP   \t\t\t]\tStop"
+ 725         52 65 73 
+ 725         65 74 20 
+ 725         74 68 65 
+ 725         20 42 50 
+ 725         20 20 20 
+ 725         09 09 09 
+ 725         5D 09 53 
+ 725         74 6F 70 
+ 726              	
+ 727            00 00 		; HLP1006
+ 728              		.section .text.HLP1006, code
+ 729              		.global _HLP1006_str
+ 730              	_HLP1006_str:
+ 731 000000  20 24 09 		.pasciz " $\tJump to bootloader\t\t{\tStart with read"
+ 731         4A 75 6D 
+ 731         70 20 74 
+ 731         6F 20 62 
+ 731         6F 6F 74 
+ 731         6C 6F 61 
+ 731         64 65 72 
+ 731         09 09 7B 
+ 731         09 53 74 
+ 732              	
+ 733               00 		; HLP1007
+ 734              		.section .text.HLP1007, code
+ 735              		.global _HLP1007_str
+ 736              	_HLP1007_str:
+ 737 000000  20 26 2F 		.pasciz " &/%\tDelay 1 us/ms\t\t\t}\tStop"
+ 737         25 09 44 
+ 737         65 6C 61 
+ 737         79 20 31 
+ 737         20 75 73 
+ 737         2F 6D 73 
+ 737         09 09 09 
+ 737         7D 09 53 
+ 737         74 6F 70 
+ 738              	
+ 739            00 00 		; HLP1008
+ 740              		.section .text.HLP1008, code
+ 741              		.global _HLP1008_str
+ 742              	_HLP1008_str:
+ 743 000000  20 61 2F 		.pasciz " a/A/@\tAUXPIN (low/HI/READ)\t\t\"abc\"\tSend string"
+ 743         41 2F 40 
+ 743         09 41 55 
+ 743         58 50 49 
+ 743         4E 20 28 
+ 743         6C 6F 77 
+ 743         2F 48 49 
+ 743         2F 52 45 
+ 743         41 44 29 
+ 744              	
+ 745               00 		; HLP1009
+ 746              		.section .text.HLP1009, code
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 24
+
+
+ 747              		.global _HLP1009_str
+ 748              	_HLP1009_str:
+ 749 000000  20 62 09 		.pasciz " b\tSet baudrate\t\t\t123"
+ 749         53 65 74 
+ 749         20 62 61 
+ 749         75 64 72 
+ 749         61 74 65 
+ 749         09 09 09 
+ 749         31 32 33 
+ 749         00 
+ 750              	
+ 751            00 00 		; HLP1010
+ 752              		.section .text.HLP1010, code
+ 753              		.global _HLP1010_str
+ 754              	_HLP1010_str:
+ 755 000000  20 63 2F 		.pasciz " c/C\tAUX assignment (aux/CS)\t\t0x123"
+ 755         43 09 41 
+ 755         55 58 20 
+ 755         61 73 73 
+ 755         69 67 6E 
+ 755         6D 65 6E 
+ 755         74 20 28 
+ 755         61 75 78 
+ 755         2F 43 53 
+ 756              	
+ 757              		; HLP1011
+ 758              		.section .text.HLP1011, code
+ 759              		.global _HLP1011_str
+ 760              	_HLP1011_str:
+ 761 000000  20 64 2F 		.pasciz " d/D\tMeasure ADC (once/CONT.)\t0b110\tSend value"
+ 761         44 09 4D 
+ 761         65 61 73 
+ 761         75 72 65 
+ 761         20 41 44 
+ 761         43 20 28 
+ 761         6F 6E 63 
+ 761         65 2F 43 
+ 761         4F 4E 54 
+ 762              	
+ 763               00 		; HLP1012
+ 764              		.section .text.HLP1012, code
+ 765              		.global _HLP1012_str
+ 766              	_HLP1012_str:
+ 767 000000  20 66 09 		.pasciz " f\tMeasure frequency\t\tr\tRead"
+ 767         4D 65 61 
+ 767         73 75 72 
+ 767         65 20 66 
+ 767         72 65 71 
+ 767         75 65 6E 
+ 767         63 79 09 
+ 767         09 72 09 
+ 767         52 65 61 
+ 768              	
+ 769               00 		; HLP1013
+ 770              		.section .text.HLP1013, code
+ 771              		.global _HLP1013_str
+ 772              	_HLP1013_str:
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 25
+
+
+ 773 000000  20 67 2F 		.pasciz " g/S\tGenerate PWM/Servo\t\t/\tCLK hi"
+ 773         53 09 47 
+ 773         65 6E 65 
+ 773         72 61 74 
+ 773         65 20 50 
+ 773         57 4D 2F 
+ 773         53 65 72 
+ 773         76 6F 09 
+ 773         09 2F 09 
+ 774              	
+ 775            00 00 		; HLP1014
+ 776              		.section .text.HLP1014, code
+ 777              		.global _HLP1014_str
+ 778              	_HLP1014_str:
+ 779 000000  20 68 09 		.pasciz " h\tCommandhistory\t\t\t\\\tCLK lo"
+ 779         43 6F 6D 
+ 779         6D 61 6E 
+ 779         64 68 69 
+ 779         73 74 6F 
+ 779         72 79 09 
+ 779         09 09 5C 
+ 779         09 43 4C 
+ 779         4B 20 6C 
+ 780              	
+ 781               00 		; HLP1015
+ 782              		.section .text.HLP1015, code
+ 783              		.global _HLP1015_str
+ 784              	_HLP1015_str:
+ 785 000000  20 69 09 		.pasciz " i\tVersioninfo/statusinfo\t\t^\tCLK tick"
+ 785         56 65 72 
+ 785         73 69 6F 
+ 785         6E 69 6E 
+ 785         66 6F 2F 
+ 785         73 74 61 
+ 785         74 75 73 
+ 785         69 6E 66 
+ 785         6F 09 09 
+ 786              	
+ 787               00 		; HLP1016
+ 788              		.section .text.HLP1016, code
+ 789              		.global _HLP1016_str
+ 790              	_HLP1016_str:
+ 791 000000  20 6C 2F 		.pasciz " l/L\tBitorder (msb/LSB)\t\t-\tDAT hi"
+ 791         4C 09 42 
+ 791         69 74 6F 
+ 791         72 64 65 
+ 791         72 20 28 
+ 791         6D 73 62 
+ 791         2F 4C 53 
+ 791         42 29 09 
+ 791         09 2D 09 
+ 792              	
+ 793            00 00 		; HLP1017
+ 794              		.section .text.HLP1017, code
+ 795              		.global _HLP1017_str
+ 796              	_HLP1017_str:
+ 797 000000  20 6D 09 		.pasciz " m\tChange mode\t\t\t_\tDAT lo"
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 26
+
+
+ 797         43 68 61 
+ 797         6E 67 65 
+ 797         20 6D 6F 
+ 797         64 65 09 
+ 797         09 09 5F 
+ 797         09 44 41 
+ 797         54 20 6C 
+ 797         6F 00 
+ 798              	
+ 799               00 		; HLP1018
+ 800              		.section .text.HLP1018, code
+ 801              		.global _HLP1018_str
+ 802              	_HLP1018_str:
+ 803 000000  20 6F 09 		.pasciz " o\tSet output type\t\t\t.\tDAT read"
+ 803         53 65 74 
+ 803         20 6F 75 
+ 803         74 70 75 
+ 803         74 20 74 
+ 803         79 70 65 
+ 803         09 09 09 
+ 803         2E 09 44 
+ 803         41 54 20 
+ 804              	
+ 805               00 		; HLP1019
+ 806              		.section .text.HLP1019, code
+ 807              		.global _HLP1019_str
+ 808              	_HLP1019_str:
+ 809 000000  20 70 2F 		.pasciz " p/P\tPullup resistors (off/ON)\t!\tBit read"
+ 809         50 09 50 
+ 809         75 6C 6C 
+ 809         75 70 20 
+ 809         72 65 73 
+ 809         69 73 74 
+ 809         6F 72 73 
+ 809         20 28 6F 
+ 809         66 66 2F 
+ 810              	
+ 811              		; HLP1020
+ 812              		.section .text.HLP1020, code
+ 813              		.global _HLP1020_str
+ 814              	_HLP1020_str:
+ 815 000000  20 73 09 		.pasciz " s\tScript engine\t\t\t:\tRepeat e.g. r:10"
+ 815         53 63 72 
+ 815         69 70 74 
+ 815         20 65 6E 
+ 815         67 69 6E 
+ 815         65 09 09 
+ 815         09 3A 09 
+ 815         52 65 70 
+ 815         65 61 74 
+ 816              	
+ 817               00 		; HLP1021
+ 818              		.section .text.HLP1021, code
+ 819              		.global _HLP1021_str
+ 820              	_HLP1021_str:
+ 821 000000  20 76 09 		.pasciz " v\tShow volts/states\t\t.\tBits to read/write e.g. 0x55.2"
+ 821         53 68 6F 
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 27
+
+
+ 821         77 20 76 
+ 821         6F 6C 74 
+ 821         73 2F 73 
+ 821         74 61 74 
+ 821         65 73 09 
+ 821         09 2E 09 
+ 821         42 69 74 
+ 822              	
+ 823            00 00 		; HLP1022
+ 824              		.section .text.HLP1022, code
+ 825              		.global _HLP1022_str
+ 826              	_HLP1022_str:
+ 827 000000  20 77 2F 		.pasciz " w/W\tPSU (off/ON)\t\t<x>/<x= >/<0>\tUsermacro x/assign x/list all"
+ 827         57 09 50 
+ 827         53 55 20 
+ 827         28 6F 66 
+ 827         66 2F 4F 
+ 827         4E 29 09 
+ 827         09 3C 78 
+ 827         3E 2F 3C 
+ 827         78 3D 20 
+ 828              	
+ 829              		; MSG_1WIRE_ADDRESS_MACRO_HEADER
+ 830              		.section .text.MSG_1WIRE_ADDRESS_MACRO_HEADER, code
+ 831              		.global _MSG_1WIRE_ADDRESS_MACRO_HEADER_str
+ 832              	_MSG_1WIRE_ADDRESS_MACRO_HEADER_str:
+ 833 000000  41 44 44 		.pasciz "ADDRESS MACRO "
+ 833         52 45 53 
+ 833         53 20 4D 
+ 833         41 43 52 
+ 833         4F 20 00 
+ 834              	
+ 835              		; MSG_1WIRE_ALARM_MACRO_NAME
+ 836              		.section .text.MSG_1WIRE_ALARM_MACRO_NAME, code
+ 837              		.global _MSG_1WIRE_ALARM_MACRO_NAME_str
+ 838              	_MSG_1WIRE_ALARM_MACRO_NAME_str:
+ 839 000000  41 4C 41 		.pasciz "ALARM SEARCH (0xEC)"
+ 839         52 4D 20 
+ 839         53 45 41 
+ 839         52 43 48 
+ 839         20 28 30 
+ 839         78 45 43 
+ 839         29 00 
+ 840              	
+ 841               00 		; MSG_1WIRE_BUS_RESET
+ 842              		.section .text.MSG_1WIRE_BUS_RESET, code
+ 843              		.global _MSG_1WIRE_BUS_RESET_str
+ 844              	_MSG_1WIRE_BUS_RESET_str:
+ 845 000000  42 55 53 		.pasciz "BUS RESET "
+ 845         20 52 45 
+ 845         53 45 54 
+ 845         20 00 
+ 846              	
+ 847               00 		; MSG_1WIRE_LOOKUP_ID_HEADER
+ 848              		.section .text.MSG_1WIRE_LOOKUP_ID_HEADER, code
+ 849              		.global _MSG_1WIRE_LOOKUP_ID_HEADER_str
+ 850              	_MSG_1WIRE_LOOKUP_ID_HEADER_str:
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 28
+
+
+ 851 000000  0D 0A 20 		.pasciz "\r\n   *"
+ 851         20 20 2A 
+ 851         00 
+ 852              	
+ 853            00 00 		; MSG_1WIRE_MACRO_LIST
+ 854              		.section .text.MSG_1WIRE_MACRO_LIST, code
+ 855              		.global _MSG_1WIRE_MACRO_LIST_str
+ 856              	_MSG_1WIRE_MACRO_LIST_str:
+ 857 000000  31 57 49 		.pasciz "1WIRE ROM COMMAND MACROs:\r\n 51.READ ROM (0x33) *for single device bus\r\n 85.MATCH ROM 
+ 857         52 45 20 
+ 857         52 4F 4D 
+ 857         20 43 4F 
+ 857         4D 4D 41 
+ 857         4E 44 20 
+ 857         4D 41 43 
+ 857         52 4F 73 
+ 857         3A 0D 0A 
+ 858              	
+ 859               00 		; MSG_1WIRE_MACRO_MENU_HEADER
+ 860              		.section .text.MSG_1WIRE_MACRO_MENU_HEADER, code
+ 861              		.global _MSG_1WIRE_MACRO_MENU_HEADER_str
+ 862              	_MSG_1WIRE_MACRO_MENU_HEADER_str:
+ 863 000000  20 30 2E 		.pasciz " 0.Macro menu"
+ 863         4D 61 63 
+ 863         72 6F 20 
+ 863         6D 65 6E 
+ 863         75 00 
+ 864              	
+ 865               00 		; MSG_1WIRE_MACRO_TABLE_HEADER
+ 866              		.section .text.MSG_1WIRE_MACRO_TABLE_HEADER, code
+ 867              		.global _MSG_1WIRE_MACRO_TABLE_HEADER_str
+ 868              	_MSG_1WIRE_MACRO_TABLE_HEADER_str:
+ 869 000000  4D 61 63 		.pasciz "Macro     1WIRE address"
+ 869         72 6F 20 
+ 869         20 20 20 
+ 869         20 31 57 
+ 869         49 52 45 
+ 869         20 61 64 
+ 869         64 72 65 
+ 869         73 73 00 
+ 870              	
+ 871              		; MSG_1WIRE_MACRO_TABLE_TRAILER
+ 872              		.section .text.MSG_1WIRE_MACRO_TABLE_TRAILER, code
+ 873              		.global _MSG_1WIRE_MACRO_TABLE_TRAILER_str
+ 874              	_MSG_1WIRE_MACRO_TABLE_TRAILER_str:
+ 875 000000  44 65 76 		.pasciz "Device IDs are available by MACRO, see (0)."
+ 875         69 63 65 
+ 875         20 49 44 
+ 875         73 20 61 
+ 875         72 65 20 
+ 875         61 76 61 
+ 875         69 6C 61 
+ 875         62 6C 65 
+ 875         20 62 79 
+ 876              	
+ 877               00 		; MSG_1WIRE_MATCH_ROM_MACRO_NAME
+ 878              		.section .text.MSG_1WIRE_MATCH_ROM_MACRO_NAME, code
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 29
+
+
+ 879              		.global _MSG_1WIRE_MATCH_ROM_MACRO_NAME_str
+ 880              	_MSG_1WIRE_MATCH_ROM_MACRO_NAME_str:
+ 881 000000  4D 41 54 		.pasciz "MATCH ROM (0x55)"
+ 881         43 48 20 
+ 881         52 4F 4D 
+ 881         20 28 30 
+ 881         78 35 35 
+ 881         29 00 
+ 882              	
+ 883               00 		; MSG_1WIRE_MODE_IDENTIFIER
+ 884              		.section .text.MSG_1WIRE_MODE_IDENTIFIER, code
+ 885              		.global _MSG_1WIRE_MODE_IDENTIFIER_str
+ 886              	_MSG_1WIRE_MODE_IDENTIFIER_str:
+ 887 000000  31 57 30 		.pasciz "1W01"
+ 887         31 00 
+ 888              	
+ 889               00 		; MSG_1WIRE_NEXT_CLOCK_ALERT
+ 890              		.section .text.MSG_1WIRE_NEXT_CLOCK_ALERT, code
+ 891              		.global _MSG_1WIRE_NEXT_CLOCK_ALERT_str
+ 892              	_MSG_1WIRE_NEXT_CLOCK_ALERT_str:
+ 893 000000  20 2A 6E 		.pasciz " *next clock (^) will use this value"
+ 893         65 78 74 
+ 893         20 63 6C 
+ 893         6F 63 6B 
+ 893         20 28 5E 
+ 893         29 20 77 
+ 893         69 6C 6C 
+ 893         20 75 73 
+ 893         65 20 74 
+ 894              	
+ 895            00 00 		; MSG_1WIRE_NO_DEVICE
+ 896              		.section .text.MSG_1WIRE_NO_DEVICE, code
+ 897              		.global _MSG_1WIRE_NO_DEVICE_str
+ 898              	_MSG_1WIRE_NO_DEVICE_str:
+ 899 000000  4E 6F 20 		.pasciz "No device, try (ALARM) SEARCH macro first"
+ 899         64 65 76 
+ 899         69 63 65 
+ 899         2C 20 74 
+ 899         72 79 20 
+ 899         28 41 4C 
+ 899         41 52 4D 
+ 899         29 20 53 
+ 899         45 41 52 
+ 900              	
+ 901              		; MSG_1WIRE_NO_DEVICE_DETECTED
+ 902              		.section .text.MSG_1WIRE_NO_DEVICE_DETECTED, code
+ 903              		.global _MSG_1WIRE_NO_DEVICE_DETECTED_str
+ 904              	_MSG_1WIRE_NO_DEVICE_DETECTED_str:
+ 905 000000  2A 4E 6F 		.pasciz "*No device detected "
+ 905         20 64 65 
+ 905         76 69 63 
+ 905         65 20 64 
+ 905         65 74 65 
+ 905         63 74 65 
+ 905         64 20 00 
+ 906              	
+ 907              		; MSG_1WIRE_PINS_STATE
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 30
+
+
+ 908              		.section .text.MSG_1WIRE_PINS_STATE, code
+ 909              		.global _MSG_1WIRE_PINS_STATE_str
+ 910              	_MSG_1WIRE_PINS_STATE_str:
+ 911 000000  2D 09 4F 		.pasciz "-\tOWD\t-\t-"
+ 911         57 44 09 
+ 911         2D 09 2D 
+ 911         00 
+ 912              	
+ 913            00 00 		; MSG_1WIRE_READ_ROM_MACRO_NAME
+ 914              		.section .text.MSG_1WIRE_READ_ROM_MACRO_NAME, code
+ 915              		.global _MSG_1WIRE_READ_ROM_MACRO_NAME_str
+ 916              	_MSG_1WIRE_READ_ROM_MACRO_NAME_str:
+ 917 000000  52 45 41 		.pasciz "READ ROM (0x33): "
+ 917         44 20 52 
+ 917         4F 4D 20 
+ 917         28 30 78 
+ 917         33 33 29 
+ 917         3A 20 00 
+ 918              	
+ 919              		; MSG_1WIRE_SEARCH_MACRO_NAME
+ 920              		.section .text.MSG_1WIRE_SEARCH_MACRO_NAME, code
+ 921              		.global _MSG_1WIRE_SEARCH_MACRO_NAME_str
+ 922              	_MSG_1WIRE_SEARCH_MACRO_NAME_str:
+ 923 000000  53 45 41 		.pasciz "SEARCH (0xF0)"
+ 923         52 43 48 
+ 923         20 28 30 
+ 923         78 46 30 
+ 923         29 00 
+ 924              	
+ 925               00 		; MSG_1WIRE_SKIP_ROM_MACRO_NAME
+ 926              		.section .text.MSG_1WIRE_SKIP_ROM_MACRO_NAME, code
+ 927              		.global _MSG_1WIRE_SKIP_ROM_MACRO_NAME_str
+ 928              	_MSG_1WIRE_SKIP_ROM_MACRO_NAME_str:
+ 929 000000  53 4B 49 		.pasciz "SKIP ROM (0xCC)"
+ 929         50 20 52 
+ 929         4F 4D 20 
+ 929         28 30 78 
+ 929         43 43 29 
+ 929         00 
+ 930              	
+ 931            00 00 		; MSG_1WIRE_SPEED_PROMPT
+ 932              		.section .text.MSG_1WIRE_SPEED_PROMPT, code
+ 933              		.global _MSG_1WIRE_SPEED_PROMPT_str
+ 934              	_MSG_1WIRE_SPEED_PROMPT_str:
+ 935 000000  53 65 74 		.pasciz "Set speed:\r\n 1. Standard (~16.3kbps) \r\n 2. Overdrive (~160kps)"
+ 935         20 73 70 
+ 935         65 65 64 
+ 935         3A 0D 0A 
+ 935         20 31 2E 
+ 935         20 53 74 
+ 935         61 6E 64 
+ 935         61 72 64 
+ 935         20 28 7E 
+ 936              	
+ 937              		; MSG_ACK
+ 938              		.section .text.MSG_ACK, code
+ 939              		.global _MSG_ACK_str
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 31
+
+
+ 940              	_MSG_ACK_str:
+ 941 000000  41 43 4B 		.pasciz "ACK"
+ 941         00 
+ 942              	
+ 943            00 00 		; MSG_ADC_VOLTAGE_PROBE_HEADER
+ 944              		.section .text.MSG_ADC_VOLTAGE_PROBE_HEADER, code
+ 945              		.global _MSG_ADC_VOLTAGE_PROBE_HEADER_str
+ 946              	_MSG_ADC_VOLTAGE_PROBE_HEADER_str:
+ 947 000000  56 4F 4C 		.pasciz "VOLTAGE PROBE: "
+ 947         54 41 47 
+ 947         45 20 50 
+ 947         52 4F 42 
+ 947         45 3A 20 
+ 947         00 
+ 948              	
+ 949            00 00 		; MSG_ADC_VOLTMETER_MODE
+ 950              		.section .text.MSG_ADC_VOLTMETER_MODE, code
+ 951              		.global _MSG_ADC_VOLTMETER_MODE_str
+ 952              	_MSG_ADC_VOLTMETER_MODE_str:
+ 953 000000  56 4F 4C 		.pasciz "VOLTMETER MODE"
+ 953         54 4D 45 
+ 953         54 45 52 
+ 953         20 4D 4F 
+ 953         44 45 00 
+ 954              	
+ 955              		; MSG_ANY_KEY_TO_EXIT_PROMPT
+ 956              		.section .text.MSG_ANY_KEY_TO_EXIT_PROMPT, code
+ 957              		.global _MSG_ANY_KEY_TO_EXIT_PROMPT_str
+ 958              	_MSG_ANY_KEY_TO_EXIT_PROMPT_str:
+ 959 000000  41 6E 79 		.pasciz "Any key to exit"
+ 959         20 6B 65 
+ 959         79 20 74 
+ 959         6F 20 65 
+ 959         78 69 74 
+ 959         00 
+ 960              	
+ 961            00 00 		; MSG_BASE_CONVERTER_EQUAL_SIGN
+ 962              		.section .text.MSG_BASE_CONVERTER_EQUAL_SIGN, code
+ 963              		.global _MSG_BASE_CONVERTER_EQUAL_SIGN_str
+ 964              	_MSG_BASE_CONVERTER_EQUAL_SIGN_str:
+ 965 000000  20 3D 20 		.pasciz " = "
+ 965         00 
+ 966              	
+ 967            00 00 		; MSG_BBIO_MODE_IDENTIFIER
+ 968              		.section .text.MSG_BBIO_MODE_IDENTIFIER, code
+ 969              		.global _MSG_BBIO_MODE_IDENTIFIER_str
+ 970              	_MSG_BBIO_MODE_IDENTIFIER_str:
+ 971 000000  42 42 49 		.pasciz "BBIO1"
+ 971         4F 31 00 
+ 972              	
+ 973              		; MSG_BINARY_NUMBER_PREFIX
+ 974              		.section .text.MSG_BINARY_NUMBER_PREFIX, code
+ 975              		.global _MSG_BINARY_NUMBER_PREFIX_str
+ 976              	_MSG_BINARY_NUMBER_PREFIX_str:
+ 977 000000  30 62 00 		.pasciz "0b"
+ 978              	
+ 979              		; MSG_CHIP_IDENTIFIER_CLONE
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 32
+
+
+ 980              		.section .text.MSG_CHIP_IDENTIFIER_CLONE, code
+ 981              		.global _MSG_CHIP_IDENTIFIER_CLONE_str
+ 982              	_MSG_CHIP_IDENTIFIER_CLONE_str:
+ 983 000000  20 63 6C 		.pasciz " clone w/different PIC"
+ 983         6F 6E 65 
+ 983         20 77 2F 
+ 983         64 69 66 
+ 983         66 65 72 
+ 983         65 6E 74 
+ 983         20 50 49 
+ 983         43 00 
+ 984              	
+ 985               00 		; MSG_CHIP_REVISION_A3
+ 986              		.section .text.MSG_CHIP_REVISION_A3, code
+ 987              		.global _MSG_CHIP_REVISION_A3_str
+ 988              	_MSG_CHIP_REVISION_A3_str:
+ 989 000000  41 33 00 		.pasciz "A3"
+ 990              	
+ 991              		; MSG_CHIP_REVISION_B4
+ 992              		.section .text.MSG_CHIP_REVISION_B4, code
+ 993              		.global _MSG_CHIP_REVISION_B4_str
+ 994              	_MSG_CHIP_REVISION_B4_str:
+ 995 000000  42 34 00 		.pasciz "B4"
+ 996              	
+ 997              		; MSG_CHIP_REVISION_B5
+ 998              		.section .text.MSG_CHIP_REVISION_B5, code
+ 999              		.global _MSG_CHIP_REVISION_B5_str
+ 1000              	_MSG_CHIP_REVISION_B5_str:
+ 1001 000000  42 35 00 		.pasciz "B5"
+ 1002              	
+ 1003              		; MSG_CHIP_REVISION_B8
+ 1004              		.section .text.MSG_CHIP_REVISION_B8, code
+ 1005              		.global _MSG_CHIP_REVISION_B8_str
+ 1006              	_MSG_CHIP_REVISION_B8_str:
+ 1007 000000  42 38 00 		.pasciz "B8"
+ 1008              	
+ 1009              		; MSG_CHIP_REVISION_ID_BEGIN
+ 1010              		.section .text.MSG_CHIP_REVISION_ID_BEGIN, code
+ 1011              		.global _MSG_CHIP_REVISION_ID_BEGIN_str
+ 1012              	_MSG_CHIP_REVISION_ID_BEGIN_str:
+ 1013 000000  20 28 32 		.pasciz " (24FJ64GA00 "
+ 1013         34 46 4A 
+ 1013         36 34 47 
+ 1013         41 30 30 
+ 1013         20 00 
+ 1014              	
+ 1015               00 		; MSG_CHIP_REVISION_ID_END_2
+ 1016              		.section .text.MSG_CHIP_REVISION_ID_END_2, code
+ 1017              		.global _MSG_CHIP_REVISION_ID_END_2_str
+ 1018              	_MSG_CHIP_REVISION_ID_END_2_str:
+ 1019 000000  32 20 00 		.pasciz "2 "
+ 1020              	
+ 1021              		; MSG_CHIP_REVISION_ID_END_4
+ 1022              		.section .text.MSG_CHIP_REVISION_ID_END_4, code
+ 1023              		.global _MSG_CHIP_REVISION_ID_END_4_str
+ 1024              	_MSG_CHIP_REVISION_ID_END_4_str:
+ 1025 000000  34 20 00 		.pasciz "4 "
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 33
+
+
+ 1026              	
+ 1027              		; MSG_CHIP_REVISION_UNKNOWN
+ 1028              		.section .text.MSG_CHIP_REVISION_UNKNOWN, code
+ 1029              		.global _MSG_CHIP_REVISION_UNKNOWN_str
+ 1030              	_MSG_CHIP_REVISION_UNKNOWN_str:
+ 1031 000000  55 4E 4B 		.pasciz "UNK"
+ 1031         00 
+ 1032              	
+ 1033            00 00 		; MSG_CLEAR_LINE_WITH_CR
+ 1034              		.section .text.MSG_CLEAR_LINE_WITH_CR, code
+ 1035              		.global _MSG_CLEAR_LINE_WITH_CR_str
+ 1036              	_MSG_CLEAR_LINE_WITH_CR_str:
+ 1037 000000  1B 5B 32 		.pasciz <27>, "[2K\r"
+ 1037         4B 0D 00 
+ 1038              	
+ 1039              		; MSG_CLUTCH_DISENGAGED
+ 1040              		.section .text.MSG_CLUTCH_DISENGAGED, code
+ 1041              		.global _MSG_CLUTCH_DISENGAGED_str
+ 1042              	_MSG_CLUTCH_DISENGAGED_str:
+ 1043 000000  43 6C 75 		.pasciz "Clutch disengaged!!!"
+ 1043         74 63 68 
+ 1043         20 64 69 
+ 1043         73 65 6E 
+ 1043         67 61 67 
+ 1043         65 64 21 
+ 1043         21 21 00 
+ 1044              	
+ 1045              		; MSG_CLUTCH_ENGAGED
+ 1046              		.section .text.MSG_CLUTCH_ENGAGED, code
+ 1047              		.global _MSG_CLUTCH_ENGAGED_str
+ 1048              	_MSG_CLUTCH_ENGAGED_str:
+ 1049 000000  43 6C 75 		.pasciz "Clutch engaged!!!"
+ 1049         74 63 68 
+ 1049         20 65 6E 
+ 1049         67 61 67 
+ 1049         65 64 21 
+ 1049         21 21 00 
+ 1050              	
+ 1051              		; MSG_COMMAND_HAS_NO_EFFECT
+ 1052              		.section .text.MSG_COMMAND_HAS_NO_EFFECT, code
+ 1053              		.global _MSG_COMMAND_HAS_NO_EFFECT_str
+ 1054              	_MSG_COMMAND_HAS_NO_EFFECT_str:
+ 1055 000000  45 52 52 		.pasciz "ERROR: command has no effect here"
+ 1055         4F 52 3A 
+ 1055         20 63 6F 
+ 1055         6D 6D 61 
+ 1055         6E 64 20 
+ 1055         68 61 73 
+ 1055         20 6E 6F 
+ 1055         20 65 66 
+ 1055         66 65 63 
+ 1056              	
+ 1057            00 00 		; MSG_CURSOR_LEFT
+ 1058              		.section .text.MSG_CURSOR_LEFT, code
+ 1059              		.global _MSG_CURSOR_LEFT_str
+ 1060              	_MSG_CURSOR_LEFT_str:
+ 1061 000000  1B 5B 44 		.pasciz <27>, "[D"
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 34
+
+
+ 1061         00 
+ 1062              	
+ 1063            00 00 		; MSG_CURSOR_LEFT_TWO
+ 1064              		.section .text.MSG_CURSOR_LEFT_TWO, code
+ 1065              		.global _MSG_CURSOR_LEFT_TWO_str
+ 1066              	_MSG_CURSOR_LEFT_TWO_str:
+ 1067 000000  1B 5B 32 		.pasciz <27>, "[2D"
+ 1067         44 00 
+ 1068              	
+ 1069               00 		; MSG_CURSOR_RIGHT
+ 1070              		.section .text.MSG_CURSOR_RIGHT, code
+ 1071              		.global _MSG_CURSOR_RIGHT_str
+ 1072              	_MSG_CURSOR_RIGHT_str:
+ 1073 000000  1B 5B 43 		.pasciz <27>, "[C"
+ 1073         00 
+ 1074              	
+ 1075            00 00 		; MSG_DESTRUCTIVE_BACKSPACE
+ 1076              		.section .text.MSG_DESTRUCTIVE_BACKSPACE, code
+ 1077              		.global _MSG_DESTRUCTIVE_BACKSPACE_str
+ 1078              	_MSG_DESTRUCTIVE_BACKSPACE_str:
+ 1079 000000  08 20 00 		.pasciz <8>, " ", <8>
+ 1079         08 
+ 1080              	
+ 1081            00 00 		; MSG_FINISH_SETUP_PROMPT
+ 1082              		.section .text.MSG_FINISH_SETUP_PROMPT, code
+ 1083              		.global _MSG_FINISH_SETUP_PROMPT_str
+ 1084              	_MSG_FINISH_SETUP_PROMPT_str:
+ 1085 000000  54 6F 20 		.pasciz "To finish setup, start up the power supplies with command 'W'"
+ 1085         66 69 6E 
+ 1085         69 73 68 
+ 1085         20 73 65 
+ 1085         74 75 70 
+ 1085         2C 20 73 
+ 1085         74 61 72 
+ 1085         74 20 75 
+ 1085         70 20 74 
+ 1086              	
+ 1087               00 		; MSG_HEXADECIMAL_NUMBER_PREFIX
+ 1088              		.section .text.MSG_HEXADECIMAL_NUMBER_PREFIX, code
+ 1089              		.global _MSG_HEXADECIMAL_NUMBER_PREFIX_str
+ 1090              	_MSG_HEXADECIMAL_NUMBER_PREFIX_str:
+ 1091 000000  30 78 00 		.pasciz "0x"
+ 1092              	
+ 1093              		; MSG_I2C_MODE_IDENTIFIER
+ 1094              		.section .text.MSG_I2C_MODE_IDENTIFIER, code
+ 1095              		.global _MSG_I2C_MODE_IDENTIFIER_str
+ 1096              	_MSG_I2C_MODE_IDENTIFIER_str:
+ 1097 000000  49 32 43 		.pasciz "I2C1"
+ 1097         31 00 
+ 1098              	
+ 1099               00 		; MSG_I2C_PINS_STATE
+ 1100              		.section .text.MSG_I2C_PINS_STATE, code
+ 1101              		.global _MSG_I2C_PINS_STATE_str
+ 1102              	_MSG_I2C_PINS_STATE_str:
+ 1103 000000  53 43 4C 		.pasciz "SCL\tSDA\t-\t-"
+ 1103         09 53 44 
+ 1103         41 09 2D 
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 35
+
+
+ 1103         09 2D 00 
+ 1104              	
+ 1105              		; MSG_I2C_READ_ADDRESS_END
+ 1106              		.section .text.MSG_I2C_READ_ADDRESS_END, code
+ 1107              		.global _MSG_I2C_READ_ADDRESS_END_str
+ 1108              	_MSG_I2C_READ_ADDRESS_END_str:
+ 1109 000000  20 52 29 		.pasciz " R) "
+ 1109         20 00 
+ 1110              	
+ 1111               00 		; MSG_I2C_START_BIT
+ 1112              		.section .text.MSG_I2C_START_BIT, code
+ 1113              		.global _MSG_I2C_START_BIT_str
+ 1114              	_MSG_I2C_START_BIT_str:
+ 1115 000000  49 32 43 		.pasciz "I2C START BIT"
+ 1115         20 53 54 
+ 1115         41 52 54 
+ 1115         20 42 49 
+ 1115         54 00 
+ 1116              	
+ 1117               00 		; MSG_I2C_STOP_BIT
+ 1118              		.section .text.MSG_I2C_STOP_BIT, code
+ 1119              		.global _MSG_I2C_STOP_BIT_str
+ 1120              	_MSG_I2C_STOP_BIT_str:
+ 1121 000000  49 32 43 		.pasciz "I2C STOP BIT"
+ 1121         20 53 54 
+ 1121         4F 50 20 
+ 1121         42 49 54 
+ 1121         00 
+ 1122              	
+ 1123            00 00 		; MSG_I2C_WRITE_ADDRESS_END
+ 1124              		.section .text.MSG_I2C_WRITE_ADDRESS_END, code
+ 1125              		.global _MSG_I2C_WRITE_ADDRESS_END_str
+ 1126              	_MSG_I2C_WRITE_ADDRESS_END_str:
+ 1127 000000  20 57 29 		.pasciz " W) "
+ 1127         20 00 
+ 1128              	
+ 1129               00 		; MSG_KEYBOARD_ERROR_NODATA
+ 1130              		.section .text.MSG_KEYBOARD_ERROR_NODATA, code
+ 1131              		.global _MSG_KEYBOARD_ERROR_NODATA_str
+ 1132              	_MSG_KEYBOARD_ERROR_NODATA_str:
+ 1133 000000  20 4E 4F 		.pasciz " NONE"
+ 1133         4E 45 00 
+ 1134              	
+ 1135              		; MSG_KEYBOARD_ERROR_PARITY
+ 1136              		.section .text.MSG_KEYBOARD_ERROR_PARITY, code
+ 1137              		.global _MSG_KEYBOARD_ERROR_PARITY_str
+ 1138              	_MSG_KEYBOARD_ERROR_PARITY_str:
+ 1139 000000  20 2A 70 		.pasciz " *parity error"
+ 1139         61 72 69 
+ 1139         74 79 20 
+ 1139         65 72 72 
+ 1139         6F 72 00 
+ 1140              	
+ 1141              		; MSG_KEYBOARD_ERROR_STARTBIT
+ 1142              		.section .text.MSG_KEYBOARD_ERROR_STARTBIT, code
+ 1143              		.global _MSG_KEYBOARD_ERROR_STARTBIT_str
+ 1144              	_MSG_KEYBOARD_ERROR_STARTBIT_str:
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 36
+
+
+ 1145 000000  20 2A 73 		.pasciz " *startbit error"
+ 1145         74 61 72 
+ 1145         74 62 69 
+ 1145         74 20 65 
+ 1145         72 72 6F 
+ 1145         72 00 
+ 1146              	
+ 1147               00 		; MSG_KEYBOARD_ERROR_STOPBIT
+ 1148              		.section .text.MSG_KEYBOARD_ERROR_STOPBIT, code
+ 1149              		.global _MSG_KEYBOARD_ERROR_STOPBIT_str
+ 1150              	_MSG_KEYBOARD_ERROR_STOPBIT_str:
+ 1151 000000  20 2A 73 		.pasciz " *stopbit error"
+ 1151         74 6F 70 
+ 1151         62 69 74 
+ 1151         20 65 72 
+ 1151         72 6F 72 
+ 1151         00 
+ 1152              	
+ 1153            00 00 		; MSG_KEYBOARD_ERROR_TIMEOUT
+ 1154              		.section .text.MSG_KEYBOARD_ERROR_TIMEOUT, code
+ 1155              		.global _MSG_KEYBOARD_ERROR_TIMEOUT_str
+ 1156              	_MSG_KEYBOARD_ERROR_TIMEOUT_str:
+ 1157 000000  20 54 49 		.pasciz " TIMEOUT"
+ 1157         4D 45 4F 
+ 1157         55 54 00 
+ 1158              	
+ 1159              		; MSG_KEYBOARD_ERROR_UNKNOWN
+ 1160              		.section .text.MSG_KEYBOARD_ERROR_UNKNOWN, code
+ 1161              		.global _MSG_KEYBOARD_ERROR_UNKNOWN_str
+ 1162              	_MSG_KEYBOARD_ERROR_UNKNOWN_str:
+ 1163 000000  20 55 4E 		.pasciz " UNKNOWN ERROR"
+ 1163         4B 4E 4F 
+ 1163         57 4E 20 
+ 1163         45 52 52 
+ 1163         4F 52 00 
+ 1164              	
+ 1165              		; MSG_KEYBOARD_LIVE_INPUT_START
+ 1166              		.section .text.MSG_KEYBOARD_LIVE_INPUT_START, code
+ 1167              		.global _MSG_KEYBOARD_LIVE_INPUT_START_str
+ 1168              	_MSG_KEYBOARD_LIVE_INPUT_START_str:
+ 1169 000000  49 6E 70 		.pasciz "Input monitor, any key exits"
+ 1169         75 74 20 
+ 1169         6D 6F 6E 
+ 1169         69 74 6F 
+ 1169         72 2C 20 
+ 1169         61 6E 79 
+ 1169         20 6B 65 
+ 1169         79 20 65 
+ 1169         78 69 74 
+ 1170              	
+ 1171               00 		; MSG_KEYBOARD_MACRO_MENU
+ 1172              		.section .text.MSG_KEYBOARD_MACRO_MENU, code
+ 1173              		.global _MSG_KEYBOARD_MACRO_MENU_str
+ 1174              	_MSG_KEYBOARD_MACRO_MENU_str:
+ 1175 000000  20 30 2E 		.pasciz " 0. Macro menu\r\n 1. Live input monitor"
+ 1175         20 4D 61 
+ 1175         63 72 6F 
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 37
+
+
+ 1175         20 6D 65 
+ 1175         6E 75 0D 
+ 1175         0A 20 31 
+ 1175         2E 20 4C 
+ 1175         69 76 65 
+ 1175         20 69 6E 
+ 1176              	
+ 1177              		; MSG_MODE_HEADER_END
+ 1178              		.section .text.MSG_MODE_HEADER_END, code
+ 1179              		.global _MSG_MODE_HEADER_END_str
+ 1180              	_MSG_MODE_HEADER_END_str:
+ 1181 000000  20 29 00 		.pasciz " )"
+ 1182              	
+ 1183              		; MSG_NACK
+ 1184              		.section .text.MSG_NACK, code
+ 1185              		.global _MSG_NACK_str
+ 1186              	_MSG_NACK_str:
+ 1187 000000  4E 41 43 		.pasciz "NACK"
+ 1187         4B 00 
+ 1188              	
+ 1189               00 		; MSG_NO_VOLTAGE_ON_PULLUP_PIN
+ 1190              		.section .text.MSG_NO_VOLTAGE_ON_PULLUP_PIN, code
+ 1191              		.global _MSG_NO_VOLTAGE_ON_PULLUP_PIN_str
+ 1192              	_MSG_NO_VOLTAGE_ON_PULLUP_PIN_str:
+ 1193 000000  57 61 72 		.pasciz "Warning: no voltage on Vpullup pin"
+ 1193         6E 69 6E 
+ 1193         67 3A 20 
+ 1193         6E 6F 20 
+ 1193         76 6F 6C 
+ 1193         74 61 67 
+ 1193         65 20 6F 
+ 1193         6E 20 56 
+ 1193         70 75 6C 
+ 1194              	
+ 1195               00 		; MSG_OPENOCD_MODE_IDENTIFIER
+ 1196              		.section .text.MSG_OPENOCD_MODE_IDENTIFIER, code
+ 1197              		.global _MSG_OPENOCD_MODE_IDENTIFIER_str
+ 1198              	_MSG_OPENOCD_MODE_IDENTIFIER_str:
+ 1199 000000  4F 43 44 		.pasciz "OCD1"
+ 1199         31 00 
+ 1200              	
+ 1201               00 		; MSG_PIC_DELAY_PROMPT
+ 1202              		.section .text.MSG_PIC_DELAY_PROMPT, code
+ 1203              		.global _MSG_PIC_DELAY_PROMPT_str
+ 1204              	_MSG_PIC_DELAY_PROMPT_str:
+ 1205 000000  44 65 6C 		.pasciz "Delay?"
+ 1205         61 79 3F 
+ 1205         00 
+ 1206              	
+ 1207            00 00 		; MSG_PIC_DEVICE_ID
+ 1208              		.section .text.MSG_PIC_DEVICE_ID, code
+ 1209              		.global _MSG_PIC_DEVICE_ID_str
+ 1210              	_MSG_PIC_DEVICE_ID_str:
+ 1211 000000  44 65 76 		.pasciz "DevID = "
+ 1211         49 44 20 
+ 1211         3D 20 00 
+ 1212              	
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 38
+
+
+ 1213              		; MSG_PIC_EXIT_MODE
+ 1214              		.section .text.MSG_PIC_EXIT_MODE, code
+ 1215              		.global _MSG_PIC_EXIT_MODE_str
+ 1216              	_MSG_PIC_EXIT_MODE_str:
+ 1217 000000  50 6C 65 		.pasciz "Please exit PIC programming mode"
+ 1217         61 73 65 
+ 1217         20 65 78 
+ 1217         69 74 20 
+ 1217         50 49 43 
+ 1217         20 70 72 
+ 1217         6F 67 72 
+ 1217         61 6D 6D 
+ 1217         69 6E 67 
+ 1218              	
+ 1219              		; MSG_PIC_MACRO_MENU
+ 1220              		.section .text.MSG_PIC_MACRO_MENU, code
+ 1221              		.global _MSG_PIC_MACRO_MENU_str
+ 1222              	_MSG_PIC_MACRO_MENU_str:
+ 1223 000000  28 31 29 		.pasciz "(1) get devID"
+ 1223         20 67 65 
+ 1223         74 20 64 
+ 1223         65 76 49 
+ 1223         44 00 
+ 1224              	
+ 1225               00 		; MSG_PIC_MACRO_NOT_IMPLEMENTED
+ 1226              		.section .text.MSG_PIC_MACRO_NOT_IMPLEMENTED, code
+ 1227              		.global _MSG_PIC_MACRO_NOT_IMPLEMENTED_str
+ 1228              	_MSG_PIC_MACRO_NOT_IMPLEMENTED_str:
+ 1229 000000  4E 6F 74 		.pasciz "Not implemented (yet)"
+ 1229         20 69 6D 
+ 1229         70 6C 65 
+ 1229         6D 65 6E 
+ 1229         74 65 64 
+ 1229         20 28 79 
+ 1229         65 74 29 
+ 1229         00 
+ 1230              	
+ 1231            00 00 		; MSG_PIC_MODE_COMMAND
+ 1232              		.section .text.MSG_PIC_MODE_COMMAND, code
+ 1233              		.global _MSG_PIC_MODE_COMMAND_str
+ 1234              	_MSG_PIC_MODE_COMMAND_str:
+ 1235 000000  43 4D 44 		.pasciz "CMD"
+ 1235         00 
+ 1236              	
+ 1237            00 00 		; MSG_PIC_MODE_DATA
+ 1238              		.section .text.MSG_PIC_MODE_DATA, code
+ 1239              		.global _MSG_PIC_MODE_DATA_str
+ 1240              	_MSG_PIC_MODE_DATA_str:
+ 1241 000000  44 54 41 		.pasciz "DTA"
+ 1241         00 
+ 1242              	
+ 1243            00 00 		; MSG_PIC_MODE_HEADER
+ 1244              		.section .text.MSG_PIC_MODE_HEADER, code
+ 1245              		.global _MSG_PIC_MODE_HEADER_str
+ 1246              	_MSG_PIC_MODE_HEADER_str:
+ 1247 000000  50 49 43 		.pasciz "PIC(mod dly)=("
+ 1247         28 6D 6F 
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 39
+
+
+ 1247         64 20 64 
+ 1247         6C 79 29 
+ 1247         3D 28 00 
+ 1248              	
+ 1249              		; MSG_PIC_MODE_IDENTIFIER
+ 1250              		.section .text.MSG_PIC_MODE_IDENTIFIER, code
+ 1251              		.global _MSG_PIC_MODE_IDENTIFIER_str
+ 1252              	_MSG_PIC_MODE_IDENTIFIER_str:
+ 1253 000000  50 49 43 		.pasciz "PIC1"
+ 1253         31 00 
+ 1254              	
+ 1255               00 		; MSG_PIC_MODE_PROMPT
+ 1256              		.section .text.MSG_PIC_MODE_PROMPT, code
+ 1257              		.global _MSG_PIC_MODE_PROMPT_str
+ 1258              	_MSG_PIC_MODE_PROMPT_str:
+ 1259 000000  43 6F 6D 		.pasciz "Commandmode?\r\n1. 6b/14b\r\n2. 4b/16b"
+ 1259         6D 61 6E 
+ 1259         64 6D 6F 
+ 1259         64 65 3F 
+ 1259         0D 0A 31 
+ 1259         2E 20 36 
+ 1259         62 2F 31 
+ 1259         34 62 0D 
+ 1259         0A 32 2E 
+ 1260              	
+ 1261               00 		; MSG_PIC_NO_READ
+ 1262              		.section .text.MSG_PIC_NO_READ, code
+ 1263              		.global _MSG_PIC_NO_READ_str
+ 1264              	_MSG_PIC_NO_READ_str:
+ 1265 000000  6E 6F 20 		.pasciz "no read"
+ 1265         72 65 61 
+ 1265         64 00 
+ 1266              	
+ 1267               00 		; MSG_PIC_PINS_STATE
+ 1268              		.section .text.MSG_PIC_PINS_STATE, code
+ 1269              		.global _MSG_PIC_PINS_STATE_str
+ 1270              	_MSG_PIC_PINS_STATE_str:
+ 1271 000000  50 47 43 		.pasciz "PGC\tPGD\t-\t-"
+ 1271         09 50 47 
+ 1271         44 09 2D 
+ 1271         09 2D 00 
+ 1272              	
+ 1273              		; MSG_PIC_REVISION_ID
+ 1274              		.section .text.MSG_PIC_REVISION_ID, code
+ 1275              		.global _MSG_PIC_REVISION_ID_str
+ 1276              	_MSG_PIC_REVISION_ID_str:
+ 1277 000000  20 52 65 		.pasciz " Rev = "
+ 1277         76 20 3D 
+ 1277         20 00 
+ 1278              	
+ 1279               00 		; MSG_PIC_UNKNOWN_MODE
+ 1280              		.section .text.MSG_PIC_UNKNOWN_MODE, code
+ 1281              		.global _MSG_PIC_UNKNOWN_MODE_str
+ 1282              	_MSG_PIC_UNKNOWN_MODE_str:
+ 1283 000000  75 6E 6B 		.pasciz "unknown mode"
+ 1283         6E 6F 77 
+ 1283         6E 20 6D 
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 40
+
+
+ 1283         6F 64 65 
+ 1283         00 
+ 1284              	
+ 1285            00 00 		; MSG_PIN_OUTPUT_TYPE_PROMPT
+ 1286              		.section .text.MSG_PIN_OUTPUT_TYPE_PROMPT, code
+ 1287              		.global _MSG_PIN_OUTPUT_TYPE_PROMPT_str
+ 1288              	_MSG_PIN_OUTPUT_TYPE_PROMPT_str:
+ 1289 000000  53 65 6C 		.pasciz "Select output type:\r\n 1. Open drain (H=Hi-Z, L=GND)\r\n 2. Normal (H=3.3V, L=GND)"
+ 1289         65 63 74 
+ 1289         20 6F 75 
+ 1289         74 70 75 
+ 1289         74 20 74 
+ 1289         79 70 65 
+ 1289         3A 0D 0A 
+ 1289         20 31 2E 
+ 1289         20 4F 70 
+ 1290              	
+ 1291               00 		; MSG_POWER_SUPPLIES_OFF
+ 1292              		.section .text.MSG_POWER_SUPPLIES_OFF, code
+ 1293              		.global _MSG_POWER_SUPPLIES_OFF_str
+ 1294              	_MSG_POWER_SUPPLIES_OFF_str:
+ 1295 000000  50 4F 57 		.pasciz "POWER SUPPLIES OFF"
+ 1295         45 52 20 
+ 1295         53 55 50 
+ 1295         50 4C 49 
+ 1295         45 53 20 
+ 1295         4F 46 46 
+ 1295         00 
+ 1296              	
+ 1297            00 00 		; MSG_POWER_SUPPLIES_ON
+ 1298              		.section .text.MSG_POWER_SUPPLIES_ON, code
+ 1299              		.global _MSG_POWER_SUPPLIES_ON_str
+ 1300              	_MSG_POWER_SUPPLIES_ON_str:
+ 1301 000000  50 4F 57 		.pasciz "POWER SUPPLIES ON"
+ 1301         45 52 20 
+ 1301         53 55 50 
+ 1301         50 4C 49 
+ 1301         45 53 20 
+ 1301         4F 4E 00 
+ 1302              	
+ 1303              		; MSG_PWM_FREQUENCY_TOO_LOW
+ 1304              		.section .text.MSG_PWM_FREQUENCY_TOO_LOW, code
+ 1305              		.global _MSG_PWM_FREQUENCY_TOO_LOW_str
+ 1306              	_MSG_PWM_FREQUENCY_TOO_LOW_str:
+ 1307 000000  46 72 65 		.pasciz "Frequencies < 1Hz are not supported."
+ 1307         71 75 65 
+ 1307         6E 63 69 
+ 1307         65 73 20 
+ 1307         3C 20 31 
+ 1307         48 7A 20 
+ 1307         61 72 65 
+ 1307         20 6E 6F 
+ 1307         74 20 73 
+ 1308              	
+ 1309            00 00 		; MSG_PWM_HZ_MARKER
+ 1310              		.section .text.MSG_PWM_HZ_MARKER, code
+ 1311              		.global _MSG_PWM_HZ_MARKER_str
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 41
+
+
+ 1312              	_MSG_PWM_HZ_MARKER_str:
+ 1313 000000  20 48 7A 		.pasciz " Hz"
+ 1313         00 
+ 1314              	
+ 1315            00 00 		; MSG_RAW2WIRE_ATR_DATA_UNITS_HEADER
+ 1316              		.section .text.MSG_RAW2WIRE_ATR_DATA_UNITS_HEADER, code
+ 1317              		.global _MSG_RAW2WIRE_ATR_DATA_UNITS_HEADER_str
+ 1318              	_MSG_RAW2WIRE_ATR_DATA_UNITS_HEADER_str:
+ 1319 000000  44 61 74 		.pasciz "Data units: "
+ 1319         61 20 75 
+ 1319         6E 69 74 
+ 1319         73 3A 20 
+ 1319         00 
+ 1320              	
+ 1321            00 00 		; MSG_RAW2WIRE_ATR_DATA_UNITS_NO_INDICATION
+ 1322              		.section .text.MSG_RAW2WIRE_ATR_DATA_UNITS_NO_INDICATION, code
+ 1323              		.global _MSG_RAW2WIRE_ATR_DATA_UNITS_NO_INDICATION_str
+ 1324              	_MSG_RAW2WIRE_ATR_DATA_UNITS_NO_INDICATION_str:
+ 1325 000000  6E 6F 20 		.pasciz "no indication"
+ 1325         69 6E 64 
+ 1325         69 63 61 
+ 1325         74 69 6F 
+ 1325         6E 00 
+ 1326              	
+ 1327               00 		; MSG_RAW2WIRE_ATR_DATA_UNIT_LENGTH
+ 1328              		.section .text.MSG_RAW2WIRE_ATR_DATA_UNIT_LENGTH, code
+ 1329              		.global _MSG_RAW2WIRE_ATR_DATA_UNIT_LENGTH_str
+ 1330              	_MSG_RAW2WIRE_ATR_DATA_UNIT_LENGTH_str:
+ 1331 000000  44 61 74 		.pasciz "Data unit length (bits): "
+ 1331         61 20 75 
+ 1331         6E 69 74 
+ 1331         20 6C 65 
+ 1331         6E 67 74 
+ 1331         68 20 28 
+ 1331         62 69 74 
+ 1331         73 29 3A 
+ 1331         20 00 
+ 1332              	
+ 1333               00 		; MSG_RAW2WIRE_ATR_PROTOCOL_2WIRE
+ 1334              		.section .text.MSG_RAW2WIRE_ATR_PROTOCOL_2WIRE, code
+ 1335              		.global _MSG_RAW2WIRE_ATR_PROTOCOL_2WIRE_str
+ 1336              	_MSG_RAW2WIRE_ATR_PROTOCOL_2WIRE_str:
+ 1337 000000  32 20 77 		.pasciz "2 wire"
+ 1337         69 72 65 
+ 1337         00 
+ 1338              	
+ 1339            00 00 		; MSG_RAW2WIRE_ATR_PROTOCOL_3WIRE
+ 1340              		.section .text.MSG_RAW2WIRE_ATR_PROTOCOL_3WIRE, code
+ 1341              		.global _MSG_RAW2WIRE_ATR_PROTOCOL_3WIRE_str
+ 1342              	_MSG_RAW2WIRE_ATR_PROTOCOL_3WIRE_str:
+ 1343 000000  33 20 77 		.pasciz "3 wire"
+ 1343         69 72 65 
+ 1343         00 
+ 1344              	
+ 1345            00 00 		; MSG_RAW2WIRE_ATR_PROTOCOL_HEADER
+ 1346              		.section .text.MSG_RAW2WIRE_ATR_PROTOCOL_HEADER, code
+ 1347              		.global _MSG_RAW2WIRE_ATR_PROTOCOL_HEADER_str
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 42
+
+
+ 1348              	_MSG_RAW2WIRE_ATR_PROTOCOL_HEADER_str:
+ 1349 000000  50 72 6F 		.pasciz "Protocol: "
+ 1349         74 6F 63 
+ 1349         6F 6C 3A 
+ 1349         20 00 
+ 1350              	
+ 1351               00 		; MSG_RAW2WIRE_ATR_PROTOCOL_SERIAL
+ 1352              		.section .text.MSG_RAW2WIRE_ATR_PROTOCOL_SERIAL, code
+ 1353              		.global _MSG_RAW2WIRE_ATR_PROTOCOL_SERIAL_str
+ 1354              	_MSG_RAW2WIRE_ATR_PROTOCOL_SERIAL_str:
+ 1355 000000  73 65 72 		.pasciz "serial"
+ 1355         69 61 6C 
+ 1355         00 
+ 1356              	
+ 1357            00 00 		; MSG_RAW2WIRE_ATR_PROTOCOL_UNKNOWN
+ 1358              		.section .text.MSG_RAW2WIRE_ATR_PROTOCOL_UNKNOWN, code
+ 1359              		.global _MSG_RAW2WIRE_ATR_PROTOCOL_UNKNOWN_str
+ 1360              	_MSG_RAW2WIRE_ATR_PROTOCOL_UNKNOWN_str:
+ 1361 000000  75 6E 6B 		.pasciz "unknown"
+ 1361         6E 6F 77 
+ 1361         6E 00 
+ 1362              	
+ 1363               00 		; MSG_RAW2WIRE_ATR_READ_TYPE_HEADER
+ 1364              		.section .text.MSG_RAW2WIRE_ATR_READ_TYPE_HEADER, code
+ 1365              		.global _MSG_RAW2WIRE_ATR_READ_TYPE_HEADER_str
+ 1366              	_MSG_RAW2WIRE_ATR_READ_TYPE_HEADER_str:
+ 1367 000000  52 65 61 		.pasciz "Read type: "
+ 1367         64 20 74 
+ 1367         79 70 65 
+ 1367         3A 20 00 
+ 1368              	
+ 1369              		; MSG_RAW2WIRE_ATR_READ_TYPE_TO_END
+ 1370              		.section .text.MSG_RAW2WIRE_ATR_READ_TYPE_TO_END, code
+ 1371              		.global _MSG_RAW2WIRE_ATR_READ_TYPE_TO_END_str
+ 1372              	_MSG_RAW2WIRE_ATR_READ_TYPE_TO_END_str:
+ 1373 000000  74 6F 20 		.pasciz "to end"
+ 1373         65 6E 64 
+ 1373         00 
+ 1374              	
+ 1375            00 00 		; MSG_RAW2WIRE_ATR_READ_TYPE_VARIABLE_LENGTH
+ 1376              		.section .text.MSG_RAW2WIRE_ATR_READ_TYPE_VARIABLE_LENGTH, code
+ 1377              		.global _MSG_RAW2WIRE_ATR_READ_TYPE_VARIABLE_LENGTH_str
+ 1378              	_MSG_RAW2WIRE_ATR_READ_TYPE_VARIABLE_LENGTH_str:
+ 1379 000000  76 61 72 		.pasciz "variable length"
+ 1379         69 61 62 
+ 1379         6C 65 20 
+ 1379         6C 65 6E 
+ 1379         67 74 68 
+ 1379         00 
+ 1380              	
+ 1381            00 00 		; MSG_RAW2WIRE_ATR_REPLY_HEADER
+ 1382              		.section .text.MSG_RAW2WIRE_ATR_REPLY_HEADER, code
+ 1383              		.global _MSG_RAW2WIRE_ATR_REPLY_HEADER_str
+ 1384              	_MSG_RAW2WIRE_ATR_REPLY_HEADER_str:
+ 1385 000000  49 53 4F 		.pasciz "ISO 7816-3 reply (uses current LSB setting): "
+ 1385         20 37 38 
+ 1385         31 36 2D 
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 43
+
+
+ 1385         33 20 72 
+ 1385         65 70 6C 
+ 1385         79 20 28 
+ 1385         75 73 65 
+ 1385         73 20 63 
+ 1385         75 72 72 
+ 1386              	
+ 1387            00 00 		; MSG_RAW2WIRE_ATR_RFU
+ 1388              		.section .text.MSG_RAW2WIRE_ATR_RFU, code
+ 1389              		.global _MSG_RAW2WIRE_ATR_RFU_str
+ 1390              	_MSG_RAW2WIRE_ATR_RFU_str:
+ 1391 000000  52 46 55 		.pasciz "RFU"
+ 1391         00 
+ 1392              	
+ 1393            00 00 		; MSG_RAW2WIRE_ATR_TRIGGER_INFO
+ 1394              		.section .text.MSG_RAW2WIRE_ATR_TRIGGER_INFO, code
+ 1395              		.global _MSG_RAW2WIRE_ATR_TRIGGER_INFO_str
+ 1396              	_MSG_RAW2WIRE_ATR_TRIGGER_INFO_str:
+ 1397 000000  49 53 4F 		.pasciz "ISO 7816-3 ATR (RESET on CS)\r\nRESET HIGH, CLOCK TICK, RESET LOW"
+ 1397         20 37 38 
+ 1397         31 36 2D 
+ 1397         33 20 41 
+ 1397         54 52 20 
+ 1397         28 52 45 
+ 1397         53 45 54 
+ 1397         20 6F 6E 
+ 1397         20 43 53 
+ 1398              	
+ 1399            00 00 		; MSG_RAW2WIRE_I2C_START
+ 1400              		.section .text.MSG_RAW2WIRE_I2C_START, code
+ 1401              		.global _MSG_RAW2WIRE_I2C_START_str
+ 1402              	_MSG_RAW2WIRE_I2C_START_str:
+ 1403 000000  28 5C 2D 		.pasciz "(\\-/_\\-)"
+ 1403         2F 5F 5C 
+ 1403         2D 29 00 
+ 1404              	
+ 1405              		; MSG_RAW2WIRE_I2C_STOP
+ 1406              		.section .text.MSG_RAW2WIRE_I2C_STOP, code
+ 1407              		.global _MSG_RAW2WIRE_I2C_STOP_str
+ 1408              	_MSG_RAW2WIRE_I2C_STOP_str:
+ 1409 000000  28 5C 5F 		.pasciz "(\\_/-)"
+ 1409         2F 2D 29 
+ 1409         00 
+ 1410              	
+ 1411            00 00 		; MSG_RAW2WIRE_MACRO_MENU
+ 1412              		.section .text.MSG_RAW2WIRE_MACRO_MENU, code
+ 1413              		.global _MSG_RAW2WIRE_MACRO_MENU_str
+ 1414              	_MSG_RAW2WIRE_MACRO_MENU_str:
+ 1415 000000  20 30 2E 		.pasciz " 0.Macro menu\r\n 1.ISO7816-3 ATR\r\n 2.ISO7816-3 parse only"
+ 1415         4D 61 63 
+ 1415         72 6F 20 
+ 1415         6D 65 6E 
+ 1415         75 0D 0A 
+ 1415         20 31 2E 
+ 1415         49 53 4F 
+ 1415         37 38 31 
+ 1415         36 2D 33 
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 44
+
+
+ 1416              	
+ 1417              		; MSG_RAW2WIRE_MODE_HEADER
+ 1418              		.section .text.MSG_RAW2WIRE_MODE_HEADER, code
+ 1419              		.global _MSG_RAW2WIRE_MODE_HEADER_str
+ 1420              	_MSG_RAW2WIRE_MODE_HEADER_str:
+ 1421 000000  52 32 57 		.pasciz "R2W (spd hiz)=( "
+ 1421         20 28 73 
+ 1421         70 64 20 
+ 1421         68 69 7A 
+ 1421         29 3D 28 
+ 1421         20 00 
+ 1422              	
+ 1423               00 		; MSG_RAW3WIRE_MODE_HEADER
+ 1424              		.section .text.MSG_RAW3WIRE_MODE_HEADER, code
+ 1425              		.global _MSG_RAW3WIRE_MODE_HEADER_str
+ 1426              	_MSG_RAW3WIRE_MODE_HEADER_str:
+ 1427 000000  52 33 57 		.pasciz "R3W (spd csl hiz)=( "
+ 1427         20 28 73 
+ 1427         70 64 20 
+ 1427         63 73 6C 
+ 1427         20 68 69 
+ 1427         7A 29 3D 
+ 1427         28 20 00 
+ 1428              	
+ 1429              		; MSG_RAW_BRG_VALUE_INPUT
+ 1430              		.section .text.MSG_RAW_BRG_VALUE_INPUT, code
+ 1431              		.global _MSG_RAW_BRG_VALUE_INPUT_str
+ 1432              	_MSG_RAW_BRG_VALUE_INPUT_str:
+ 1433 000000  45 6E 74 		.pasciz "Enter raw value for BRG"
+ 1433         65 72 20 
+ 1433         72 61 77 
+ 1433         20 76 61 
+ 1433         6C 75 65 
+ 1433         20 66 6F 
+ 1433         72 20 42 
+ 1433         52 47 00 
+ 1434              	
+ 1435              		; MSG_RAW_MODE_IDENTIFIER
+ 1436              		.section .text.MSG_RAW_MODE_IDENTIFIER, code
+ 1437              		.global _MSG_RAW_MODE_IDENTIFIER_str
+ 1438              	_MSG_RAW_MODE_IDENTIFIER_str:
+ 1439 000000  52 41 57 		.pasciz "RAW1"
+ 1439         31 00 
+ 1440              	
+ 1441               00 		; MSG_READ_HEADER
+ 1442              		.section .text.MSG_READ_HEADER, code
+ 1443              		.global _MSG_READ_HEADER_str
+ 1444              	_MSG_READ_HEADER_str:
+ 1445 000000  52 45 41 		.pasciz "READ: "
+ 1445         44 3A 20 
+ 1445         00 
+ 1446              	
+ 1447            00 00 		; MSG_SNIFFER_MESSAGE
+ 1448              		.section .text.MSG_SNIFFER_MESSAGE, code
+ 1449              		.global _MSG_SNIFFER_MESSAGE_str
+ 1450              	_MSG_SNIFFER_MESSAGE_str:
+ 1451 000000  53 6E 69 		.pasciz "Sniffer"
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 45
+
+
+ 1451         66 66 65 
+ 1451         72 00 
+ 1452              	
+ 1453               00 		; MSG_SOFTWARE_MODE_SPEED_PROMPT
+ 1454              		.section .text.MSG_SOFTWARE_MODE_SPEED_PROMPT, code
+ 1455              		.global _MSG_SOFTWARE_MODE_SPEED_PROMPT_str
+ 1456              	_MSG_SOFTWARE_MODE_SPEED_PROMPT_str:
+ 1457 000000  53 65 74 		.pasciz "Set speed:\r\n 1. ~5KHz\r\n 2. ~50KHz\r\n 3. ~100KHz\r\n 4. ~400KHz"
+ 1457         20 73 70 
+ 1457         65 65 64 
+ 1457         3A 0D 0A 
+ 1457         20 31 2E 
+ 1457         20 7E 35 
+ 1457         4B 48 7A 
+ 1457         0D 0A 20 
+ 1457         32 2E 20 
+ 1458              	
+ 1459              		; MSG_SPI_COULD_NOT_KEEP_UP
+ 1460              		.section .text.MSG_SPI_COULD_NOT_KEEP_UP, code
+ 1461              		.global _MSG_SPI_COULD_NOT_KEEP_UP_str
+ 1462              	_MSG_SPI_COULD_NOT_KEEP_UP_str:
+ 1463 000000  43 6F 75 		.pasciz "Couldn't keep up"
+ 1463         6C 64 6E 
+ 1463         27 74 20 
+ 1463         6B 65 65 
+ 1463         70 20 75 
+ 1463         70 00 
+ 1464              	
+ 1465               00 		; MSG_SPI_CS_DISABLED
+ 1466              		.section .text.MSG_SPI_CS_DISABLED, code
+ 1467              		.global _MSG_SPI_CS_DISABLED_str
+ 1468              	_MSG_SPI_CS_DISABLED_str:
+ 1469 000000  43 53 20 		.pasciz "CS DISABLED"
+ 1469         44 49 53 
+ 1469         41 42 4C 
+ 1469         45 44 00 
+ 1470              	
+ 1471              		; MSG_SPI_CS_ENABLED
+ 1472              		.section .text.MSG_SPI_CS_ENABLED, code
+ 1473              		.global _MSG_SPI_CS_ENABLED_str
+ 1474              	_MSG_SPI_CS_ENABLED_str:
+ 1475 000000  43 53 20 		.pasciz "CS ENABLED"
+ 1475         45 4E 41 
+ 1475         42 4C 45 
+ 1475         44 00 
+ 1476              	
+ 1477               00 		; MSG_SPI_CS_MODE_PROMPT
+ 1478              		.section .text.MSG_SPI_CS_MODE_PROMPT, code
+ 1479              		.global _MSG_SPI_CS_MODE_PROMPT_str
+ 1480              	_MSG_SPI_CS_MODE_PROMPT_str:
+ 1481 000000  43 53 3A 		.pasciz "CS:\r\n 1. CS\r\n 2. /CS *default"
+ 1481         0D 0A 20 
+ 1481         31 2E 20 
+ 1481         43 53 0D 
+ 1481         0A 20 32 
+ 1481         2E 20 2F 
+ 1481         43 53 20 
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 46
+
+
+ 1481         2A 64 65 
+ 1481         66 61 75 
+ 1482              	
+ 1483              		; MSG_SPI_EDGE_PROMPT
+ 1484              		.section .text.MSG_SPI_EDGE_PROMPT, code
+ 1485              		.global _MSG_SPI_EDGE_PROMPT_str
+ 1486              	_MSG_SPI_EDGE_PROMPT_str:
+ 1487 000000  4F 75 74 		.pasciz "Output clock edge:\r\n 1. Idle to active\r\n 2. Active to idle *default"
+ 1487         70 75 74 
+ 1487         20 63 6C 
+ 1487         6F 63 6B 
+ 1487         20 65 64 
+ 1487         67 65 3A 
+ 1487         0D 0A 20 
+ 1487         31 2E 20 
+ 1487         49 64 6C 
+ 1488              	
+ 1489               00 		; MSG_SPI_MACRO_MENU
+ 1490              		.section .text.MSG_SPI_MACRO_MENU, code
+ 1491              		.global _MSG_SPI_MACRO_MENU_str
+ 1492              	_MSG_SPI_MACRO_MENU_str:
+ 1493 000000  20 30 2E 		.pasciz " 0.Macro menu\r\n 1.Sniff CS low\r\n 2.Sniff all traffic\r\n10.Set clock idle low\r\n11.S
+ 1493         4D 61 63 
+ 1493         72 6F 20 
+ 1493         6D 65 6E 
+ 1493         75 0D 0A 
+ 1493         20 31 2E 
+ 1493         53 6E 69 
+ 1493         66 66 20 
+ 1493         43 53 20 
+ 1494              	
+ 1495              		; MSG_SPI_MODE_HEADER_START
+ 1496              		.section .text.MSG_SPI_MODE_HEADER_START, code
+ 1497              		.global _MSG_SPI_MODE_HEADER_START_str
+ 1498              	_MSG_SPI_MODE_HEADER_START_str:
+ 1499 000000  53 50 49 		.pasciz "SPI (spd ckp ske smp csl hiz)=( "
+ 1499         20 28 73 
+ 1499         70 64 20 
+ 1499         63 6B 70 
+ 1499         20 73 6B 
+ 1499         65 20 73 
+ 1499         6D 70 20 
+ 1499         63 73 6C 
+ 1499         20 68 69 
+ 1500              	
+ 1501              		; MSG_SPI_MODE_IDENTIFIER
+ 1502              		.section .text.MSG_SPI_MODE_IDENTIFIER, code
+ 1503              		.global _MSG_SPI_MODE_IDENTIFIER_str
+ 1504              	_MSG_SPI_MODE_IDENTIFIER_str:
+ 1505 000000  53 50 49 		.pasciz "SPI1"
+ 1505         31 00 
+ 1506              	
+ 1507               00 		; MSG_SPI_PINS_STATE
+ 1508              		.section .text.MSG_SPI_PINS_STATE, code
+ 1509              		.global _MSG_SPI_PINS_STATE_str
+ 1510              	_MSG_SPI_PINS_STATE_str:
+ 1511 000000  43 4C 4B 		.pasciz "CLK\tMOSI\tCS\tMISO"
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 47
+
+
+ 1511         09 4D 4F 
+ 1511         53 49 09 
+ 1511         43 53 09 
+ 1511         4D 49 53 
+ 1511         4F 00 
+ 1512              	
+ 1513               00 		; MSG_SPI_POLARITY_PROMPT
+ 1514              		.section .text.MSG_SPI_POLARITY_PROMPT, code
+ 1515              		.global _MSG_SPI_POLARITY_PROMPT_str
+ 1516              	_MSG_SPI_POLARITY_PROMPT_str:
+ 1517 000000  43 6C 6F 		.pasciz "Clock polarity:\r\n 1. Idle low *default\r\n 2. Idle high"
+ 1517         63 6B 20 
+ 1517         70 6F 6C 
+ 1517         61 72 69 
+ 1517         74 79 3A 
+ 1517         0D 0A 20 
+ 1517         31 2E 20 
+ 1517         49 64 6C 
+ 1517         65 20 6C 
+ 1518              	
+ 1519              		; MSG_SPI_SAMPLE_PROMPT
+ 1520              		.section .text.MSG_SPI_SAMPLE_PROMPT, code
+ 1521              		.global _MSG_SPI_SAMPLE_PROMPT_str
+ 1522              	_MSG_SPI_SAMPLE_PROMPT_str:
+ 1523 000000  49 6E 70 		.pasciz "Input sample phase:\r\n 1. Middle *default\r\n 2. End"
+ 1523         75 74 20 
+ 1523         73 61 6D 
+ 1523         70 6C 65 
+ 1523         20 70 68 
+ 1523         61 73 65 
+ 1523         3A 0D 0A 
+ 1523         20 31 2E 
+ 1523         20 4D 69 
+ 1524              	
+ 1525               00 		; MSG_SPI_SPEED_PROMPT
+ 1526              		.section .text.MSG_SPI_SPEED_PROMPT, code
+ 1527              		.global _MSG_SPI_SPEED_PROMPT_str
+ 1528              	_MSG_SPI_SPEED_PROMPT_str:
+ 1529 000000  53 65 74 		.pasciz "Set speed:\r\n 1.  30KHz\r\n 2. 125KHz\r\n 3. 250KHz\r\n 4.   1MHz\r\n 5.  50KHz\r\n 6. 1
+ 1529         20 73 70 
+ 1529         65 65 64 
+ 1529         3A 0D 0A 
+ 1529         20 31 2E 
+ 1529         20 20 33 
+ 1529         30 4B 48 
+ 1529         7A 0D 0A 
+ 1529         20 32 2E 
+ 1530              	
+ 1531               00 		; MSG_UART_BAUD_CALCULATED
+ 1532              		.section .text.MSG_UART_BAUD_CALCULATED, code
+ 1533              		.global _MSG_UART_BAUD_CALCULATED_str
+ 1534              	_MSG_UART_BAUD_CALCULATED_str:
+ 1535 000000  0A 0D 43 		.pasciz "\n\rCalculated: \t"
+ 1535         61 6C 63 
+ 1535         75 6C 61 
+ 1535         74 65 64 
+ 1535         3A 20 09 
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 48
+
+
+ 1535         00 
+ 1536              	
+ 1537            00 00 		; MSG_UART_BAUD_ESTIMATED
+ 1538              		.section .text.MSG_UART_BAUD_ESTIMATED, code
+ 1539              		.global _MSG_UART_BAUD_ESTIMATED_str
+ 1540              	_MSG_UART_BAUD_ESTIMATED_str:
+ 1541 000000  0A 0D 45 		.pasciz "\n\rEstimated:  \t"
+ 1541         73 74 69 
+ 1541         6D 61 74 
+ 1541         65 64 3A 
+ 1541         20 20 09 
+ 1541         00 
+ 1542              	
+ 1543            00 00 		; MSG_UART_BAUD_OVERFLOW
+ 1544              		.section .text.MSG_UART_BAUD_OVERFLOW, code
+ 1545              		.global _MSG_UART_BAUD_OVERFLOW_str
+ 1546              	_MSG_UART_BAUD_OVERFLOW_str:
+ 1547 000000  2A 2A 20 		.pasciz "** Baud>16m: The BP cannot measure above 16000000, Done."
+ 1547         42 61 75 
+ 1547         64 3E 31 
+ 1547         36 6D 3A 
+ 1547         20 54 68 
+ 1547         65 20 42 
+ 1547         50 20 63 
+ 1547         61 6E 6E 
+ 1547         6F 74 20 
+ 1548              	
+ 1549              		; MSG_UART_BITS_PARITY_PROMPT
+ 1550              		.section .text.MSG_UART_BITS_PARITY_PROMPT, code
+ 1551              		.global _MSG_UART_BITS_PARITY_PROMPT_str
+ 1552              	_MSG_UART_BITS_PARITY_PROMPT_str:
+ 1553 000000  44 61 74 		.pasciz "Data bits and parity:\r\n 1. 8, NONE *default \r\n 2. 8, EVEN \r\n 3. 8, ODD \r\n 4. 9, N
+ 1553         61 20 62 
+ 1553         69 74 73 
+ 1553         20 61 6E 
+ 1553         64 20 70 
+ 1553         61 72 69 
+ 1553         74 79 3A 
+ 1553         0D 0A 20 
+ 1553         31 2E 20 
+ 1554              	
+ 1555            00 00 		; MSG_UART_BITS_STOP_PROMPT
+ 1556              		.section .text.MSG_UART_BITS_STOP_PROMPT, code
+ 1557              		.global _MSG_UART_BITS_STOP_PROMPT_str
+ 1558              	_MSG_UART_BITS_STOP_PROMPT_str:
+ 1559 000000  53 74 6F 		.pasciz "Stop bits:\r\n 1. 1 *default\r\n 2. 2"
+ 1559         70 20 62 
+ 1559         69 74 73 
+ 1559         3A 0D 0A 
+ 1559         20 31 2E 
+ 1559         20 31 20 
+ 1559         2A 64 65 
+ 1559         66 61 75 
+ 1559         6C 74 0D 
+ 1560              	
+ 1561            00 00 		; MSG_UART_BPS_MARKER
+ 1562              		.section .text.MSG_UART_BPS_MARKER, code
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 49
+
+
+ 1563              		.global _MSG_UART_BPS_MARKER_str
+ 1564              	_MSG_UART_BPS_MARKER_str:
+ 1565 000000  20 62 70 		.pasciz " bps"
+ 1565         73 00 
+ 1566              	
+ 1567               00 		; MSG_UART_BRIDGE
+ 1568              		.section .text.MSG_UART_BRIDGE, code
+ 1569              		.global _MSG_UART_BRIDGE_str
+ 1570              	_MSG_UART_BRIDGE_str:
+ 1571 000000  55 41 52 		.pasciz "UART bridge"
+ 1571         54 20 62 
+ 1571         72 69 64 
+ 1571         67 65 00 
+ 1572              	
+ 1573              		; MSG_UART_BRIDGE_EXIT
+ 1574              		.section .text.MSG_UART_BRIDGE_EXIT, code
+ 1575              		.global _MSG_UART_BRIDGE_EXIT_str
+ 1576              	_MSG_UART_BRIDGE_EXIT_str:
+ 1577 000000  52 65 73 		.pasciz "Reset to exit"
+ 1577         65 74 20 
+ 1577         74 6F 20 
+ 1577         65 78 69 
+ 1577         74 00 
+ 1578              	
+ 1579               00 		; MSG_UART_EARLY_EXIT
+ 1580              		.section .text.MSG_UART_EARLY_EXIT, code
+ 1581              		.global _MSG_UART_EARLY_EXIT_str
+ 1582              	_MSG_UART_EARLY_EXIT_str:
+ 1583 000000  2A 2A 20 		.pasciz "** Early Exit!"
+ 1583         45 61 72 
+ 1583         6C 79 20 
+ 1583         45 78 69 
+ 1583         74 21 00 
+ 1584              	
+ 1585              		; MSG_UART_FAILED_NO_DATA
+ 1586              		.section .text.MSG_UART_FAILED_NO_DATA, code
+ 1587              		.global _MSG_UART_FAILED_NO_DATA_str
+ 1588              	_MSG_UART_FAILED_NO_DATA_str:
+ 1589 000000  46 41 49 		.pasciz "FAILED, NO DATA"
+ 1589         4C 45 44 
+ 1589         2C 20 4E 
+ 1589         4F 20 44 
+ 1589         41 54 41 
+ 1589         00 
+ 1590              	
+ 1591            00 00 		; MSG_UART_FRAMING_ERROR
+ 1592              		.section .text.MSG_UART_FRAMING_ERROR, code
+ 1593              		.global _MSG_UART_FRAMING_ERROR_str
+ 1594              	_MSG_UART_FRAMING_ERROR_str:
+ 1595 000000  2D 66 20 		.pasciz "-f "
+ 1595         00 
+ 1596              	
+ 1597            00 00 		; MSG_UART_LIVE_DISPLAY_START
+ 1598              		.section .text.MSG_UART_LIVE_DISPLAY_START, code
+ 1599              		.global _MSG_UART_LIVE_DISPLAY_START_str
+ 1600              	_MSG_UART_LIVE_DISPLAY_START_str:
+ 1601 000000  55 41 52 		.pasciz "UART LIVE DISPLAY, } TO STOP"
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 50
+
+
+ 1601         54 20 4C 
+ 1601         49 56 45 
+ 1601         20 44 49 
+ 1601         53 50 4C 
+ 1601         41 59 2C 
+ 1601         20 7D 20 
+ 1601         54 4F 20 
+ 1601         53 54 4F 
+ 1602              	
+ 1603               00 		; MSG_UART_LIVE_DISPLAY_STOP
+ 1604              		.section .text.MSG_UART_LIVE_DISPLAY_STOP, code
+ 1605              		.global _MSG_UART_LIVE_DISPLAY_STOP_str
+ 1606              	_MSG_UART_LIVE_DISPLAY_STOP_str:
+ 1607 000000  4C 49 56 		.pasciz "LIVE DISPLAY STOPPED"
+ 1607         45 20 44 
+ 1607         49 53 50 
+ 1607         4C 41 59 
+ 1607         20 53 54 
+ 1607         4F 50 50 
+ 1607         45 44 00 
+ 1608              	
+ 1609              		; MSG_UART_MACRO_MENU
+ 1610              		.section .text.MSG_UART_MACRO_MENU, code
+ 1611              		.global _MSG_UART_MACRO_MENU_str
+ 1612              	_MSG_UART_MACRO_MENU_str:
+ 1613 000000  20 30 2E 		.pasciz " 0.Macro menu\r\n 1.Transparent bridge\r\n 2.Live monitor\r\n 3.Bridge with flow control\
+ 1613         4D 61 63 
+ 1613         72 6F 20 
+ 1613         6D 65 6E 
+ 1613         75 0D 0A 
+ 1613         20 31 2E 
+ 1613         54 72 61 
+ 1613         6E 73 70 
+ 1613         61 72 65 
+ 1614              	
+ 1615               00 		; MSG_UART_MODE_HEADER
+ 1616              		.section .text.MSG_UART_MODE_HEADER, code
+ 1617              		.global _MSG_UART_MODE_HEADER_str
+ 1618              	_MSG_UART_MODE_HEADER_str:
+ 1619 000000  55 41 52 		.pasciz "UART (spd brg dbp sb rxp hiz)=( "
+ 1619         54 20 28 
+ 1619         73 70 64 
+ 1619         20 62 72 
+ 1619         67 20 64 
+ 1619         62 70 20 
+ 1619         73 62 20 
+ 1619         72 78 70 
+ 1619         20 68 69 
+ 1620              	
+ 1621              		; MSG_UART_MODE_IDENTIFIER
+ 1622              		.section .text.MSG_UART_MODE_IDENTIFIER, code
+ 1623              		.global _MSG_UART_MODE_IDENTIFIER_str
+ 1624              	_MSG_UART_MODE_IDENTIFIER_str:
+ 1625 000000  41 52 54 		.pasciz "ART1"
+ 1625         31 00 
+ 1626              	
+ 1627               00 		; MSG_UART_OVERRUN_ERROR
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 51
+
+
+ 1628              		.section .text.MSG_UART_OVERRUN_ERROR, code
+ 1629              		.global _MSG_UART_OVERRUN_ERROR_str
+ 1630              	_MSG_UART_OVERRUN_ERROR_str:
+ 1631 000000  2A 42 79 		.pasciz "*Bytes dropped*"
+ 1631         74 65 73 
+ 1631         20 64 72 
+ 1631         6F 70 70 
+ 1631         65 64 2A 
+ 1631         00 
+ 1632              	
+ 1633            00 00 		; MSG_UART_PARITY_ERROR
+ 1634              		.section .text.MSG_UART_PARITY_ERROR, code
+ 1635              		.global _MSG_UART_PARITY_ERROR_str
+ 1636              	_MSG_UART_PARITY_ERROR_str:
+ 1637 000000  2D 70 20 		.pasciz "-p "
+ 1637         00 
+ 1638              	
+ 1639            00 00 		; MSG_UART_PINS_STATE
+ 1640              		.section .text.MSG_UART_PINS_STATE, code
+ 1641              		.global _MSG_UART_PINS_STATE_str
+ 1642              	_MSG_UART_PINS_STATE_str:
+ 1643 000000  2D 09 54 		.pasciz "-\tTxD\t-\tRxD"
+ 1643         78 44 09 
+ 1643         2D 09 52 
+ 1643         78 44 00 
+ 1644              	
+ 1645              		; MSG_UART_POLARITY_PROMPT
+ 1646              		.section .text.MSG_UART_POLARITY_PROMPT, code
+ 1647              		.global _MSG_UART_POLARITY_PROMPT_str
+ 1648              	_MSG_UART_POLARITY_PROMPT_str:
+ 1649 000000  52 65 63 		.pasciz "Receive polarity:\r\n 1. Idle 1 *default\r\n 2. Idle 0"
+ 1649         65 69 76 
+ 1649         65 20 70 
+ 1649         6F 6C 61 
+ 1649         72 69 74 
+ 1649         79 3A 0D 
+ 1649         0A 20 31 
+ 1649         2E 20 49 
+ 1649         64 6C 65 
+ 1650              	
+ 1651              		; MSG_UART_POSSIBLE_OVERFLOW
+ 1652              		.section .text.MSG_UART_POSSIBLE_OVERFLOW, code
+ 1653              		.global _MSG_UART_POSSIBLE_OVERFLOW_str
+ 1654              	_MSG_UART_POSSIBLE_OVERFLOW_str:
+ 1655 000000  57 41 52 		.pasciz "WARNING: Possible buffer overflow"
+ 1655         4E 49 4E 
+ 1655         47 3A 20 
+ 1655         50 6F 73 
+ 1655         73 69 62 
+ 1655         6C 65 20 
+ 1655         62 75 66 
+ 1655         66 65 72 
+ 1655         20 6F 76 
+ 1656              	
+ 1657            00 00 		; MSG_UART_RAW_BRG_PROMPT
+ 1658              		.section .text.MSG_UART_RAW_BRG_PROMPT, code
+ 1659              		.global _MSG_UART_RAW_BRG_PROMPT_str
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 52
+
+
+ 1660              	_MSG_UART_RAW_BRG_PROMPT_str:
+ 1661 000000  52 61 77 		.pasciz "Raw value for BRG (MIDI=127)"
+ 1661         20 76 61 
+ 1661         6C 75 65 
+ 1661         20 66 6F 
+ 1661         72 20 42 
+ 1661         52 47 20 
+ 1661         28 4D 49 
+ 1661         44 49 3D 
+ 1661         31 32 37 
+ 1662              	
+ 1663               00 		; MSG_UART_RAW_UART_INPUT
+ 1664              		.section .text.MSG_UART_RAW_UART_INPUT, code
+ 1665              		.global _MSG_UART_RAW_UART_INPUT_str
+ 1666              	_MSG_UART_RAW_UART_INPUT_str:
+ 1667 000000  52 61 77 		.pasciz "Raw UART input"
+ 1667         20 55 41 
+ 1667         52 54 20 
+ 1667         69 6E 70 
+ 1667         75 74 00 
+ 1668              	
+ 1669              		; MSG_UART_SET_PORT_SPEED
+ 1670              		.section .text.MSG_UART_SET_PORT_SPEED, code
+ 1671              		.global _MSG_UART_SET_PORT_SPEED_str
+ 1672              	_MSG_UART_SET_PORT_SPEED_str:
+ 1673 000000  53 65 74 		.pasciz "Set serial port speed: (bps)\r\n 1. 300\r\n 2. 1200\r\n 3. 2400\r\n 4. 4800\r\n 5. 9600\r
+ 1673         20 73 65 
+ 1673         72 69 61 
+ 1673         6C 20 70 
+ 1673         6F 72 74 
+ 1673         20 73 70 
+ 1673         65 65 64 
+ 1673         3A 20 28 
+ 1673         62 70 73 
+ 1674              	
+ 1675            00 00 		; MSG_UART_WAITING_ACTIVITY
+ 1676              		.section .text.MSG_UART_WAITING_ACTIVITY, code
+ 1677              		.global _MSG_UART_WAITING_ACTIVITY_str
+ 1678              	_MSG_UART_WAITING_ACTIVITY_str:
+ 1679 000000  57 61 69 		.pasciz "Waiting activity..."
+ 1679         74 69 6E 
+ 1679         67 20 61 
+ 1679         63 74 69 
+ 1679         76 69 74 
+ 1679         79 2E 2E 
+ 1679         2E 00 
+ 1680              	
+ 1681               00 		; MSG_UNKNOWN_MACRO_ERROR
+ 1682              		.section .text.MSG_UNKNOWN_MACRO_ERROR, code
+ 1683              		.global _MSG_UNKNOWN_MACRO_ERROR_str
+ 1684              	_MSG_UNKNOWN_MACRO_ERROR_str:
+ 1685 000000  55 6E 6B 		.pasciz "Unknown macro, try ? or (0) for help"
+ 1685         6E 6F 77 
+ 1685         6E 20 6D 
+ 1685         61 63 72 
+ 1685         6F 2C 20 
+ 1685         74 72 79 
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 53
+
+
+ 1685         20 3F 20 
+ 1685         6F 72 20 
+ 1685         28 30 29 
+ 1686              	
+ 1687            00 00 		; MSG_VOLTAGE_UNIT
+ 1688              		.section .text.MSG_VOLTAGE_UNIT, code
+ 1689              		.global _MSG_VOLTAGE_UNIT_str
+ 1690              	_MSG_VOLTAGE_UNIT_str:
+ 1691 000000  56 00    		.pasciz "V"
+ 1692              	
+ 1693               00 		; MSG_VREG_TOO_LOW
+ 1694              		.section .text.MSG_VREG_TOO_LOW, code
+ 1695              		.global _MSG_VREG_TOO_LOW_str
+ 1696              	_MSG_VREG_TOO_LOW_str:
+ 1697 000000  56 52 45 		.pasciz "VREG too low, is there a short?"
+ 1697         47 20 74 
+ 1697         6F 6F 20 
+ 1697         6C 6F 77 
+ 1697         2C 20 69 
+ 1697         73 20 74 
+ 1697         68 65 72 
+ 1697         65 20 61 
+ 1697         20 73 68 
+ 1698              	
+ 1699               00 		; MSG_WARNING_HEADER
+ 1700              		.section .text.MSG_WARNING_HEADER, code
+ 1701              		.global _MSG_WARNING_HEADER_str
+ 1702              	_MSG_WARNING_HEADER_str:
+ 1703 000000  57 61 72 		.pasciz "Warning: "
+ 1703         6E 69 6E 
+ 1703         67 3A 20 
+ 1703         00 
+ 1704              	
+ 1705            00 00 		; MSG_WARNING_SHORT_OR_NO_PULLUP
+ 1706              		.section .text.MSG_WARNING_SHORT_OR_NO_PULLUP, code
+ 1707              		.global _MSG_WARNING_SHORT_OR_NO_PULLUP_str
+ 1708              	_MSG_WARNING_SHORT_OR_NO_PULLUP_str:
+ 1709 000000  2A 53 68 		.pasciz "*Short or no pull-up "
+ 1709         6F 72 74 
+ 1709         20 6F 72 
+ 1709         20 6E 6F 
+ 1709         20 70 75 
+ 1709         6C 6C 2D 
+ 1709         75 70 20 
+ 1709         00 
+ 1710            00 00 	
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 54
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000001 __MPLAB_BUILD
+                            *ABS*:00000001 __24FJ64GA002
+                            *ABS*:00000001 __PIC24F
+                            *ABS*:00000001 __HAS_PMP
+                            *ABS*:00000011 __TARGET_DIVIDE_CYCLES
+                            *ABS*:00000001 __C30ELF
+    ../messages_v3.s:4      .text.BPMSG1022:00000000 _BPMSG1022_str
+    ../messages_v3.s:10     .text.BPMSG1023:00000000 _BPMSG1023_str
+    ../messages_v3.s:16     .text.BPMSG1024:00000000 _BPMSG1024_str
+    ../messages_v3.s:22     .text.BPMSG1025:00000000 _BPMSG1025_str
+    ../messages_v3.s:28     .text.BPMSG1026:00000000 _BPMSG1026_str
+    ../messages_v3.s:34     .text.BPMSG1027:00000000 _BPMSG1027_str
+    ../messages_v3.s:40     .text.BPMSG1028:00000000 _BPMSG1028_str
+    ../messages_v3.s:46     .text.BPMSG1029:00000000 _BPMSG1029_str
+    ../messages_v3.s:52     .text.BPMSG1030:00000000 _BPMSG1030_str
+    ../messages_v3.s:58     .text.BPMSG1033:00000000 _BPMSG1033_str
+    ../messages_v3.s:64     .text.BPMSG1034:00000000 _BPMSG1034_str
+    ../messages_v3.s:70     .text.BPMSG1037:00000000 _BPMSG1037_str
+    ../messages_v3.s:76     .text.BPMSG1038:00000000 _BPMSG1038_str
+    ../messages_v3.s:82     .text.BPMSG1039:00000000 _BPMSG1039_str
+    ../messages_v3.s:88     .text.BPMSG1040:00000000 _BPMSG1040_str
+    ../messages_v3.s:94     .text.BPMSG1041:00000000 _BPMSG1041_str
+    ../messages_v3.s:100    .text.BPMSG1047:00000000 _BPMSG1047_str
+    ../messages_v3.s:106    .text.BPMSG1048:00000000 _BPMSG1048_str
+    ../messages_v3.s:112    .text.BPMSG1049:00000000 _BPMSG1049_str
+    ../messages_v3.s:118    .text.BPMSG1050:00000000 _BPMSG1050_str
+    ../messages_v3.s:124    .text.BPMSG1051:00000000 _BPMSG1051_str
+    ../messages_v3.s:130    .text.BPMSG1052:00000000 _BPMSG1052_str
+    ../messages_v3.s:136    .text.BPMSG1064:00000000 _BPMSG1064_str
+    ../messages_v3.s:142    .text.BPMSG1066:00000000 _BPMSG1066_str
+    ../messages_v3.s:148    .text.BPMSG1067:00000000 _BPMSG1067_str
+    ../messages_v3.s:154    .text.BPMSG1068:00000000 _BPMSG1068_str
+    ../messages_v3.s:160    .text.BPMSG1069:00000000 _BPMSG1069_str
+    ../messages_v3.s:166    .text.BPMSG1070:00000000 _BPMSG1070_str
+    ../messages_v3.s:172    .text.BPMSG1084:00000000 _BPMSG1084_str
+    ../messages_v3.s:178    .text.BPMSG1085:00000000 _BPMSG1085_str
+    ../messages_v3.s:184    .text.BPMSG1086:00000000 _BPMSG1086_str
+    ../messages_v3.s:190    .text.BPMSG1087:00000000 _BPMSG1087_str
+    ../messages_v3.s:196    .text.BPMSG1088:00000000 _BPMSG1088_str
+    ../messages_v3.s:202    .text.BPMSG1089:00000000 _BPMSG1089_str
+    ../messages_v3.s:208    .text.BPMSG1091:00000000 _BPMSG1091_str
+    ../messages_v3.s:214    .text.BPMSG1092:00000000 _BPMSG1092_str
+    ../messages_v3.s:220    .text.BPMSG1093:00000000 _BPMSG1093_str
+    ../messages_v3.s:226    .text.BPMSG1094:00000000 _BPMSG1094_str
+    ../messages_v3.s:232    .text.BPMSG1095:00000000 _BPMSG1095_str
+    ../messages_v3.s:238    .text.BPMSG1098:00000000 _BPMSG1098_str
+    ../messages_v3.s:244    .text.BPMSG1099:00000000 _BPMSG1099_str
+    ../messages_v3.s:250    .text.BPMSG1100:00000000 _BPMSG1100_str
+    ../messages_v3.s:256    .text.BPMSG1101:00000000 _BPMSG1101_str
+    ../messages_v3.s:262    .text.BPMSG1103:00000000 _BPMSG1103_str
+    ../messages_v3.s:268    .text.BPMSG1104:00000000 _BPMSG1104_str
+    ../messages_v3.s:274    .text.BPMSG1105:00000000 _BPMSG1105_str
+    ../messages_v3.s:280    .text.BPMSG1106:00000000 _BPMSG1106_str
+    ../messages_v3.s:286    .text.BPMSG1107:00000000 _BPMSG1107_str
+    ../messages_v3.s:292    .text.BPMSG1108:00000000 _BPMSG1108_str
+    ../messages_v3.s:298    .text.BPMSG1109:00000000 _BPMSG1109_str
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 55
+
+
+    ../messages_v3.s:304    .text.BPMSG1110:00000000 _BPMSG1110_str
+    ../messages_v3.s:310    .text.BPMSG1111:00000000 _BPMSG1111_str
+    ../messages_v3.s:316    .text.BPMSG1112:00000000 _BPMSG1112_str
+    ../messages_v3.s:322    .text.BPMSG1114:00000000 _BPMSG1114_str
+    ../messages_v3.s:328    .text.BPMSG1115:00000000 _BPMSG1115_str
+    ../messages_v3.s:334    .text.BPMSG1117:00000000 _BPMSG1117_str
+    ../messages_v3.s:340    .text.BPMSG1118:00000000 _BPMSG1118_str
+    ../messages_v3.s:346    .text.BPMSG1119:00000000 _BPMSG1119_str
+    ../messages_v3.s:352    .text.BPMSG1120:00000000 _BPMSG1120_str
+    ../messages_v3.s:358    .text.BPMSG1121:00000000 _BPMSG1121_str
+    ../messages_v3.s:364    .text.BPMSG1123:00000000 _BPMSG1123_str
+    ../messages_v3.s:370    .text.BPMSG1124:00000000 _BPMSG1124_str
+    ../messages_v3.s:376    .text.BPMSG1126:00000000 _BPMSG1126_str
+    ../messages_v3.s:382    .text.BPMSG1127:00000000 _BPMSG1127_str
+    ../messages_v3.s:388    .text.BPMSG1128:00000000 _BPMSG1128_str
+    ../messages_v3.s:394    .text.BPMSG1134:00000000 _BPMSG1134_str
+    ../messages_v3.s:400    .text.BPMSG1135:00000000 _BPMSG1135_str
+    ../messages_v3.s:406    .text.BPMSG1136:00000000 _BPMSG1136_str
+    ../messages_v3.s:412    .text.BPMSG1137:00000000 _BPMSG1137_str
+    ../messages_v3.s:418    .text.BPMSG1163:00000000 _BPMSG1163_str
+    ../messages_v3.s:424    .text.BPMSG1164:00000000 _BPMSG1164_str
+    ../messages_v3.s:430    .text.BPMSG1165:00000000 _BPMSG1165_str
+    ../messages_v3.s:436    .text.BPMSG1166:00000000 _BPMSG1166_str
+    ../messages_v3.s:442    .text.BPMSG1167:00000000 _BPMSG1167_str
+    ../messages_v3.s:448    .text.BPMSG1168:00000000 _BPMSG1168_str
+    ../messages_v3.s:454    .text.BPMSG1169:00000000 _BPMSG1169_str
+    ../messages_v3.s:460    .text.BPMSG1170:00000000 _BPMSG1170_str
+    ../messages_v3.s:466    .text.BPMSG1171:00000000 _BPMSG1171_str
+    ../messages_v3.s:472    .text.BPMSG1172:00000000 _BPMSG1172_str
+    ../messages_v3.s:478    .text.BPMSG1173:00000000 _BPMSG1173_str
+    ../messages_v3.s:484    .text.BPMSG1174:00000000 _BPMSG1174_str
+    ../messages_v3.s:490    .text.BPMSG1175:00000000 _BPMSG1175_str
+    ../messages_v3.s:496    .text.BPMSG1176:00000000 _BPMSG1176_str
+    ../messages_v3.s:502    .text.BPMSG1177:00000000 _BPMSG1177_str
+    ../messages_v3.s:508    .text.BPMSG1178:00000000 _BPMSG1178_str
+    ../messages_v3.s:514    .text.BPMSG1179:00000000 _BPMSG1179_str
+    ../messages_v3.s:520    .text.BPMSG1180:00000000 _BPMSG1180_str
+    ../messages_v3.s:526    .text.BPMSG1181:00000000 _BPMSG1181_str
+    ../messages_v3.s:532    .text.BPMSG1182:00000000 _BPMSG1182_str
+    ../messages_v3.s:538    .text.BPMSG1183:00000000 _BPMSG1183_str
+    ../messages_v3.s:544    .text.BPMSG1184:00000000 _BPMSG1184_str
+    ../messages_v3.s:550    .text.BPMSG1185:00000000 _BPMSG1185_str
+    ../messages_v3.s:556    .text.BPMSG1186:00000000 _BPMSG1186_str
+    ../messages_v3.s:562    .text.BPMSG1209:00000000 _BPMSG1209_str
+    ../messages_v3.s:568    .text.BPMSG1210:00000000 _BPMSG1210_str
+    ../messages_v3.s:574    .text.BPMSG1211:00000000 _BPMSG1211_str
+    ../messages_v3.s:580    .text.BPMSG1212:00000000 _BPMSG1212_str
+    ../messages_v3.s:586    .text.BPMSG1213:00000000 _BPMSG1213_str
+    ../messages_v3.s:592    .text.BPMSG1214:00000000 _BPMSG1214_str
+    ../messages_v3.s:598    .text.BPMSG1216:00000000 _BPMSG1216_str
+    ../messages_v3.s:604    .text.BPMSG1219:00000000 _BPMSG1219_str
+    ../messages_v3.s:610    .text.BPMSG1220:00000000 _BPMSG1220_str
+    ../messages_v3.s:616    .text.BPMSG1221:00000000 _BPMSG1221_str
+    ../messages_v3.s:622    .text.BPMSG1222:00000000 _BPMSG1222_str
+    ../messages_v3.s:628    .text.BPMSG1223:00000000 _BPMSG1223_str
+    ../messages_v3.s:634    .text.BPMSG1226:00000000 _BPMSG1226_str
+    ../messages_v3.s:640    .text.BPMSG1227:00000000 _BPMSG1227_str
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 56
+
+
+    ../messages_v3.s:646    .text.BPMSG1228:00000000 _BPMSG1228_str
+    ../messages_v3.s:652    .text.BPMSG1233:00000000 _BPMSG1233_str
+    ../messages_v3.s:658    .text.BPMSG1234:00000000 _BPMSG1234_str
+    ../messages_v3.s:664    .text.BPMSG1245:00000000 _BPMSG1245_str
+    ../messages_v3.s:670    .text.BPMSG1251:00000000 _BPMSG1251_str
+    ../messages_v3.s:676    .text.BPMSG1252:00000000 _BPMSG1252_str
+    ../messages_v3.s:682    .text.BPMSG1254:00000000 _BPMSG1254_str
+    ../messages_v3.s:688    .text.BPMSG1255:00000000 _BPMSG1255_str
+    ../messages_v3.s:694    .text.HLP1000:00000000 _HLP1000_str
+    ../messages_v3.s:700    .text.HLP1001:00000000 _HLP1001_str
+    ../messages_v3.s:706    .text.HLP1002:00000000 _HLP1002_str
+    ../messages_v3.s:712    .text.HLP1003:00000000 _HLP1003_str
+    ../messages_v3.s:718    .text.HLP1004:00000000 _HLP1004_str
+    ../messages_v3.s:724    .text.HLP1005:00000000 _HLP1005_str
+    ../messages_v3.s:730    .text.HLP1006:00000000 _HLP1006_str
+    ../messages_v3.s:736    .text.HLP1007:00000000 _HLP1007_str
+    ../messages_v3.s:742    .text.HLP1008:00000000 _HLP1008_str
+    ../messages_v3.s:748    .text.HLP1009:00000000 _HLP1009_str
+    ../messages_v3.s:754    .text.HLP1010:00000000 _HLP1010_str
+    ../messages_v3.s:760    .text.HLP1011:00000000 _HLP1011_str
+    ../messages_v3.s:766    .text.HLP1012:00000000 _HLP1012_str
+    ../messages_v3.s:772    .text.HLP1013:00000000 _HLP1013_str
+    ../messages_v3.s:778    .text.HLP1014:00000000 _HLP1014_str
+    ../messages_v3.s:784    .text.HLP1015:00000000 _HLP1015_str
+    ../messages_v3.s:790    .text.HLP1016:00000000 _HLP1016_str
+    ../messages_v3.s:796    .text.HLP1017:00000000 _HLP1017_str
+    ../messages_v3.s:802    .text.HLP1018:00000000 _HLP1018_str
+    ../messages_v3.s:808    .text.HLP1019:00000000 _HLP1019_str
+    ../messages_v3.s:814    .text.HLP1020:00000000 _HLP1020_str
+    ../messages_v3.s:820    .text.HLP1021:00000000 _HLP1021_str
+    ../messages_v3.s:826    .text.HLP1022:00000000 _HLP1022_str
+    ../messages_v3.s:832    .text.MSG_1WIRE_ADDRESS_MACRO_HEADER:00000000 _MSG_1WIRE_ADDRESS_MACRO_HEADER_str
+    ../messages_v3.s:838    .text.MSG_1WIRE_ALARM_MACRO_NAME:00000000 _MSG_1WIRE_ALARM_MACRO_NAME_str
+    ../messages_v3.s:844    .text.MSG_1WIRE_BUS_RESET:00000000 _MSG_1WIRE_BUS_RESET_str
+    ../messages_v3.s:850    .text.MSG_1WIRE_LOOKUP_ID_HEADER:00000000 _MSG_1WIRE_LOOKUP_ID_HEADER_str
+    ../messages_v3.s:856    .text.MSG_1WIRE_MACRO_LIST:00000000 _MSG_1WIRE_MACRO_LIST_str
+    ../messages_v3.s:862    .text.MSG_1WIRE_MACRO_MENU_HEADER:00000000 _MSG_1WIRE_MACRO_MENU_HEADER_str
+    ../messages_v3.s:868    .text.MSG_1WIRE_MACRO_TABLE_HEADER:00000000 _MSG_1WIRE_MACRO_TABLE_HEADER_str
+    ../messages_v3.s:874    .text.MSG_1WIRE_MACRO_TABLE_TRAILER:00000000 _MSG_1WIRE_MACRO_TABLE_TRAILER_str
+    ../messages_v3.s:880    .text.MSG_1WIRE_MATCH_ROM_MACRO_NAME:00000000 _MSG_1WIRE_MATCH_ROM_MACRO_NAME_str
+    ../messages_v3.s:886    .text.MSG_1WIRE_MODE_IDENTIFIER:00000000 _MSG_1WIRE_MODE_IDENTIFIER_str
+    ../messages_v3.s:892    .text.MSG_1WIRE_NEXT_CLOCK_ALERT:00000000 _MSG_1WIRE_NEXT_CLOCK_ALERT_str
+    ../messages_v3.s:898    .text.MSG_1WIRE_NO_DEVICE:00000000 _MSG_1WIRE_NO_DEVICE_str
+    ../messages_v3.s:904    .text.MSG_1WIRE_NO_DEVICE_DETECTED:00000000 _MSG_1WIRE_NO_DEVICE_DETECTED_str
+    ../messages_v3.s:910    .text.MSG_1WIRE_PINS_STATE:00000000 _MSG_1WIRE_PINS_STATE_str
+    ../messages_v3.s:916    .text.MSG_1WIRE_READ_ROM_MACRO_NAME:00000000 _MSG_1WIRE_READ_ROM_MACRO_NAME_str
+    ../messages_v3.s:922    .text.MSG_1WIRE_SEARCH_MACRO_NAME:00000000 _MSG_1WIRE_SEARCH_MACRO_NAME_str
+    ../messages_v3.s:928    .text.MSG_1WIRE_SKIP_ROM_MACRO_NAME:00000000 _MSG_1WIRE_SKIP_ROM_MACRO_NAME_str
+    ../messages_v3.s:934    .text.MSG_1WIRE_SPEED_PROMPT:00000000 _MSG_1WIRE_SPEED_PROMPT_str
+    ../messages_v3.s:940    .text.MSG_ACK:00000000 _MSG_ACK_str
+    ../messages_v3.s:946    .text.MSG_ADC_VOLTAGE_PROBE_HEADER:00000000 _MSG_ADC_VOLTAGE_PROBE_HEADER_str
+    ../messages_v3.s:952    .text.MSG_ADC_VOLTMETER_MODE:00000000 _MSG_ADC_VOLTMETER_MODE_str
+    ../messages_v3.s:958    .text.MSG_ANY_KEY_TO_EXIT_PROMPT:00000000 _MSG_ANY_KEY_TO_EXIT_PROMPT_str
+    ../messages_v3.s:964    .text.MSG_BASE_CONVERTER_EQUAL_SIGN:00000000 _MSG_BASE_CONVERTER_EQUAL_SIGN_str
+    ../messages_v3.s:970    .text.MSG_BBIO_MODE_IDENTIFIER:00000000 _MSG_BBIO_MODE_IDENTIFIER_str
+    ../messages_v3.s:976    .text.MSG_BINARY_NUMBER_PREFIX:00000000 _MSG_BINARY_NUMBER_PREFIX_str
+    ../messages_v3.s:982    .text.MSG_CHIP_IDENTIFIER_CLONE:00000000 _MSG_CHIP_IDENTIFIER_CLONE_str
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 57
+
+
+    ../messages_v3.s:988    .text.MSG_CHIP_REVISION_A3:00000000 _MSG_CHIP_REVISION_A3_str
+    ../messages_v3.s:994    .text.MSG_CHIP_REVISION_B4:00000000 _MSG_CHIP_REVISION_B4_str
+    ../messages_v3.s:1000   .text.MSG_CHIP_REVISION_B5:00000000 _MSG_CHIP_REVISION_B5_str
+    ../messages_v3.s:1006   .text.MSG_CHIP_REVISION_B8:00000000 _MSG_CHIP_REVISION_B8_str
+    ../messages_v3.s:1012   .text.MSG_CHIP_REVISION_ID_BEGIN:00000000 _MSG_CHIP_REVISION_ID_BEGIN_str
+    ../messages_v3.s:1018   .text.MSG_CHIP_REVISION_ID_END_2:00000000 _MSG_CHIP_REVISION_ID_END_2_str
+    ../messages_v3.s:1024   .text.MSG_CHIP_REVISION_ID_END_4:00000000 _MSG_CHIP_REVISION_ID_END_4_str
+    ../messages_v3.s:1030   .text.MSG_CHIP_REVISION_UNKNOWN:00000000 _MSG_CHIP_REVISION_UNKNOWN_str
+    ../messages_v3.s:1036   .text.MSG_CLEAR_LINE_WITH_CR:00000000 _MSG_CLEAR_LINE_WITH_CR_str
+    ../messages_v3.s:1042   .text.MSG_CLUTCH_DISENGAGED:00000000 _MSG_CLUTCH_DISENGAGED_str
+    ../messages_v3.s:1048   .text.MSG_CLUTCH_ENGAGED:00000000 _MSG_CLUTCH_ENGAGED_str
+    ../messages_v3.s:1054   .text.MSG_COMMAND_HAS_NO_EFFECT:00000000 _MSG_COMMAND_HAS_NO_EFFECT_str
+    ../messages_v3.s:1060   .text.MSG_CURSOR_LEFT:00000000 _MSG_CURSOR_LEFT_str
+    ../messages_v3.s:1066   .text.MSG_CURSOR_LEFT_TWO:00000000 _MSG_CURSOR_LEFT_TWO_str
+    ../messages_v3.s:1072   .text.MSG_CURSOR_RIGHT:00000000 _MSG_CURSOR_RIGHT_str
+    ../messages_v3.s:1078   .text.MSG_DESTRUCTIVE_BACKSPACE:00000000 _MSG_DESTRUCTIVE_BACKSPACE_str
+    ../messages_v3.s:1084   .text.MSG_FINISH_SETUP_PROMPT:00000000 _MSG_FINISH_SETUP_PROMPT_str
+    ../messages_v3.s:1090   .text.MSG_HEXADECIMAL_NUMBER_PREFIX:00000000 _MSG_HEXADECIMAL_NUMBER_PREFIX_str
+    ../messages_v3.s:1096   .text.MSG_I2C_MODE_IDENTIFIER:00000000 _MSG_I2C_MODE_IDENTIFIER_str
+    ../messages_v3.s:1102   .text.MSG_I2C_PINS_STATE:00000000 _MSG_I2C_PINS_STATE_str
+    ../messages_v3.s:1108   .text.MSG_I2C_READ_ADDRESS_END:00000000 _MSG_I2C_READ_ADDRESS_END_str
+    ../messages_v3.s:1114   .text.MSG_I2C_START_BIT:00000000 _MSG_I2C_START_BIT_str
+    ../messages_v3.s:1120   .text.MSG_I2C_STOP_BIT:00000000 _MSG_I2C_STOP_BIT_str
+    ../messages_v3.s:1126   .text.MSG_I2C_WRITE_ADDRESS_END:00000000 _MSG_I2C_WRITE_ADDRESS_END_str
+    ../messages_v3.s:1132   .text.MSG_KEYBOARD_ERROR_NODATA:00000000 _MSG_KEYBOARD_ERROR_NODATA_str
+    ../messages_v3.s:1138   .text.MSG_KEYBOARD_ERROR_PARITY:00000000 _MSG_KEYBOARD_ERROR_PARITY_str
+    ../messages_v3.s:1144   .text.MSG_KEYBOARD_ERROR_STARTBIT:00000000 _MSG_KEYBOARD_ERROR_STARTBIT_str
+    ../messages_v3.s:1150   .text.MSG_KEYBOARD_ERROR_STOPBIT:00000000 _MSG_KEYBOARD_ERROR_STOPBIT_str
+    ../messages_v3.s:1156   .text.MSG_KEYBOARD_ERROR_TIMEOUT:00000000 _MSG_KEYBOARD_ERROR_TIMEOUT_str
+    ../messages_v3.s:1162   .text.MSG_KEYBOARD_ERROR_UNKNOWN:00000000 _MSG_KEYBOARD_ERROR_UNKNOWN_str
+    ../messages_v3.s:1168   .text.MSG_KEYBOARD_LIVE_INPUT_START:00000000 _MSG_KEYBOARD_LIVE_INPUT_START_str
+    ../messages_v3.s:1174   .text.MSG_KEYBOARD_MACRO_MENU:00000000 _MSG_KEYBOARD_MACRO_MENU_str
+    ../messages_v3.s:1180   .text.MSG_MODE_HEADER_END:00000000 _MSG_MODE_HEADER_END_str
+    ../messages_v3.s:1186   .text.MSG_NACK:00000000 _MSG_NACK_str
+    ../messages_v3.s:1192   .text.MSG_NO_VOLTAGE_ON_PULLUP_PIN:00000000 _MSG_NO_VOLTAGE_ON_PULLUP_PIN_str
+    ../messages_v3.s:1198   .text.MSG_OPENOCD_MODE_IDENTIFIER:00000000 _MSG_OPENOCD_MODE_IDENTIFIER_str
+    ../messages_v3.s:1204   .text.MSG_PIC_DELAY_PROMPT:00000000 _MSG_PIC_DELAY_PROMPT_str
+    ../messages_v3.s:1210   .text.MSG_PIC_DEVICE_ID:00000000 _MSG_PIC_DEVICE_ID_str
+    ../messages_v3.s:1216   .text.MSG_PIC_EXIT_MODE:00000000 _MSG_PIC_EXIT_MODE_str
+    ../messages_v3.s:1222   .text.MSG_PIC_MACRO_MENU:00000000 _MSG_PIC_MACRO_MENU_str
+    ../messages_v3.s:1228   .text.MSG_PIC_MACRO_NOT_IMPLEMENTED:00000000 _MSG_PIC_MACRO_NOT_IMPLEMENTED_str
+    ../messages_v3.s:1234   .text.MSG_PIC_MODE_COMMAND:00000000 _MSG_PIC_MODE_COMMAND_str
+    ../messages_v3.s:1240   .text.MSG_PIC_MODE_DATA:00000000 _MSG_PIC_MODE_DATA_str
+    ../messages_v3.s:1246   .text.MSG_PIC_MODE_HEADER:00000000 _MSG_PIC_MODE_HEADER_str
+    ../messages_v3.s:1252   .text.MSG_PIC_MODE_IDENTIFIER:00000000 _MSG_PIC_MODE_IDENTIFIER_str
+    ../messages_v3.s:1258   .text.MSG_PIC_MODE_PROMPT:00000000 _MSG_PIC_MODE_PROMPT_str
+    ../messages_v3.s:1264   .text.MSG_PIC_NO_READ:00000000 _MSG_PIC_NO_READ_str
+    ../messages_v3.s:1270   .text.MSG_PIC_PINS_STATE:00000000 _MSG_PIC_PINS_STATE_str
+    ../messages_v3.s:1276   .text.MSG_PIC_REVISION_ID:00000000 _MSG_PIC_REVISION_ID_str
+    ../messages_v3.s:1282   .text.MSG_PIC_UNKNOWN_MODE:00000000 _MSG_PIC_UNKNOWN_MODE_str
+    ../messages_v3.s:1288   .text.MSG_PIN_OUTPUT_TYPE_PROMPT:00000000 _MSG_PIN_OUTPUT_TYPE_PROMPT_str
+    ../messages_v3.s:1294   .text.MSG_POWER_SUPPLIES_OFF:00000000 _MSG_POWER_SUPPLIES_OFF_str
+    ../messages_v3.s:1300   .text.MSG_POWER_SUPPLIES_ON:00000000 _MSG_POWER_SUPPLIES_ON_str
+    ../messages_v3.s:1306   .text.MSG_PWM_FREQUENCY_TOO_LOW:00000000 _MSG_PWM_FREQUENCY_TOO_LOW_str
+    ../messages_v3.s:1312   .text.MSG_PWM_HZ_MARKER:00000000 _MSG_PWM_HZ_MARKER_str
+    ../messages_v3.s:1318   .text.MSG_RAW2WIRE_ATR_DATA_UNITS_HEADER:00000000 _MSG_RAW2WIRE_ATR_DATA_UNITS_HEADER_str
+    ../messages_v3.s:1324   .text.MSG_RAW2WIRE_ATR_DATA_UNITS_NO_INDICATION:00000000 _MSG_RAW2WIRE_ATR_DATA_UNITS_NO_INDICATION_str
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 58
+
+
+    ../messages_v3.s:1330   .text.MSG_RAW2WIRE_ATR_DATA_UNIT_LENGTH:00000000 _MSG_RAW2WIRE_ATR_DATA_UNIT_LENGTH_str
+    ../messages_v3.s:1336   .text.MSG_RAW2WIRE_ATR_PROTOCOL_2WIRE:00000000 _MSG_RAW2WIRE_ATR_PROTOCOL_2WIRE_str
+    ../messages_v3.s:1342   .text.MSG_RAW2WIRE_ATR_PROTOCOL_3WIRE:00000000 _MSG_RAW2WIRE_ATR_PROTOCOL_3WIRE_str
+    ../messages_v3.s:1348   .text.MSG_RAW2WIRE_ATR_PROTOCOL_HEADER:00000000 _MSG_RAW2WIRE_ATR_PROTOCOL_HEADER_str
+    ../messages_v3.s:1354   .text.MSG_RAW2WIRE_ATR_PROTOCOL_SERIAL:00000000 _MSG_RAW2WIRE_ATR_PROTOCOL_SERIAL_str
+    ../messages_v3.s:1360   .text.MSG_RAW2WIRE_ATR_PROTOCOL_UNKNOWN:00000000 _MSG_RAW2WIRE_ATR_PROTOCOL_UNKNOWN_str
+    ../messages_v3.s:1366   .text.MSG_RAW2WIRE_ATR_READ_TYPE_HEADER:00000000 _MSG_RAW2WIRE_ATR_READ_TYPE_HEADER_str
+    ../messages_v3.s:1372   .text.MSG_RAW2WIRE_ATR_READ_TYPE_TO_END:00000000 _MSG_RAW2WIRE_ATR_READ_TYPE_TO_END_str
+    ../messages_v3.s:1378   .text.MSG_RAW2WIRE_ATR_READ_TYPE_VARIABLE_LENGTH:00000000 _MSG_RAW2WIRE_ATR_READ_TYPE_VARIABLE_LENGTH_str
+    ../messages_v3.s:1384   .text.MSG_RAW2WIRE_ATR_REPLY_HEADER:00000000 _MSG_RAW2WIRE_ATR_REPLY_HEADER_str
+    ../messages_v3.s:1390   .text.MSG_RAW2WIRE_ATR_RFU:00000000 _MSG_RAW2WIRE_ATR_RFU_str
+    ../messages_v3.s:1396   .text.MSG_RAW2WIRE_ATR_TRIGGER_INFO:00000000 _MSG_RAW2WIRE_ATR_TRIGGER_INFO_str
+    ../messages_v3.s:1402   .text.MSG_RAW2WIRE_I2C_START:00000000 _MSG_RAW2WIRE_I2C_START_str
+    ../messages_v3.s:1408   .text.MSG_RAW2WIRE_I2C_STOP:00000000 _MSG_RAW2WIRE_I2C_STOP_str
+    ../messages_v3.s:1414   .text.MSG_RAW2WIRE_MACRO_MENU:00000000 _MSG_RAW2WIRE_MACRO_MENU_str
+    ../messages_v3.s:1420   .text.MSG_RAW2WIRE_MODE_HEADER:00000000 _MSG_RAW2WIRE_MODE_HEADER_str
+    ../messages_v3.s:1426   .text.MSG_RAW3WIRE_MODE_HEADER:00000000 _MSG_RAW3WIRE_MODE_HEADER_str
+    ../messages_v3.s:1432   .text.MSG_RAW_BRG_VALUE_INPUT:00000000 _MSG_RAW_BRG_VALUE_INPUT_str
+    ../messages_v3.s:1438   .text.MSG_RAW_MODE_IDENTIFIER:00000000 _MSG_RAW_MODE_IDENTIFIER_str
+    ../messages_v3.s:1444   .text.MSG_READ_HEADER:00000000 _MSG_READ_HEADER_str
+    ../messages_v3.s:1450   .text.MSG_SNIFFER_MESSAGE:00000000 _MSG_SNIFFER_MESSAGE_str
+    ../messages_v3.s:1456   .text.MSG_SOFTWARE_MODE_SPEED_PROMPT:00000000 _MSG_SOFTWARE_MODE_SPEED_PROMPT_str
+    ../messages_v3.s:1462   .text.MSG_SPI_COULD_NOT_KEEP_UP:00000000 _MSG_SPI_COULD_NOT_KEEP_UP_str
+    ../messages_v3.s:1468   .text.MSG_SPI_CS_DISABLED:00000000 _MSG_SPI_CS_DISABLED_str
+    ../messages_v3.s:1474   .text.MSG_SPI_CS_ENABLED:00000000 _MSG_SPI_CS_ENABLED_str
+    ../messages_v3.s:1480   .text.MSG_SPI_CS_MODE_PROMPT:00000000 _MSG_SPI_CS_MODE_PROMPT_str
+    ../messages_v3.s:1486   .text.MSG_SPI_EDGE_PROMPT:00000000 _MSG_SPI_EDGE_PROMPT_str
+    ../messages_v3.s:1492   .text.MSG_SPI_MACRO_MENU:00000000 _MSG_SPI_MACRO_MENU_str
+    ../messages_v3.s:1498   .text.MSG_SPI_MODE_HEADER_START:00000000 _MSG_SPI_MODE_HEADER_START_str
+    ../messages_v3.s:1504   .text.MSG_SPI_MODE_IDENTIFIER:00000000 _MSG_SPI_MODE_IDENTIFIER_str
+    ../messages_v3.s:1510   .text.MSG_SPI_PINS_STATE:00000000 _MSG_SPI_PINS_STATE_str
+    ../messages_v3.s:1516   .text.MSG_SPI_POLARITY_PROMPT:00000000 _MSG_SPI_POLARITY_PROMPT_str
+    ../messages_v3.s:1522   .text.MSG_SPI_SAMPLE_PROMPT:00000000 _MSG_SPI_SAMPLE_PROMPT_str
+    ../messages_v3.s:1528   .text.MSG_SPI_SPEED_PROMPT:00000000 _MSG_SPI_SPEED_PROMPT_str
+    ../messages_v3.s:1534   .text.MSG_UART_BAUD_CALCULATED:00000000 _MSG_UART_BAUD_CALCULATED_str
+    ../messages_v3.s:1540   .text.MSG_UART_BAUD_ESTIMATED:00000000 _MSG_UART_BAUD_ESTIMATED_str
+    ../messages_v3.s:1546   .text.MSG_UART_BAUD_OVERFLOW:00000000 _MSG_UART_BAUD_OVERFLOW_str
+    ../messages_v3.s:1552   .text.MSG_UART_BITS_PARITY_PROMPT:00000000 _MSG_UART_BITS_PARITY_PROMPT_str
+    ../messages_v3.s:1558   .text.MSG_UART_BITS_STOP_PROMPT:00000000 _MSG_UART_BITS_STOP_PROMPT_str
+    ../messages_v3.s:1564   .text.MSG_UART_BPS_MARKER:00000000 _MSG_UART_BPS_MARKER_str
+    ../messages_v3.s:1570   .text.MSG_UART_BRIDGE:00000000 _MSG_UART_BRIDGE_str
+    ../messages_v3.s:1576   .text.MSG_UART_BRIDGE_EXIT:00000000 _MSG_UART_BRIDGE_EXIT_str
+    ../messages_v3.s:1582   .text.MSG_UART_EARLY_EXIT:00000000 _MSG_UART_EARLY_EXIT_str
+    ../messages_v3.s:1588   .text.MSG_UART_FAILED_NO_DATA:00000000 _MSG_UART_FAILED_NO_DATA_str
+    ../messages_v3.s:1594   .text.MSG_UART_FRAMING_ERROR:00000000 _MSG_UART_FRAMING_ERROR_str
+    ../messages_v3.s:1600   .text.MSG_UART_LIVE_DISPLAY_START:00000000 _MSG_UART_LIVE_DISPLAY_START_str
+    ../messages_v3.s:1606   .text.MSG_UART_LIVE_DISPLAY_STOP:00000000 _MSG_UART_LIVE_DISPLAY_STOP_str
+    ../messages_v3.s:1612   .text.MSG_UART_MACRO_MENU:00000000 _MSG_UART_MACRO_MENU_str
+    ../messages_v3.s:1618   .text.MSG_UART_MODE_HEADER:00000000 _MSG_UART_MODE_HEADER_str
+    ../messages_v3.s:1624   .text.MSG_UART_MODE_IDENTIFIER:00000000 _MSG_UART_MODE_IDENTIFIER_str
+    ../messages_v3.s:1630   .text.MSG_UART_OVERRUN_ERROR:00000000 _MSG_UART_OVERRUN_ERROR_str
+    ../messages_v3.s:1636   .text.MSG_UART_PARITY_ERROR:00000000 _MSG_UART_PARITY_ERROR_str
+    ../messages_v3.s:1642   .text.MSG_UART_PINS_STATE:00000000 _MSG_UART_PINS_STATE_str
+    ../messages_v3.s:1648   .text.MSG_UART_POLARITY_PROMPT:00000000 _MSG_UART_POLARITY_PROMPT_str
+    ../messages_v3.s:1654   .text.MSG_UART_POSSIBLE_OVERFLOW:00000000 _MSG_UART_POSSIBLE_OVERFLOW_str
+    ../messages_v3.s:1660   .text.MSG_UART_RAW_BRG_PROMPT:00000000 _MSG_UART_RAW_BRG_PROMPT_str
+    ../messages_v3.s:1666   .text.MSG_UART_RAW_UART_INPUT:00000000 _MSG_UART_RAW_UART_INPUT_str
+MPLAB XC16 ASSEMBLY Listing:  ../messages_v3.s 			page 59
+
+
+    ../messages_v3.s:1672   .text.MSG_UART_SET_PORT_SPEED:00000000 _MSG_UART_SET_PORT_SPEED_str
+    ../messages_v3.s:1678   .text.MSG_UART_WAITING_ACTIVITY:00000000 _MSG_UART_WAITING_ACTIVITY_str
+    ../messages_v3.s:1684   .text.MSG_UNKNOWN_MACRO_ERROR:00000000 _MSG_UNKNOWN_MACRO_ERROR_str
+    ../messages_v3.s:1690   .text.MSG_VOLTAGE_UNIT:00000000 _MSG_VOLTAGE_UNIT_str
+    ../messages_v3.s:1696   .text.MSG_VREG_TOO_LOW:00000000 _MSG_VREG_TOO_LOW_str
+    ../messages_v3.s:1702   .text.MSG_WARNING_HEADER:00000000 _MSG_WARNING_HEADER_str
+    ../messages_v3.s:1708   .text.MSG_WARNING_SHORT_OR_NO_PULLUP:00000000 _MSG_WARNING_SHORT_OR_NO_PULLUP_str
+
+NO UNDEFINED SYMBOLS
+
+EQUATE SYMBOLS
+                   __MPLAB_BUILD = 0x1
+                   __24FJ64GA002 = 0x1
+                        __PIC24F = 0x1
+                       __HAS_PMP = 0x1
+          __TARGET_DIVIDE_CYCLES = 0x11
+                        __C30ELF = 0x1
+
+SECTION INFORMATION:
+
+Section        Length (PC units)   Length (bytes) (dec)
+-------        -----------------   --------------------
+.text                          0               0  (0)
+.text.BPMSG1022             0x14            0x1e  (30)
+.text.BPMSG1023             0x12            0x1b  (27)
+.text.BPMSG1024             0x10            0x18  (24)
+.text.BPMSG1025             0x12            0x1b  (27)
+.text.BPMSG1026              0xc            0x12  (18)
+.text.BPMSG1027              0xa             0xf  (15)
+.text.BPMSG1028              0xa             0xf  (15)
+.text.BPMSG1029              0xc            0x12  (18)
+.text.BPMSG1030              0xc            0x12  (18)
+.text.BPMSG1033              0xc            0x12  (18)
+.text.BPMSG1034              0x8             0xc  (12)
+.text.BPMSG1037             0x16            0x21  (33)
+.text.BPMSG1038              0xc            0x12  (18)
+.text.BPMSG1039              0xa             0xf  (15)
+.text.BPMSG1040              0x6             0x9  (9)
+.text.BPMSG1041              0x6             0x9  (9)
+.text.BPMSG1047              0x6             0x9  (9)
+.text.BPMSG1048              0x6             0x9  (9)
+.text.BPMSG1049              0x8             0xc  (12)
+.text.BPMSG1050              0x6             0x9  (9)
+.text.BPMSG1051              0x8             0xc  (12)
+.text.BPMSG1052              0xa             0xf  (15)
+.text.BPMSG1064             0x1a            0x27  (39)
+.text.BPMSG1066             0x24            0x36  (54)
+.text.BPMSG1067             0x1e            0x2d  (45)
+.text.BPMSG1068              0xc            0x12  (18)
+.text.BPMSG1069             0x24            0x36  (54)
+.text.BPMSG1070             0x20            0x30  (48)
+.text.BPMSG1084              0x6             0x9  (9)
+.text.BPMSG1085              0x4             0x6  (6)
+.text.BPMSG1086             0x10            0x18  (24)
+.text.BPMSG1087             0x10            0x18  (24)
+.text.BPMSG1088             0x14            0x1e  (30)
+.text.BPMSG1089             0x10            0x18  (24)
+.text.BPMSG1091              0xe            0x15  (21)
+.text.BPMSG1092             0x12            0x1b  (27)
+.text.BPMSG1093              0x4             0x6  (6)
+.text.BPMSG1094              0x8             0xc  (12)
+.text.BPMSG1095             0x10            0x18  (24)
+.text.BPMSG1098              0xa             0xf  (15)
+.text.BPMSG1099              0x6             0x9  (9)
+.text.BPMSG1100              0x2             0x3  (3)
+.text.BPMSG1101              0x6             0x9  (9)
+.text.BPMSG1103              0x6             0x9  (9)
+.text.BPMSG1104              0x6             0x9  (9)
+.text.BPMSG1105              0xa             0xf  (15)
+.text.BPMSG1106              0xa             0xf  (15)
+.text.BPMSG1107              0xc            0x12  (18)
+.text.BPMSG1108              0xa             0xf  (15)
+.text.BPMSG1109              0x8             0xc  (12)
+.text.BPMSG1110             0x10            0x18  (24)
+.text.BPMSG1111             0x10            0x18  (24)
+.text.BPMSG1112              0xa             0xf  (15)
+.text.BPMSG1114             0x10            0x18  (24)
+.text.BPMSG1115              0x6             0x9  (9)
+.text.BPMSG1117              0x6             0x9  (9)
+.text.BPMSG1118             0x16            0x21  (33)
+.text.BPMSG1119              0xa             0xf  (15)
+.text.BPMSG1120             0x18            0x24  (36)
+.text.BPMSG1121             0x16            0x21  (33)
+.text.BPMSG1123             0x14            0x1e  (30)
+.text.BPMSG1124             0x14            0x1e  (30)
+.text.BPMSG1126              0xa             0xf  (15)
+.text.BPMSG1127             0x18            0x24  (36)
+.text.BPMSG1128              0xe            0x15  (21)
+.text.BPMSG1134              0xe            0x15  (21)
+.text.BPMSG1135              0xa             0xf  (15)
+.text.BPMSG1136              0x4             0x6  (6)
+.text.BPMSG1137              0x6             0x9  (9)
+.text.BPMSG1163             0x2c            0x42  (66)
+.text.BPMSG1164              0x4             0x6  (6)
+.text.BPMSG1165              0x4             0x6  (6)
+.text.BPMSG1166              0x6             0x9  (9)
+.text.BPMSG1167              0x6             0x9  (9)
+.text.BPMSG1168              0x6             0x9  (9)
+.text.BPMSG1169              0x4             0x6  (6)
+.text.BPMSG1170              0xa             0xf  (15)
+.text.BPMSG1171              0x2             0x3  (3)
+.text.BPMSG1172              0x4             0x6  (6)
+.text.BPMSG1173              0x4             0x6  (6)
+.text.BPMSG1174              0x4             0x6  (6)
+.text.BPMSG1175              0x6             0x9  (9)
+.text.BPMSG1176              0x8             0xc  (12)
+.text.BPMSG1177              0x8             0xc  (12)
+.text.BPMSG1178             0x16            0x21  (33)
+.text.BPMSG1179              0x6             0x9  (9)
+.text.BPMSG1180              0x6             0x9  (9)
+.text.BPMSG1181              0x4             0x6  (6)
+.text.BPMSG1182              0x4             0x6  (6)
+.text.BPMSG1183              0x4             0x6  (6)
+.text.BPMSG1184              0x2             0x3  (3)
+.text.BPMSG1185              0x4             0x6  (6)
+.text.BPMSG1186              0x4             0x6  (6)
+.text.BPMSG1209             0x18            0x24  (36)
+.text.BPMSG1210              0x6             0x9  (9)
+.text.BPMSG1211             0x14            0x1e  (30)
+.text.BPMSG1212              0x2             0x3  (3)
+.text.BPMSG1213              0xe            0x15  (21)
+.text.BPMSG1214              0xe            0x15  (21)
+.text.BPMSG1216             0x14            0x1e  (30)
+.text.BPMSG1219             0x66            0x99  (153)
+.text.BPMSG1220             0x1a            0x27  (39)
+.text.BPMSG1221              0x4             0x6  (6)
+.text.BPMSG1222              0x4             0x6  (6)
+.text.BPMSG1223              0x8             0xc  (12)
+.text.BPMSG1226              0x8             0xc  (12)
+.text.BPMSG1227             0x12            0x1b  (27)
+.text.BPMSG1228              0x8             0xc  (12)
+.text.BPMSG1233             0x30            0x48  (72)
+.text.BPMSG1234              0x4             0x6  (6)
+.text.BPMSG1245              0x8             0xc  (12)
+.text.BPMSG1251              0xc            0x12  (18)
+.text.BPMSG1252             0x14            0x1e  (30)
+.text.BPMSG1254              0xe            0x15  (21)
+.text.BPMSG1255              0xa             0xf  (15)
+.text.HLP1000               0x18            0x24  (36)
+.text.HLP1001               0x34            0x4e  (78)
+.text.HLP1002               0x1a            0x27  (39)
+.text.HLP1003               0x1c            0x2a  (42)
+.text.HLP1004               0x10            0x18  (24)
+.text.HLP1005               0x14            0x1e  (30)
+.text.HLP1006               0x1c            0x2a  (42)
+.text.HLP1007               0x14            0x1e  (30)
+.text.HLP1008               0x20            0x30  (48)
+.text.HLP1009               0x10            0x18  (24)
+.text.HLP1010               0x18            0x24  (36)
+.text.HLP1011               0x20            0x30  (48)
+.text.HLP1012               0x14            0x1e  (30)
+.text.HLP1013               0x18            0x24  (36)
+.text.HLP1014               0x14            0x1e  (30)
+.text.HLP1015               0x1a            0x27  (39)
+.text.HLP1016               0x18            0x24  (36)
+.text.HLP1017               0x12            0x1b  (27)
+.text.HLP1018               0x16            0x21  (33)
+.text.HLP1019               0x1c            0x2a  (42)
+.text.HLP1020               0x1a            0x27  (39)
+.text.HLP1021               0x26            0x39  (57)
+.text.HLP1022               0x2a            0x3f  (63)
+.text.MSG_1WIRE_ADDRESS_MACRO_HEADER              0xa             0xf  (15)
+.text.MSG_1WIRE_ALARM_MACRO_NAME              0xe            0x15  (21)
+.text.MSG_1WIRE_BUS_RESET              0x8             0xc  (12)
+.text.MSG_1WIRE_LOOKUP_ID_HEADER              0x6             0x9  (9)
+.text.MSG_1WIRE_MACRO_LIST             0x8e            0xd5  (213)
+.text.MSG_1WIRE_MACRO_MENU_HEADER              0xa             0xf  (15)
+.text.MSG_1WIRE_MACRO_TABLE_HEADER             0x10            0x18  (24)
+.text.MSG_1WIRE_MACRO_TABLE_TRAILER             0x1e            0x2d  (45)
+.text.MSG_1WIRE_MATCH_ROM_MACRO_NAME              0xc            0x12  (18)
+.text.MSG_1WIRE_MODE_IDENTIFIER              0x4             0x6  (6)
+.text.MSG_1WIRE_NEXT_CLOCK_ALERT             0x1a            0x27  (39)
+.text.MSG_1WIRE_NO_DEVICE             0x1c            0x2a  (42)
+.text.MSG_1WIRE_NO_DEVICE_DETECTED              0xe            0x15  (21)
+.text.MSG_1WIRE_PINS_STATE              0x8             0xc  (12)
+.text.MSG_1WIRE_READ_ROM_MACRO_NAME              0xc            0x12  (18)
+.text.MSG_1WIRE_SEARCH_MACRO_NAME              0xa             0xf  (15)
+.text.MSG_1WIRE_SKIP_ROM_MACRO_NAME              0xc            0x12  (18)
+.text.MSG_1WIRE_SPEED_PROMPT             0x2a            0x3f  (63)
+.text.MSG_ACK                0x4             0x6  (6)
+.text.MSG_ADC_VOLTAGE_PROBE_HEADER              0xc            0x12  (18)
+.text.MSG_ADC_VOLTMETER_MODE              0xa             0xf  (15)
+.text.MSG_ANY_KEY_TO_EXIT_PROMPT              0xc            0x12  (18)
+.text.MSG_BASE_CONVERTER_EQUAL_SIGN              0x4             0x6  (6)
+.text.MSG_BBIO_MODE_IDENTIFIER              0x4             0x6  (6)
+.text.MSG_BINARY_NUMBER_PREFIX              0x2             0x3  (3)
+.text.MSG_CHIP_IDENTIFIER_CLONE             0x10            0x18  (24)
+.text.MSG_CHIP_REVISION_A3              0x2             0x3  (3)
+.text.MSG_CHIP_REVISION_B4              0x2             0x3  (3)
+.text.MSG_CHIP_REVISION_B5              0x2             0x3  (3)
+.text.MSG_CHIP_REVISION_B8              0x2             0x3  (3)
+.text.MSG_CHIP_REVISION_ID_BEGIN              0xa             0xf  (15)
+.text.MSG_CHIP_REVISION_ID_END_2              0x2             0x3  (3)
+.text.MSG_CHIP_REVISION_ID_END_4              0x2             0x3  (3)
+.text.MSG_CHIP_REVISION_UNKNOWN              0x4             0x6  (6)
+.text.MSG_CLEAR_LINE_WITH_CR              0x4             0x6  (6)
+.text.MSG_CLUTCH_DISENGAGED              0xe            0x15  (21)
+.text.MSG_CLUTCH_ENGAGED              0xc            0x12  (18)
+.text.MSG_COMMAND_HAS_NO_EFFECT             0x18            0x24  (36)
+.text.MSG_CURSOR_LEFT              0x4             0x6  (6)
+.text.MSG_CURSOR_LEFT_TWO              0x4             0x6  (6)
+.text.MSG_CURSOR_RIGHT              0x4             0x6  (6)
+.text.MSG_DESTRUCTIVE_BACKSPACE              0x4             0x6  (6)
+.text.MSG_FINISH_SETUP_PROMPT             0x2a            0x3f  (63)
+.text.MSG_HEXADECIMAL_NUMBER_PREFIX              0x2             0x3  (3)
+.text.MSG_I2C_MODE_IDENTIFIER              0x4             0x6  (6)
+.text.MSG_I2C_PINS_STATE              0x8             0xc  (12)
+.text.MSG_I2C_READ_ADDRESS_END              0x4             0x6  (6)
+.text.MSG_I2C_START_BIT              0xa             0xf  (15)
+.text.MSG_I2C_STOP_BIT              0xa             0xf  (15)
+.text.MSG_I2C_WRITE_ADDRESS_END              0x4             0x6  (6)
+.text.MSG_KEYBOARD_ERROR_NODATA              0x4             0x6  (6)
+.text.MSG_KEYBOARD_ERROR_PARITY              0xa             0xf  (15)
+.text.MSG_KEYBOARD_ERROR_STARTBIT              0xc            0x12  (18)
+.text.MSG_KEYBOARD_ERROR_STOPBIT              0xc            0x12  (18)
+.text.MSG_KEYBOARD_ERROR_TIMEOUT              0x6             0x9  (9)
+.text.MSG_KEYBOARD_ERROR_UNKNOWN              0xa             0xf  (15)
+.text.MSG_KEYBOARD_LIVE_INPUT_START             0x14            0x1e  (30)
+.text.MSG_KEYBOARD_MACRO_MENU             0x1a            0x27  (39)
+.text.MSG_MODE_HEADER_END              0x2             0x3  (3)
+.text.MSG_NACK               0x4             0x6  (6)
+.text.MSG_NO_VOLTAGE_ON_PULLUP_PIN             0x18            0x24  (36)
+.text.MSG_OPENOCD_MODE_IDENTIFIER              0x4             0x6  (6)
+.text.MSG_PIC_DELAY_PROMPT              0x6             0x9  (9)
+.text.MSG_PIC_DEVICE_ID              0x6             0x9  (9)
+.text.MSG_PIC_EXIT_MODE             0x16            0x21  (33)
+.text.MSG_PIC_MACRO_MENU              0xa             0xf  (15)
+.text.MSG_PIC_MACRO_NOT_IMPLEMENTED             0x10            0x18  (24)
+.text.MSG_PIC_MODE_COMMAND              0x4             0x6  (6)
+.text.MSG_PIC_MODE_DATA              0x4             0x6  (6)
+.text.MSG_PIC_MODE_HEADER              0xa             0xf  (15)
+.text.MSG_PIC_MODE_IDENTIFIER              0x4             0x6  (6)
+.text.MSG_PIC_MODE_PROMPT             0x18            0x24  (36)
+.text.MSG_PIC_NO_READ              0x6             0x9  (9)
+.text.MSG_PIC_PINS_STATE              0x8             0xc  (12)
+.text.MSG_PIC_REVISION_ID              0x6             0x9  (9)
+.text.MSG_PIC_UNKNOWN_MODE              0xa             0xf  (15)
+.text.MSG_PIN_OUTPUT_TYPE_PROMPT             0x36            0x51  (81)
+.text.MSG_POWER_SUPPLIES_OFF              0xe            0x15  (21)
+.text.MSG_POWER_SUPPLIES_ON              0xc            0x12  (18)
+.text.MSG_PWM_FREQUENCY_TOO_LOW             0x1a            0x27  (39)
+.text.MSG_PWM_HZ_MARKER              0x4             0x6  (6)
+.text.MSG_RAW2WIRE_ATR_DATA_UNITS_HEADER              0xa             0xf  (15)
+.text.MSG_RAW2WIRE_ATR_DATA_UNITS_NO_INDICATION              0xa             0xf  (15)
+.text.MSG_RAW2WIRE_ATR_DATA_UNIT_LENGTH             0x12            0x1b  (27)
+.text.MSG_RAW2WIRE_ATR_PROTOCOL_2WIRE              0x6             0x9  (9)
+.text.MSG_RAW2WIRE_ATR_PROTOCOL_3WIRE              0x6             0x9  (9)
+.text.MSG_RAW2WIRE_ATR_PROTOCOL_HEADER              0x8             0xc  (12)
+.text.MSG_RAW2WIRE_ATR_PROTOCOL_SERIAL              0x6             0x9  (9)
+.text.MSG_RAW2WIRE_ATR_PROTOCOL_UNKNOWN              0x6             0x9  (9)
+.text.MSG_RAW2WIRE_ATR_READ_TYPE_HEADER              0x8             0xc  (12)
+.text.MSG_RAW2WIRE_ATR_READ_TYPE_TO_END              0x6             0x9  (9)
+.text.MSG_RAW2WIRE_ATR_READ_TYPE_VARIABLE_LENGTH              0xc            0x12  (18)
+.text.MSG_RAW2WIRE_ATR_REPLY_HEADER             0x20            0x30  (48)
+.text.MSG_RAW2WIRE_ATR_RFU              0x4             0x6  (6)
+.text.MSG_RAW2WIRE_ATR_TRIGGER_INFO             0x2c            0x42  (66)
+.text.MSG_RAW2WIRE_I2C_START              0x6             0x9  (9)
+.text.MSG_RAW2WIRE_I2C_STOP              0x6             0x9  (9)
+.text.MSG_RAW2WIRE_MACRO_MENU             0x26            0x39  (57)
+.text.MSG_RAW2WIRE_MODE_HEADER              0xc            0x12  (18)
+.text.MSG_RAW3WIRE_MODE_HEADER              0xe            0x15  (21)
+.text.MSG_RAW_BRG_VALUE_INPUT             0x10            0x18  (24)
+.text.MSG_RAW_MODE_IDENTIFIER              0x4             0x6  (6)
+.text.MSG_READ_HEADER              0x6             0x9  (9)
+.text.MSG_SNIFFER_MESSAGE              0x6             0x9  (9)
+.text.MSG_SOFTWARE_MODE_SPEED_PROMPT             0x28            0x3c  (60)
+.text.MSG_SPI_COULD_NOT_KEEP_UP              0xc            0x12  (18)
+.text.MSG_SPI_CS_DISABLED              0x8             0xc  (12)
+.text.MSG_SPI_CS_ENABLED              0x8             0xc  (12)
+.text.MSG_SPI_CS_MODE_PROMPT             0x14            0x1e  (30)
+.text.MSG_SPI_EDGE_PROMPT             0x2e            0x45  (69)
+.text.MSG_SPI_MACRO_MENU             0x8a            0xcf  (207)
+.text.MSG_SPI_MODE_HEADER_START             0x16            0x21  (33)
+.text.MSG_SPI_MODE_IDENTIFIER              0x4             0x6  (6)
+.text.MSG_SPI_PINS_STATE              0xc            0x12  (18)
+.text.MSG_SPI_POLARITY_PROMPT             0x24            0x36  (54)
+.text.MSG_SPI_SAMPLE_PROMPT             0x22            0x33  (51)
+.text.MSG_SPI_SPEED_PROMPT             0x68            0x9c  (156)
+.text.MSG_UART_BAUD_CALCULATED              0xc            0x12  (18)
+.text.MSG_UART_BAUD_ESTIMATED              0xc            0x12  (18)
+.text.MSG_UART_BAUD_OVERFLOW             0x26            0x39  (57)
+.text.MSG_UART_BITS_PARITY_PROMPT             0x3a            0x57  (87)
+.text.MSG_UART_BITS_STOP_PROMPT             0x18            0x24  (36)
+.text.MSG_UART_BPS_MARKER              0x4             0x6  (6)
+.text.MSG_UART_BRIDGE              0x8             0xc  (12)
+.text.MSG_UART_BRIDGE_EXIT              0xa             0xf  (15)
+.text.MSG_UART_EARLY_EXIT              0xa             0xf  (15)
+.text.MSG_UART_FAILED_NO_DATA              0xc            0x12  (18)
+.text.MSG_UART_FRAMING_ERROR              0x4             0x6  (6)
+.text.MSG_UART_LIVE_DISPLAY_START             0x14            0x1e  (30)
+.text.MSG_UART_LIVE_DISPLAY_STOP              0xe            0x15  (21)
+.text.MSG_UART_MACRO_MENU             0x48            0x6c  (108)
+.text.MSG_UART_MODE_HEADER             0x16            0x21  (33)
+.text.MSG_UART_MODE_IDENTIFIER              0x4             0x6  (6)
+.text.MSG_UART_OVERRUN_ERROR              0xc            0x12  (18)
+.text.MSG_UART_PARITY_ERROR              0x4             0x6  (6)
+.text.MSG_UART_PINS_STATE              0x8             0xc  (12)
+.text.MSG_UART_POLARITY_PROMPT             0x22            0x33  (51)
+.text.MSG_UART_POSSIBLE_OVERFLOW             0x18            0x24  (36)
+.text.MSG_UART_RAW_BRG_PROMPT             0x14            0x1e  (30)
+.text.MSG_UART_RAW_UART_INPUT              0xa             0xf  (15)
+.text.MSG_UART_SET_PORT_SPEED             0x60            0x90  (144)
+.text.MSG_UART_WAITING_ACTIVITY              0xe            0x15  (21)
+.text.MSG_UNKNOWN_MACRO_ERROR             0x1a            0x27  (39)
+.text.MSG_VOLTAGE_UNIT              0x2             0x3  (3)
+.text.MSG_VREG_TOO_LOW             0x16            0x21  (33)
+.text.MSG_WARNING_HEADER              0x8             0xc  (12)
+.text.MSG_WARNING_SHORT_OR_NO_PULLUP             0x10            0x18  (24)
+
+TOTAL PROGRAM MEMORY USED (bytes):        0x1a67  (6759)
+
+Section           Alignment Gaps   Length (bytes) (dec)
+-------           --------------   --------------------
+.data                          0               0  (0)
+.bss                           0               0  (0)
+
+   TOTAL DATA MEMORY USED (bytes):             0  (0)

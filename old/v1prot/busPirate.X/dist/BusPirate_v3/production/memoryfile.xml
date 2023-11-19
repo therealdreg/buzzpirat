@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+  <executable name="dist/BusPirate_v3/production/busPirate.X.production.elf">
+    <memory name="data">
+      <units>bytes</units>
+      <length>8186</length>
+      <used>6038</used>
+      <free>2148</free>
+    </memory>
+    <memory name="program">
+      <units>bytes</units>
+      <length>63738</length>
+      <used>55299</used>
+      <free>8439</free>
+    </memory>
+  </executable>
+</project>

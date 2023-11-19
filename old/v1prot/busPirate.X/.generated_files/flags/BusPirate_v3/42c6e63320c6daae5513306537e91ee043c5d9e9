@@ -1,0 +1,1 @@
+ -c -mcpu=$(MP_PROCESSOR_OPTION)      -g -D__DEBUG     -omf=elf -DXPRJ_BusPirate_v3=$(CND_CONF)    $(COMPARISON_BUILD)  -std=c99 -mlarge-code -mlarge-data -O1 -fomit-frame-pointer -I".." -mcci -msmart-io=1 -Werror -Wall -msfr-warn=off -finline  -save-temps -finline  -mdfp="${DFP_DIR}/xc16"C:\Users\dreg\Desktop\tmp\buzzpirat\buzzpirat\v1prot\dio.c

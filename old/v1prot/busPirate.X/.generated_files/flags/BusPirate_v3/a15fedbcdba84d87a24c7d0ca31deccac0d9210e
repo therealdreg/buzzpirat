@@ -1,0 +1,1 @@
+ -c -mcpu=$(MP_PROCESSOR_OPTION)  -omf=elf -DXPRJ_BusPirate_v3=$(CND_CONF)    -std=c99 -I".." -Wa,-g,--no-relax,-ahmlsi=${OBJECTDIR}/_ext/1472/openocd_asm.lst$(MP_EXTRA_AS_POST)  -mdfp="${DFP_DIR}/xc16"C:\Users\dreg\Desktop\tmp\buzzpirat\buzzpirat\v1prot\openocd_asm.s

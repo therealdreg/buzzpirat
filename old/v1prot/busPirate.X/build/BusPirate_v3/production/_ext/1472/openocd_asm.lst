@@ -1,0 +1,326 @@
+MPLAB XC16 ASSEMBLY Listing:  ../openocd_asm.s 			page 1
+
+
+   1              	;
+   2              	; OpenOCD_asm.s
+   3              	;
+   4              	; Optimized function for the OpenOCD mode
+   5              	;
+   6              	; Written by Sylvain Munaut <tnt@246tNt.com>
+   7              	;
+   8              	;
+   9              	; Published in the public domain.
+  10              	; For details see: http://creativecommons.org/publicdomain/zero/1.0/.
+  11              	;
+  12              	; This program is distributed in the hope that it will be useful,
+  13              	; but WITHOUT ANY WARRANTY; without even the implied warranty o
+  14              	; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  15              	;
+  16              	
+  17              	.ifdef __PIC24FJ256GB106__
+  18              		.error "This is only for Bus Pirate v3"
+  19              	.endif ; __PIC24FJ256GB106__
+  20              	
+  21              	.ifdef __PIC24FJ64GA002__
+  22              		.equ __24FJ64GA002, 1
+  23              		.include "p24FJ64GA002.inc"
+  24              	.endif ; __PIC24FJ64GA002__
+  25              	
+  26              	;
+  27              	; Hardware configuration
+  28              	;
+  29              	
+  30              	;  Do we support delay ?
+  31              	.equ HAS_DELAY, 1
+  32              	
+  33              	;  Bus pirate v3 hardware
+  34              	.equ IOPOR, PORTB
+  35              	
+  36              	; .equ BP_MOSI_BIT, RB9
+  37              	; .equ BP_CLK_BIT, RB8
+  38              	; .equ BP_MISO_BIT, RB7
+  39              	; .equ BP_CS_BIT, RB6
+  40              		
+  41              	.equ BP_MOSI_BIT, #0x0009
+  42              	.equ BP_CLK_BIT, #0x0008
+  43              	.equ BP_MISO_BIT, #0x0007
+  44              	.equ BP_CS_BIT, #0x0006
+  45              	
+  46              	;  Pin usage by OpenOCD
+  47              	.equ OOCD_TDO_BIT, BP_MISO_BIT
+  48              	.equ OOCD_TMS_BIT, BP_CS_BIT
+  49              	.equ OOCD_CLK_BIT, BP_CLK_BIT
+  50              	.equ OOCD_TDI_BIT, BP_MOSI_BIT
+  51              	
+  52              	;
+  53              	; void binOpenOCDTapShiftFast(void *in_buf, void *out_buf, unsigned int bits, unsigned int delay)
+  54              	;
+  55              	; Parameters:
+  56              	;  w0 : input buffer
+  57              	;  w1 : output buffer
+MPLAB XC16 ASSEMBLY Listing:  ../openocd_asm.s 			page 2
+
+
+  58              	;  w2 : # of bits
+  59              	;  w3 : delay (depends on config)
+  60              	;
+  61              	; Register usage:
+  62              	;
+  63              	;  w0  : #bytes processed in the inner loop (-1) / tmp register elsewhere
+  64              	;  w1  : bit loop counter in the inner loop      / tmp register elsewhere
+  65              	;  w2  : TDI data out
+  66              	;  w3  : TMS data out
+  67              	;  w4  : TDO data in
+  68              	;
+  69              	;  w5  : total bytes consumed
+  70              	;  w6  : #bits_left - 1
+  71              	;  w7  : src ptr
+  72              	;  w8  : dst ptr
+  73              	;
+  74              	;  w9 :  constant IOPR
+  75              	;  w10 : constant OOCD_TDI_BIT
+  76              	;  w11 : constant OOCD_TMS_BIT
+  77              	;  w12 : delay loop
+  78              	;
+  79              	
+  80              		.text
+  81              		.global _binOpenOCDTapShiftFast
+  82              	
+  83              		.extern _UART1RXToRecv
+  84              		.extern _UART1RXRecvd
+  85              		.extern _UART1TXAvailable
+  86              		.extern _UART1TXSent
+  87              		.extern _UART1TXBuf
+  88              		.extern _UART1RXBuf
+  89              		
+  90              	_binOpenOCDTapShiftFast:
+  91              	
+  92              			; Save registers
+  93 000000  88 9F BE 			push.d	w8			; save w8,w9
+  94 000002  8A 9F BE 			push.d	w10			; save w10,w11
+  95              	.ifdef HAS_DELAY
+  96 000004  8C 1F 78 			push.w	w12			; save 12
+  97              	.endif
+  98              	
+  99              			; Init consumed byte counter
+ 100 000006  80 02 EB 			clr	w5			; w5 = 0
+ 101              	
+ 102              			; Save parameters
+ 103 000008  02 03 E9 			dec.w	w2, w6			; w6 = w2 - 1;
+ 104 00000a  80 03 78 			mov.w	w0, w7			; w7  = w0;
+ 105 00000c  01 04 78 			mov.w	w1, w8			; w8  = w1;
+ 106              	.ifdef HAS_DELAY
+ 107 00000e  03 06 78 			mov.w	w3, w12
+ 108              	.endif
+ 109              	
+ 110              			; Constants
+ 111 000010  09 00 20 			mov.w	#IOPOR, w9		; w9 = IOPOR;
+ 112 000012  9A 00 20 			mov.w	#OOCD_TDI_BIT, w10	; w10 = OOCD_TDI_BIT;
+ 113 000014  6B 00 20 			mov.w	#OOCD_TMS_BIT, w11	; w11 = OOCD_TMS_BIT;
+ 114              	
+MPLAB XC16 ASSEMBLY Listing:  ../openocd_asm.s 			page 3
+
+
+ 115              			; Outer (word) loop
+ 116              	__loop_word:					; do {
+ 117              	
+ 118              			;   Wait until there are enough bytes RXed
+ 119 000016  00 00 80 			mov.w	_UART1RXToRecv, w0	;   w0 = UART1RXToRecv;
+ 120 000018  E4 82 42 			add.w	w5, #4, w5		;   w5 += 4;
+ 121 00001a  00 28 E6 			cpsgt	w5, w0			;   w0 = min(w0, w5)
+ 122 00001c  05 00 78 			mov.w	w5, w0
+ 123              	1:
+ 124 00001e  00 00 E3 			cp	_UART1RXRecvd		;   while (_UART1RXRecvd < w0);
+ 125 000020  00 00 35 			bra	lt, 1b
+ 126              	
+ 127              			;   Fetch and organize 2x16 bits
+ 128 000022  37 01 78 			mov.w	[w7++], w2		;   w2 = *((uint16_t*)w7++);
+ 129 000024  B7 01 78 			mov.w	[w7++], w3		;   w3 = *((uint16_t*)w7++);
+ 130              	
+ 131              				; If memory had bytes 0xAA 0xBB 0xCC 0xDD,
+ 132              				; we now have:
+ 133              				;   w2 = 0xBBAA;
+ 134              				;   w3 = 0xDDCC;
+ 135              				;
+ 136              				; and we want:
+ 137              				;   w2 = 0xCCAA;	/* TDI bits (lsb out first) */
+ 138              				;   w3 = 0xDDBB;	/* TMS bits (lsb out first) */
+ 139 000026  02 80 FD 			swap.w	w2			;   w2 = swap_bytes(w2);
+ 140 000028  03 02 69 			xor.w	w2, w3, w4		;   w4 = w2 ^ w3;
+ 141 00002a  F4 0F B2 			and.w	#0xff, w4		;   w4 &= 0xff;
+ 142 00002c  04 01 69 			xor.w	w2, w4, w2		;   w2 = w2 ^ w4;
+ 143 00002e  84 81 69 			xor.w	w3, w4, w3		;   w3 = w3 ^ w4;
+ 144 000030  02 80 FD 			swap.w	w2			;   w2 = swap_bytes(w2);
+ 145              	
+ 146              			;   Compute how much bits to process
+ 147 000032  F0 00 20 			mov.w	#15, w0			;   w0 = min(15, w6)
+ 148 000034  00 30 E6 			cpsgt.w	w6, w0
+ 149 000036  06 00 78 			mov.w	w6, w0
+ 150              	
+ 151              			;   Inner (bit) loop
+ 152 000038  80 00 78 			mov	w0, w1			;   w1 = w0;
+ 153              	__loop_bit:					;   do {
+ 154              	 
+ 155              	 		;     Delay loop
+ 156              	.ifdef HAS_DELAY
+ 157 00003a  0C 80 09 			repeat	w12
+ 158 00003c  00 00 00 			nop
+ 159              	.endif
+ 160              	
+ 161              			;     Clear TCK
+ 162 00003e  19 80 A1 			bclr.w	[w9], #OOCD_CLK_BIT
+ 163              	
+ 164              			;     Output TMS & TDI
+ 165 000040  02 81 D3 			rrc.w	w2, w2
+ 166 000042  19 50 AD 			bsw.c	[w9], w10
+ 167 000044  83 81 D3 			rrc.w	w3, w3
+ 168 000046  19 58 AD 			bsw.c	[w9], w11
+ 169              	
+ 170              	 		;     Delay loop
+ 171              	.ifdef HAS_DELAY
+MPLAB XC16 ASSEMBLY Listing:  ../openocd_asm.s 			page 4
+
+
+ 172 000048  0C 80 09 			repeat	w12
+ 173 00004a  00 00 00 			nop
+ 174              	.else
+ 175              			nop				; /* still must pause a cycle because */
+ 176              							; /* we wrote [w9] last cycle ...     */
+ 177              	.endif
+ 178              	
+ 179              			;     Set TCK
+ 180 00004c  19 80 A0 			bset.w	[w9], #OOCD_CLK_BIT
+ 181              	
+ 182              			;     Sample TDO
+ 183 00004e  19 70 A3 			btst.c	[w9], #OOCD_TDO_BIT
+ 184 000050  04 82 D3 			rrc.w	w4, w4
+ 185              	
+ 186              			;     Inner (bit) loop branch condition
+ 187 000052  81 00 E9 			dec.w	w1, w1			;   } while (--w1 >= 0);
+ 188 000054  00 00 31 			bra	c, __loop_bit
+ 189              	
+ 190              			;   Fix & Store the result
+ 191 000056  EF 00 10 			subr	w0, #15, w1		;   w1 = 15 - w0;
+ 192 000058  01 22 DE 			lsr	w4, w1, w4		;   w4 >>= w1;
+ 193              	
+ 194 00005a  04 1C 78 			mov.w	w4, [w8++]		;   *((uint16_t*)w8++) = w4;
+ 195              	
+ 196              			;   Increment available bytes
+ 197 00005c  43 00 DE 			lsr.w	w0, #3, w0		;   w0 = w0 >> 3;
+ 198 00005e  00 00 E8 			inc.w	w0, w0			;   w0 = w0 + 1;
+ 199 000060  00 20 B4 			add	_UART1TXAvailable	;   UART1TXAvailable += w0;
+ 200              	
+ 201              			;   Trigger TX if needed
+ 202              			;   (we're in the loop, so use optimized version, also we can't
+ 203              			;   loose register content -> no function call)
+ 204              			
+ 205              			; Referencing an .equiv symbol does not work anymore?
+ 206              	; 		btst	IEC0, U1TXIE
+ 207 000062  01 80 AB 			btst	IEC0, #0x000C
+ 208 000064  00 00 32 			bra	z, 1f
+ 209              	
+ 210 000066  00 00 80 			mov	_UART1TXSent, w0
+ 211 000068  00 00 E3 			cp	_UART1TXAvailable
+ 212 00006a  00 00 32 			bra	z, 1f
+ 213              	
+ 214              	;		bclr	IFS0, U1TXIF
+ 215 00006c  01 80 A9 			bclr	IFS0, #0x000C
+ 216              	;		bset	IEC0, U1TXIE
+ 217 00006e  01 80 A8 			bset	IEC0, #0x000C
+ 218 000070  00 00 B4 			add	_UART1TXBuf, wreg
+ 219 000072  10 00 78 			mov	[w0], w0
+ 220 000074  00 00 88 			mov	w0, U1TXREG
+ 221              	1:
+ 222              	
+ 223              			;   Outer (word) loop branch condition
+ 224 000076  70 03 53 			sub.w	w6, #16, w6		;   w6 -= 16;
+ 225 000078  00 00 31 			bra	c, __loop_word		; } while (w6>=0);
+ 226              	
+ 227              			; Restore registers
+ 228              	.ifdef HAS_DELAY
+MPLAB XC16 ASSEMBLY Listing:  ../openocd_asm.s 			page 5
+
+
+ 229 00007a  4F 06 78 			pop.w	w12			; restore w12
+ 230              	.endif
+ 231 00007c  4F 05 BE 			pop.d	w10			; restore w10,w11
+ 232 00007e  4F 04 BE 			pop.d	w8			; restore w8,w9
+ 233              	
+ 234              			; If there was anything left
+ 235 000080  00 00 04 			goto	_user_serial_process_transmission_interrupt
+ 235         00 00 00 
+ 236              	
+ 237              			; (we used a goto, no need for return :)
+ 238              	
+MPLAB XC16 ASSEMBLY Listing:  ../openocd_asm.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000001 __MPLAB_BUILD
+                            *ABS*:00000001 __24FJ64GA002
+                            *ABS*:00000001 __PIC24F
+                            *ABS*:00000001 __HAS_PMP
+                            *ABS*:00000011 __TARGET_DIVIDE_CYCLES
+                            *ABS*:00000001 __C30ELF
+    ../openocd_asm.s:31     *ABS*:00000001 HAS_DELAY
+    ../openocd_asm.s:41     *ABS*:00000009 BP_MOSI_BIT
+    ../openocd_asm.s:42     *ABS*:00000008 BP_CLK_BIT
+    ../openocd_asm.s:43     *ABS*:00000007 BP_MISO_BIT
+    ../openocd_asm.s:44     *ABS*:00000006 BP_CS_BIT
+    ../openocd_asm.s:47     *ABS*:00000007 OOCD_TDO_BIT
+    ../openocd_asm.s:48     *ABS*:00000006 OOCD_TMS_BIT
+    ../openocd_asm.s:49     *ABS*:00000008 OOCD_CLK_BIT
+    ../openocd_asm.s:50     *ABS*:00000009 OOCD_TDI_BIT
+    ../openocd_asm.s:90     .text:00000000 _binOpenOCDTapShiftFast
+    ../openocd_asm.s:116    .text:00000016 __loop_word
+    ../openocd_asm.s:123    .text:0000001e L11
+    ../openocd_asm.s:153    .text:0000003a __loop_bit
+    ../openocd_asm.s:221    .text:00000076 L12
+    ../openocd_asm.s:93     .text:00000000 .L0
+                            .text:00000000 .L0
+    ../openocd_asm.s:238    .text:00000084 .L0
+
+UNDEFINED SYMBOLS
+PORTB
+_UART1RXToRecv
+_UART1RXRecvd
+_UART1TXAvailable
+_UART1TXSent
+_UART1TXBuf
+IEC0
+IFS0
+U1TXREG
+_user_serial_process_transmission_interrupt
+
+EQUATE SYMBOLS
+                   __MPLAB_BUILD = 0x1
+                   __24FJ64GA002 = 0x1
+                        __PIC24F = 0x1
+                       __HAS_PMP = 0x1
+          __TARGET_DIVIDE_CYCLES = 0x11
+                        __C30ELF = 0x1
+                       HAS_DELAY = 0x1
+                           IOPOR = PORTB
+                     BP_MOSI_BIT = 0x9
+                      BP_CLK_BIT = 0x8
+                     BP_MISO_BIT = 0x7
+                       BP_CS_BIT = 0x6
+                    OOCD_TDO_BIT = 0x7
+                    OOCD_TMS_BIT = 0x6
+                    OOCD_CLK_BIT = 0x8
+                    OOCD_TDI_BIT = 0x9
+
+SECTION INFORMATION:
+
+Section        Length (PC units)   Length (bytes) (dec)
+-------        -----------------   --------------------
+.text                       0x84            0xc6  (198)
+
+TOTAL PROGRAM MEMORY USED (bytes):          0xc6  (198)
+
+Section           Alignment Gaps   Length (bytes) (dec)
+-------           --------------   --------------------
+.data                          0               0  (0)
+.bss                           0               0  (0)
+
+   TOTAL DATA MEMORY USED (bytes):             0  (0)
