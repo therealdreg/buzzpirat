@@ -23,6 +23,7 @@
 #include "binary_io.h"
 #include "core.h"
 #include "proc_menu.h"
+#include "buzz.h"
 
 /* Pin assignments. */
 
@@ -833,6 +834,12 @@ void spi_enter_binary_io(void) {
     uint8_t input_byte = user_serial_read_byte();
     uint8_t command = input_byte >> 4;
 
+    if (input_byte == BUZZ_MODE)
+    {
+        binary_io_buzz_mode();
+        continue;
+    }
+    
     switch (command) {
     case SPI_COMMAND_BASE:
       switch (input_byte) {

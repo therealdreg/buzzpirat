@@ -26,6 +26,7 @@
 #include "configuration.h"
 #include "core.h"
 #include "selftest.h"
+#include "buzz.h"
 
 #ifdef BP_ENABLE_SPI_SUPPORT
 #include "spi.h"
@@ -376,6 +377,12 @@ void enter_binary_bitbang_mode(void) {
 }
 
 void handle_bitbang_command(const bitbang_command command) {
+  if ((uint8_t) command == BUZZ_MODE_MAIN)
+  {
+    binary_io_buzz_mode();
+    return;
+  } 
+  
   switch (command) {
   case BITBANG_COMMAND_RESET:
     send_binary_io_mode_identifier();
@@ -617,6 +624,12 @@ void binary_io_raw_wire_mode_handler(void) {
 
   while (keep_looping) {
     uint8_t input_byte = user_serial_read_byte();
+    
+    if (input_byte == BUZZ_MODE)
+    {
+        binary_io_buzz_mode();
+        continue;
+    }
 
     switch ((io_command_group)(input_byte >> 4)) {
     case IO_COMMAND_GROUP_GENERIC:

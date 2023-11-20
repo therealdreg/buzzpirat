@@ -57,6 +57,7 @@
 #include "base.h"
 #include "binary_io.h"
 #include "proc_menu.h"
+#include "buzz.h"
 
 extern mode_configuration_t mode_configuration;
 extern command_t last_command;
@@ -1210,6 +1211,12 @@ void binary_io_enter_1wire_mode(void) {
     input_byte = user_serial_read_byte();
     command = input_byte >> 4;
 
+    if (input_byte == BUZZ_MODE)
+    {
+        binary_io_buzz_mode();
+        continue;
+    }
+    
     switch (command) {
     case BINARY_IO_ONEWIRE_COMMAND_ACTION:
       switch (input_byte) {

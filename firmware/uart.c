@@ -23,6 +23,7 @@
 #include "binary_io.h"
 #include "proc_menu.h"
 #include "uart2.h"
+#include "buzz.h"
 
 extern mode_configuration_t mode_configuration;
 extern command_t last_command;
@@ -642,6 +643,12 @@ void binUART(void) {
     }
 
     input_byte = user_serial_read_byte();
+    
+    if (input_byte == BUZZ_MODE)
+    {
+        binary_io_buzz_mode();
+        continue;
+    }
 
     switch (input_byte & 0xF0) {
     case 0:

@@ -25,6 +25,7 @@
 #include "bitbang.h"
 #include "core.h"
 #include "proc_menu.h"
+#include "buzz.h"
 
 /**
  * Use a software I2C communication implementation
@@ -794,6 +795,12 @@ void binary_io_enter_i2c_mode(void) {
     // get command bits in a separate variable
     rawCommand = (inByte >> 4);
 
+    if (inByte == BUZZ_MODE)
+    {
+        binary_io_buzz_mode();
+        continue;
+    }
+    
     switch (rawCommand) {
     case 0: // reset/setup/config commands
       switch (inByte) {
@@ -921,7 +928,7 @@ void binary_io_enter_i2c_mode(void) {
       bp_binary_io_peripherals_set(inByte);
       REPORT_IO_SUCCESS();
       break;
-
+      
     default:
       REPORT_IO_FAILURE();
       break;
