@@ -44,7 +44,7 @@
 /**
  * @brief Firmware version string, used at startup and for the 'i' command.
  */
-#define BP_FIRMWARE_STRING "Community Firmware v7.1 - buzzpirat.com by Dreg THREE ALPHA "
+#define BP_FIRMWARE_STRING "Community Firmware v7.1 - buzzpirat.com by Dreg FIVE ALPHA "
 
 /**
  * @brief Current mode configuration settings structure.

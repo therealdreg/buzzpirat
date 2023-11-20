@@ -79,7 +79,7 @@ If you **value** what I am building and would like to see it thrive, please cons
 ## Recommended firmwares & bootloaders:
 
 Official for buzzpirat:
-- bin\BZ-firmware-v7.1.3.alpha.hex
+- bin\BZ-firmware-v7.1.5.alpha.hex
 
 ### Bus Pirate firmwares
 
@@ -103,7 +103,7 @@ For windows:
 
 ```
 cd bin
-buzzloader.exe --dev=COM29 --hex=BZ-firmware-v7.1.3.alpha.hex
+buzzloader.exe --dev=COM29 --hex=BZ-firmware-v7.1.5.alpha.hex
 ```
 
 ## How to compile bootloader & firmware
