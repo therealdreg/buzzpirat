@@ -108,8 +108,5 @@ uint8_t bitbang_pin_state_set(const uint8_t state_mask);
 
 void bp_binary_io_peripherals_set(uint8_t input_byte);
 
-#ifdef BUSPIRATEV4
-bool bp_binary_io_pullup_control(uint8_t control_byte);
-#endif /* BUSPIRATEV4 */
 
 #endif /* !BP_BINARY_IO_H */

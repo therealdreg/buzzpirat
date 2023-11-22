@@ -46,6 +46,10 @@ bool binary_io_buzz_mode(void) {
             BP_TP0 = LOW;         
             break;
             
+        case 0x03:
+            user_serial_transmit_character(BP_TP0 ? 0x01 : 0x00);        
+            break;
+            
         default:
             REPORT_IO_FAILURE();
             return false;

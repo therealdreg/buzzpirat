@@ -63,20 +63,14 @@ void SUMP(void) {
         BYTE parCnt;
     } sumpRX;
 
-#ifndef BUSPIRATEV4
+
     IODIR |= (AUX + MOSI + CLK + MISO + CS); //AUX, MOSI, CLK, MISO, CS pins to input
-#else
-    IODIR |= (AUX0 + AUX1 + AUX2 + MOSI + CLK + MISO + CS + SUMP_SPARE6 + SUMP_SPARE7); // BPv4 PORTD SUMP inputs x9
-#endif
 
     SUMPreset();
     sump_mode = 1; // Remains in SUMP mode until sump_mode == 0
     bpWstring("1ALS");
 
     do { // Remains in this loop until a SUMP RESET (0x00) is received.
-#ifndef USB_INTERRUPTS
-        usb_handler();
-#endif
         if (poll_getc_cdc(&RECVedByte) == 1) {//process any command bytes, otherwise it does nothing but loop
 
             switch (RECVedByte) {//switch on the current byte
@@ -110,18 +104,10 @@ void SUMP(void) {
                     CDC_Flush_In_Now(); // Start with a clean slate. Reset InPtr and count etc.
                     CDC_Flush_In_Now();
 
-#ifndef BUSPIRATEV4
                     do {
 
                     } while ((0 == IFS1bits.CNIF) && CNEN2);
-#else
-                    do {
-#ifndef USB_INTERRUPTS
-                        usb_handler();
-#endif
-                    } while (0 == IFS1bits.CNIF);
 
-#endif
                     //OK! Ready to sample 
                     // Add LED control here.
                     // BP_VREGEN = 0; // JTR this is for debug ATM
@@ -131,22 +117,7 @@ void SUMP(void) {
 
                     // Critical timed loop, inversely proportional to our acheivable bandwidth
                     for (i = 0; i < sumpSamples; i++) { //take SAMPLE_SIZE samples
-#ifndef BUSPIRATEV4
                         *InPtr++ = (PORTB >> 6); //change to pointer for faster use...
-#else
-#ifdef BPv4_SUMP_SOFT_WIRE // See hardwarev4a.h
-                        sump_port = (PORTD & 0x13f);
-                        if (sump_port & 0x100)
-                            sump_port |= 0x80;
-
-                        // Debugging. Chose one
-                        * InPtr++ = sump_port;
-                        // * InPtr++ = i;
-#else
-                        * InPtr++ = (BYTE)(PORTD & 0xff);  //sump_port; //change to pointer for faster use...
-#endif
-
-#endif                        
                         cdc_In_len += 1;
                         cdc_timeout_count = 0; // Must do this to prevent CDC_FlushOnTimeOut firing.
 
@@ -158,16 +129,8 @@ void SUMP(void) {
                         while (IFS1bits.T5IF == 0); //wait for timer4 (timer 5 interrupt)
                         IFS1bits.T5IF = 0; //clear interrupt flag
                     }
-#ifdef BUSPIRATEV4
-                    CNEN1 &= 0b1001111111111111; //turn off used pins change notice
-                    CNEN4 &= 0b1111111111000001;
-#else
                     CNEN2 = 0; //change notice off
-#endif
                     T4CON = 0; //stop count
-#ifndef USB_INTERRUPTS
-                    usb_handler();
-#endif
                     WaitInReady();
 
                     // JTR debug only
@@ -184,11 +147,7 @@ void SUMP(void) {
                 case SUMP_DESC:
                     // device name string
                     UART1TX(0x01);
-#ifdef BUSPIRATEV4
-                    bpWstring("BPv4");
-#else                    
                     bpWstring("BPv3");
-#endif
                     UART1TX(0x00);
                     //sample memory (4096) meaningless in JTR_SUMP mode
                     UART1TX(0x21);
@@ -226,35 +185,19 @@ void SUMP(void) {
                     switch (sumpRX.command[0]) {
 
                         case SUMP_TRIG: //set CN on these pins
-#ifdef BUSPIRATEV4                    
-                            if (sumpRX.command[1] & 0b1000000) CNEN4 |= 0b10; //AUX2
-#ifdef BPv4_SUMP_SOFT_WIRE // See hardwarev4a.h                            
-                            if (sumpRX.command[1] & 0b100000) CNEN4 |= 0b100000; //AUX1 on PORTD:8 will be moved in firmware to B7 of SUMP byte
-#else // possible GREEN WIRE mode PORTD8 to PORTD7
-                            if (sumpRX.command[1] & 0b100000) CNEN2 |= 0b1; //AUX1 on PORTD:7
-#endif                            
-                            if (sumpRX.command[1] & 0b10000) CNEN1 |= 0b100000000000000; //AUX0
-                            if (sumpRX.command[1] & 0b1000) CNEN4 |= 0b100; // MOSI
-                            if (sumpRX.command[1] & 0b100) CNEN4 |= 0b1000; // CLK
-                            if (sumpRX.command[1] & 0b10) CNEN4 |= 0b10000; // MISO
-                            if (sumpRX.command[1] & 0b1) CNEN1 |= 0b10000000000000; // CS
-#else                    
                             if (sumpRX.command[1] & 0b10000) CNEN2 |= 0b1; //AUX
                             if (sumpRX.command[1] & 0b1000) CNEN2 |= 0b100000; // MOSI
                             if (sumpRX.command[1] & 0b100) CNEN2 |= 0b1000000; // CLK
                             if (sumpRX.command[1] & 0b10) CNEN2 |= 0b10000000; // MISO
-                            if (sumpRX.command[1] & 0b1) CNEN2 |= 0b100000000; // CS
-#endif                     
+                            if (sumpRX.command[1] & 0b1) CNEN2 |= 0b100000000; // CS                     
 
                         case SUMP_CNT:
                             sumpSamples = sumpRX.command[2];
                             sumpSamples <<= 8;
                             sumpSamples |= sumpRX.command[1];
                             sumpSamples = (sumpSamples + 1)*4;
-#ifndef BUSPIRATEV4
                             //prevent buffer overruns
                             if (sumpSamples > LA_SAMPLE_SIZE) sumpSamples = LA_SAMPLE_SIZE;
-#endif
                             break;
                         case SUMP_DIV:
                             l = sumpRX.command[3];
@@ -283,19 +226,11 @@ void SUMP(void) {
 }
 
 void SUMPreset(void) {
-    BP_LEDMODE = 0; //LED
-#ifdef BUSPIRATEV4 
-    CNPU1 &= 0b1001111111111111; //turn off pullups on used pins
-    CNPU4 &= 0b1111111111000001;
-    CNEN1 &= 0b1001111111111111; //turn off used pins change notice
-    CNEN4 &= 0b1111111111000001;
-
-#else    
+    BP_LEDMODE = 0; //LED   
     CNPU1 = 0; //pullups off
     CNPU2 = 0;
     CNEN1 = 0; //all change notice off
     CNEN2 = 0;
-#endif   
 
     T4CON = 0; //stop count
     IPC4bits.CNIP = 0;
