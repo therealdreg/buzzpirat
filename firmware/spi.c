@@ -836,7 +836,17 @@ void spi_enter_binary_io(void) {
 
     if (input_byte == BUZZ_MODE)
     {
-        binary_io_buzz_mode();
+        if (!binary_io_buzz_mode(&input_byte))
+        {
+            // Protocol specific buzz commands from 0x97 to 0xFF
+            switch (input_byte)
+            {
+                case 0x97:
+                    break;
+                case 0xFF:
+                    break;
+            }
+        }
         continue;
     }
     
@@ -1035,6 +1045,10 @@ void spi_read_write_io(const bool engage_cs) {
 
   if (bytes_to_read > 0) {
     spi_read_to_uart(bytes_to_read);
+  } 
+  else
+  {
+    REPORT_IO_SUCCESS();
   }
 
   /* Reset the CS line if needed. */

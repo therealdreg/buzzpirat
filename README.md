@@ -76,35 +76,10 @@ If you **value** what I am building and would like to see it thrive, please cons
 * [flashrom] bios/flash programmer
 * [asprogrammer-dregmod] https://github.com/therealdreg/asprogrammer-dregmod
 
-## Recommended firmwares & bootloaders:
+## More info:
 
-Official for buzzpirat:
-- bin\BZ-firmware-v7.1.7.alpha.hex
-
-### Bus Pirate firmwares
-
-Modern:
-- bin\BPv3-bootloader-upgrade-v4xtov4.5_Aug-2023_USBEprom.hex
-- bin\BPv3-firmware-v7.1-JTAG_SAFE_1_Aug-2023_USBEprom.hex
-
-Old & stable:
-- bin\BPv3-Bootloader-v4.4.hex
-- bin\BPv3-firmware-v6.3-r2151.hex
-
-## Firmware Flashing
-
-For windows:
-
-- open the device manager on your computer
-- put a jumper/dupont_wire connecting the PGD pin to the PGC pin
-- connect the buzzpirat to your computer via a usb cable
-- check for the new COM port assignment in the device manager (e.g., COM29)
-
-
-```
-cd bin
-buzzloader.exe --dev=COM29 --hex=BZ-firmware-v7.1.7.alpha.hex
-```
+- https://buzzpirat.com/docs/
+- https://buzzpirat.com/
 
 ## How to compile bootloader & firmware
 
@@ -128,13 +103,25 @@ Now you can use MPLAB IDE and MPLAB IPE
 
 ![debugging_bus_pirate_pickit_mplab](./assets/debugging_bus_pirate_pickit_mplab.png)
 
-## Self-test guide
-
-http://dangerousprototypes.com/docs/Bus_Pirate_self-test_guide
 
 ## Purchasing
 
 https://buzzpirat.com
+
+## TO-DO Firmware
+
+- [ ] (Binary) Support for I2C Hardware
+- [ ] (Binary & Text) Support for AUX & TP0 as Edge-Triggered Interrupt Sources: 
+  - Rising Edge
+  - Falling Edge
+  - Both Rising and Falling Edges
+- [ ] (Binary) Support for Baud Rate Modification
+- [ ] (Binary) Support for reading the Buzzpirat version
+- [ ] (Text) Add repeat support for 'd' & 'v' command, ex:
+  - d:20 
+  - d%:50
+- [ ] (Binary & Text) Add continuous 'v' voltage monitoring 
+
 
 ## Thx to
 

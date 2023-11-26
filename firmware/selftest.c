@@ -148,10 +148,18 @@ uint8_t perform_selftest(bool show_progress, bool jumper_test) {
   perform_adc_test(BP_ADC_5V0, V5L, V5H);
   
   BPMSG1171BUZZ;
+  #ifdef BPV3_COMP
+  perform_adc_test(BP_ADC_5V0, V5L, V5H); // dummy
+  #else
   perform_adc_test(BP_ADC_2V5, V25L, V25H);
+  #endif
   
   BPMSG1171BUZZ1V8;
+  #ifdef BPV3_COMP
+  perform_adc_test(BP_ADC_5V0, V5L, V5H); // dummy
+  #else
   perform_adc_test(BP_ADC_1V8, V18L, V18H);
+  #endif
   
   if (jumper_test) {
 
@@ -192,8 +200,10 @@ uint8_t perform_selftest(bool show_progress, bool jumper_test) {
   BPMSG1175;
   IODIR &= ~ALLIO;
   IOLAT |= ALLIO;
+  #ifndef BPV3_COMP
   BP_TP0_DIR = OUTPUT;
   BP_TP0 = HIGH;
+  #endif
   bp_delay_ms(PIN_STATE_TEST_DELAY);
   perform_pins_state_test(HIGH);
 
@@ -208,8 +218,10 @@ uint8_t perform_selftest(bool show_progress, bool jumper_test) {
     bp_enable_3v3_pullup();
     bp_enable_pullup();
   }
+  #ifndef BPV3_COMP
   BP_TP0_DIR = OUTPUT;
   BP_TP0 = LOW;
+  #endif
   bp_delay_ms(PIN_STATE_TEST_DELAY);
   perform_pins_state_test(LOW);
 
@@ -292,7 +304,11 @@ void perform_pins_state_test(bool state) {
   
   /* Check TP0 pin state. */
   BPMSG1184BUZZ;
+  #ifdef BPV3_COMP
+  check_result(BP_CS, state); // dummy
+  #else
   check_result(BP_TP0, state);
+  #endif
 }
 
 void check_result(bool obtained, bool expected) {

@@ -573,8 +573,10 @@ void serviceuser(void) {
         break;
 
       case 'E':
+        #ifndef BPV3_COMP
         BP_TP0_DIR = OUTPUT;
         BP_TP0 = LOW;
+        #endif
         break;
         
         
@@ -1895,8 +1897,13 @@ void switch_psu_on(void) {
   /* Wait for VREG to come up.*/
   bp_delay_ms(2);
 
-  if ((bp_read_adc(BP_ADC_3V3) > V33L) && (bp_read_adc(BP_ADC_5V0) > V5L)
-      && (bp_read_adc(BP_ADC_2V5) > V25L) && (bp_read_adc(BP_ADC_1V8) > V18L)) {
+  if ((bp_read_adc(BP_ADC_3V3) > V33L) 
+          && (bp_read_adc(BP_ADC_5V0) > V5L)
+          #ifndef BPV3_COMP
+          && (bp_read_adc(BP_ADC_2V5) > V25L) 
+          && (bp_read_adc(BP_ADC_1V8) > V18L)
+          #endif
+          ) {
     /* Correct voltages read. */
     MSG_POWER_SUPPLIES_ON;
     bpBR;

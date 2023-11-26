@@ -797,7 +797,17 @@ void binary_io_enter_i2c_mode(void) {
 
     if (inByte == BUZZ_MODE)
     {
-        binary_io_buzz_mode();
+        if (!binary_io_buzz_mode(&inByte))
+        {
+            // Protocol specific buzz commands from 0x97 to 0xFF
+            switch (inByte)
+            {
+                case 0x97:
+                    break;
+                case 0xFF:
+                    break;
+            }
+        }
         continue;
     }
     

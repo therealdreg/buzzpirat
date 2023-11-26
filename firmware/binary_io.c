@@ -127,26 +127,6 @@ typedef enum {
   SMPS_COMMAND_START = 0xF2
 } smps_command;
 
-typedef enum {
-  BITBANG_COMMAND_RESET = 0x00,
-  BITBANG_COMMAND_SPI,
-  BITBANG_COMMAND_I2C,
-  BITBANG_COMMAND_UART,
-  BITBANG_COMMAND_1WIRE,
-  BITBANG_COMMAND_RAW_WIRE,
-  BITBANG_COMMAND_OPENOCD,
-  BITBANG_COMMAND_PIC,
-  BITBANG_COMMAND_RETURN_TO_TERMINAL = 0x0F,
-  BITBANG_COMMAND_SHORT_SELF_TEST,
-  BITBANG_COMMAND_FULL_SELF_TEST,
-  BITBANG_COMMAND_SETUP_PWM,
-  BITBANG_COMMAND_CLEAR_PWM,
-  BITBANG_COMMAND_ADC_ONE_SHOT,
-  BITBANG_COMMAND_ADC_CONTINUOUS,
-  BITBANG_COMMAND_FREQUENCY_COUNT,
-  BITBANG_COMMAND_JTAG_XSVF = 0x18
-} bitbang_command;
-
 /**
  * Write and read bits payload for PIC24 SIX commands.
  *
@@ -272,11 +252,6 @@ static inline void handle_pic_command_write(void);
 static inline void handle_pic_command(const pic_command command);
 static inline void handle_smps_command(const smps_command command);
 
-static inline void handle_setup_pwm(void);
-static inline void handle_clear_pwm(void);
-static inline void handle_read_adc_one_shot(void);
-static inline void handle_read_adc_continuously(void);
-static inline void handle_frequency_measurement(void);
 static inline void handle_bitbang_command(const bitbang_command command);
 
 static void read_and_transmit_adc_measurement(void);
@@ -377,9 +352,21 @@ void enter_binary_bitbang_mode(void) {
 }
 
 void handle_bitbang_command(const bitbang_command command) {
-  if ((uint8_t) command == BUZZ_MODE_MAIN)
+  uint8_t input_byte = (uint8_t) command;
+    
+  if (input_byte == BUZZ_MODE_MAIN)
   {
-    binary_io_buzz_mode();
+    if (!binary_io_buzz_mode(&input_byte))
+        {
+            // Protocol specific buzz commands from 0x97 to 0xFF
+            switch (input_byte)
+            {
+                case 0x97:
+                    break;
+                case 0xFF:
+                    break;
+            }
+        }
     return;
   } 
   
@@ -627,7 +614,17 @@ void binary_io_raw_wire_mode_handler(void) {
     
     if (input_byte == BUZZ_MODE)
     {
-        binary_io_buzz_mode();
+        if (!binary_io_buzz_mode(&input_byte))
+        {
+            // Protocol specific buzz commands from 0x97 to 0xFF
+            switch (input_byte)
+            {
+                case 0x97:
+                    break;
+                case 0xFF:
+                    break;
+            }
+        }
         continue;
     }
 

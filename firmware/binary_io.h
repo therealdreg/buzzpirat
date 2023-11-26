@@ -20,6 +20,27 @@
 
 #include <stdint.h>
 
+
+typedef enum {
+  BITBANG_COMMAND_RESET = 0x00,
+  BITBANG_COMMAND_SPI,
+  BITBANG_COMMAND_I2C,
+  BITBANG_COMMAND_UART,
+  BITBANG_COMMAND_1WIRE,
+  BITBANG_COMMAND_RAW_WIRE,
+  BITBANG_COMMAND_OPENOCD,
+  BITBANG_COMMAND_PIC,
+  BITBANG_COMMAND_RETURN_TO_TERMINAL = 0x0F,
+  BITBANG_COMMAND_SHORT_SELF_TEST,
+  BITBANG_COMMAND_FULL_SELF_TEST,
+  BITBANG_COMMAND_SETUP_PWM,
+  BITBANG_COMMAND_CLEAR_PWM,
+  BITBANG_COMMAND_ADC_ONE_SHOT,
+  BITBANG_COMMAND_ADC_CONTINUOUS,
+  BITBANG_COMMAND_FREQUENCY_COUNT,
+  BITBANG_COMMAND_JTAG_XSVF = 0x18
+} bitbang_command;
+
 /**
  * Result code indicating a successful binary I/O operation.
  */
@@ -107,6 +128,10 @@ uint8_t bitbang_pin_direction_set(const uint8_t direction_mask);
 uint8_t bitbang_pin_state_set(const uint8_t state_mask);
 
 void bp_binary_io_peripherals_set(uint8_t input_byte);
-
+void handle_setup_pwm(void);
+void handle_clear_pwm(void);
+void handle_read_adc_one_shot(void);
+void handle_read_adc_continuously(void);
+void handle_frequency_measurement(void);
 
 #endif /* !BP_BINARY_IO_H */

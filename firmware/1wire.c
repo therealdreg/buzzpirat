@@ -1213,7 +1213,17 @@ void binary_io_enter_1wire_mode(void) {
 
     if (input_byte == BUZZ_MODE)
     {
-        binary_io_buzz_mode();
+        if (!binary_io_buzz_mode(&input_byte))
+        {
+            // Protocol specific buzz commands from 0x97 to 0xFF
+            switch (input_byte)
+            {
+                case 0x97:
+                    break;
+                case 0xFF:
+                    break;
+            }
+        }
         continue;
     }
     
