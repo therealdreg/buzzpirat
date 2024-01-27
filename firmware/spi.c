@@ -1027,7 +1027,7 @@ void spi_read_write_io(const bool engage_cs) {
 #endif /* !BP_SPI_ENABLE_STREAMING_READ */
 
   if ((bytes_to_write == 0) && (bytes_to_read == 0)) {
-    REPORT_IO_FAILURE();
+    REPORT_IO_SUCCESS(); // needed for AVRDUDE
     return;
   }
 
