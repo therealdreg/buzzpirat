@@ -4,7 +4,7 @@
 
 All-In-One Ruggedized Hardware Hacking tool for learning, practice and play
 
-Using the same hardware as **Bus Pirate v3** but with some enhancements:
+Using the same hardware as **Bus Pirate v3 (PIC24FJ64GA002)** but with some enhancements:
 - Ruggedized like a Ruggeduino: enhanced security with hardware protections such as: over(voltage/current) + reverse safeguards and measures to prevent damage to devices. PTC I/O protections can be disabled with a simple jumper
 - Fully compatible with both the official Bus Pirate firmware and bootloader, as well as versions supported by the Bus Pirate community
 - Support for working directly with 5v, 3.3v, 2.5v and 1.8v. So you won't need an external circuit to hack a 1.8v chip
@@ -71,10 +71,12 @@ If you **value** what I am building and would like to see it thrive, please cons
 
 ## Application Support
 
-* [AVRDude] AVR programmer (AVRDude v5.8+, firmware v4 (any) or v5.9+)
-* [OpenOCD] JTAG debugger
-* [flashrom] bios/flash programmer
-* [asprogrammer-dregmod] https://github.com/therealdreg/asprogrammer-dregmod
+* AVRDude AVR programmer https://github.com/avrdudes/avrdude
+* OpenOCD JTAG debugger https://openocd.org/
+* flashrom bios/flash programmer https://github.com/therealdreg/flashrom_build_windows_x64
+* PulseView (Openbench Logic Sniffer & SUMP compatibles ols) https://sigrok.org/wiki/PulseView
+* asprogrammer-dregmod https://github.com/therealdreg/asprogrammer-dregmod
+
 
 ## More info:
 

@@ -394,6 +394,8 @@ static sump_analyzer_command_state_t command_processor_state = RX_COMMAND_IDLE;
  */
 static unsigned int samples_to_acquire;
 
+static bool trigger_armed;
+
 /**
  * Acquires data from the probes and sends it out to the controlling software.
  *
@@ -425,7 +427,7 @@ static bool sump_handle_command_byte(uint8_t input_byte);
 void enter_sump_mode(void) {
 
   /* Set probing channels to INPUT mode. */
-  IODIR |= AUX + MOSI + CLK + MISO + CS;
+  IODIR |= (AUX + MOSI + CLK + MISO + CS);
 
   /* Reset the analyzer state. */
   sump_reset();
@@ -441,9 +443,7 @@ void enter_sump_mode(void) {
 
       /* Process the command byte. */
       if (sump_handle_command_byte(user_serial_read_byte())) {
-
-        /* A SUMP_RESET command was received, abort. */
-        return;
+        /* SUMP_RESET stays in SUMP mode */
       }
     }
 
@@ -451,18 +451,15 @@ void enter_sump_mode(void) {
      * Start the acquisition process (if the device is not properly set up
      * nothing will happen, so it's safe to call this anyway).
      */
-    if (sump_acquire_samples()) {
+    sump_acquire_samples();
 
-      /* The acquisition process finished, end. */
-      return;
-    }
   }
 }
 
 void sump_reset(void) {
   /* Switch LED off. */
   BP_LEDMODE = OFF;
-
+   
   /* Switch pull-ups off for all pins. */
   CNPU1 = 0;
   CNPU2 = 0;
@@ -486,6 +483,7 @@ void sump_reset(void) {
 
   /* Initialize the sampler. */
   sampler_state = SAMPLER_IDLE;
+  trigger_armed = false;
 }
 
 bool sump_handle_command_byte(unsigned char input_byte) {
@@ -496,7 +494,7 @@ bool sump_handle_command_byte(unsigned char input_byte) {
    * No need to clear it first, as it will be properly initialized upon
    * receiving a long (5 bytes) command.
    */
-  sump_command_t command_buffer = {.bytes = {0}, .count = 0, .left = 0};
+  static sump_command_t command_buffer = {.bytes = {0}, .count = 0, .left = 0};
 
   switch (command_processor_state) {
 
@@ -592,32 +590,22 @@ bool sump_handle_command_byte(unsigned char input_byte) {
     switch (command_buffer.bytes[0]) {
     /* Set triggers. */
     case SUMP_TRIG:
+      trigger_armed = false;
+      
+      if (command_buffer.bytes[1] & 0b00010000)
+        CNEN2 |= 0b0000000000000001; // AUX
+      if (command_buffer.bytes[1] & 0b00001000)
+        CNEN2 |= 0b0000000000100000; // MOSI
+      if (command_buffer.bytes[1] & 0b00000100)
+        CNEN2 |= 0b0000000001000000; // CLK
+      if (command_buffer.bytes[1] & 0b00000010)
+        CNEN2 |= 0b0000000010000000; // MISO
+      if (command_buffer.bytes[1] & 0b00000001)
+        CNEN2 |= 0b0000000100000000; // CS
 
-      /* Set a trigger on the AUX pin. */
-      if (command_buffer.bytes[1] & 0b00010000) {
-        CNEN2 |= 0b0000000000000001;
-      }
-
-      /* Set a trigger on the ??? pin. */
-      if (command_buffer.bytes[1] & 0b00001000) {
-        CNEN2 |= 0b0000000000100000;
-      }
-
-      /* Set a trigger on the ??? pin. */
-      if (command_buffer.bytes[1] & 0b00000100) {
-        CNEN2 |= 0b0000000001000000;
-      }
-
-      /* Set a trigger on the ??? pin. */
-      if (command_buffer.bytes[1] & 0b00000010) {
-        CNEN2 |= 0b0000000010000000;
-      }
-
-      /* Set a trigger on the ??? pin. */
-      if (command_buffer.bytes[1] & 0b00000001) {
-        CNEN2 |= 0b0000000100000000;
-      }
-
+      if (command_buffer.bytes[1] & 0b00011111)
+        trigger_armed = true;
+      
       break;
 
     case SUMP_FLAGS:
@@ -677,7 +665,7 @@ bool sump_acquire_samples(void) {
     size_t offset;
 
     /* Skip if no interrupt and no trigger set. */
-    if (!IFS1bits.CNIF && CNEN2) {
+    if (!IFS1bits.CNIF && trigger_armed) {
       break;
     }
 
@@ -730,3 +718,4 @@ bool sump_acquire_samples(void) {
 }
 
 #endif /* BP_ENABLE_SUMP_SUPPORT */
+

@@ -10,7 +10,7 @@ SET PRE=
 SET MP_EXTRA_CC_PRE=-DBUZZ_VER=%BZVER%
 )
 
-SET PATH=C:\Program Files\Microchip\MPLABX\v6.15\gnuBins\GnuWin32\bin;%PATH%;
+SET PATH=C:\Program Files\Microchip\MPLABX\v6.25\gnuBins\GnuWin32\bin;%PATH%;
 
 cd busPirate.X  || goto :error
 make clean  || goto :error
