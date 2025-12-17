@@ -124,6 +124,9 @@ https://buzzpirat.com
   - d%:50
 - [ ] (Binary & Text) Add continuous 'v' voltage monitoring 
 
+## Pulseview setup
+
+![pulseviewsetup](./assets/pulseviewsetup.png)
 
 ## Thx to
 
