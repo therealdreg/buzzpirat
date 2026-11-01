@@ -135,5 +135,10 @@ https://buzzpirat.com
 - k1m3rA (art): https://k1m3ra.gitlab.io
 - becca203 (art): https://github.com/Becca203
 
+# Related
+
+- https://github.com/therealdreg/bp3mitloader
+- https://github.com/therealdreg/bp3unbricker
+
 
 
